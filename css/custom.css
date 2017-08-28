@@ -1,0 +1,602 @@
+.change { color: red; }
+
+/********************************************************************************/
+/* SPECIFIC LAYER STYLES
+/********************************************************************************/
+#pag-textos-infografia .note_pointer_left, #pag-textos-infografia .note_pointer_right {
+    display: inline-table;
+    position: relative;
+}
+
+#pag-textos-iconografia i {
+    font-size: 27px;
+    cursor: default;
+}
+
+#pag-textos-iconografia .lista_iconos i:hover {
+    color: #f6ae00;
+}
+
+#pag-textos-iconografia .little i {
+    font-size: 14px;
+}
+
+#pag-textos-iconografia .large i {
+    font-size: 50px;
+}
+
+#pag-textos-iconografia .color i { font-size: 30px; }
+#pag-textos-iconografia .color i.a { color: #0ff; }
+#pag-textos-iconografia .color i.b { color: #f0f; }
+#pag-textos-iconografia .color i.c { color: #00f; }
+#pag-textos-iconografia .color i.d { color: #3de467; }
+
+#pag-textos-iconografia .link i { font-size: 30px; cursor: pointer; }
+
+#pag-textos-iconografia .effects i { font-size: 30px; color: #f00; margin: 0 10px; }
+#pag-textos-iconografia .effects i.a { text-shadow: 5px 5px 10px #000; }
+#pag-textos-iconografia .effects i.b { text-shadow: 10px 10px 3px #000; }
+#pag-textos-iconografia .effects i.c { text-shadow: 15px 5px 5px #000;  }
+#pag-textos-iconografia .effects i.d { text-shadow: 8px 0px 0px #000;  }
+
+
+/********************************************************************************/
+/* Solo para ejemplo de mouse over 1
+/********************************************************************************/
+#pag-textos-mouseover1 .mouse-over-one .button {
+    background: #FFFFFF;
+    border: dashed #00A5C0 1px;
+    float: left;
+    margin: 10px;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+}
+
+#pag-textos-mouseover1 .mouse-over-one .button:hover {
+    background: #f6ae00;
+}
+
+#pag-textos-mouseover1 .mouse-over-one {
+    vertical-align: top;
+}
+
+#pag-textos-mouseover1 .contenido_sobre h5 {
+    margin: 0;
+}
+
+#pag-textos-mouseover1 .contenido_sobre {
+    padding: 10px;
+    text-align: justify;
+    box-shadow: 7px 7px 5px #cccccc;
+    background: #FFFFFF;
+    border: 1px solid #aaa;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+#pag-textos-mouseover1 .element { height: 100px; overflow: auto; }
+
+/********************************************************************************/
+/* Solo para ejemplo de mouse over 2
+/********************************************************************************/
+#pag-textos-mouseover2 .mouse-over {
+    background: #FFFFFF;
+    border: dashed #00A5C0 1px;
+    margin: 10px auto;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+    width: 10px;
+}
+
+#pag-textos-mouseover2 .mouse-over:hover {
+    background: #f6ae00;
+}
+
+#pag-textos-mouseover2 .contenido_sobre {
+    padding: 10px;
+    text-align: justify;
+    box-shadow: 7px 7px 5px #cccccc;
+    background: #FFFFFF;
+    border: 1px solid #aaa;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+/********************************************************************************/
+/* Animaciones
+/********************************************************************************/
+
+#pag-media-animation1 .movi {
+    background: url(../content/mujer.png) no-repeat;
+    width: 200px;
+    height: 294px;
+    font-size: 50px;
+}
+
+#pag-media-animation1 .ion-arrow-right-a {
+    color: green;
+}
+
+#pag-media-animation1 .ion-arrow-down-a {
+    color: blue;
+}
+
+
+/********************************************************************************/
+/* CSS3 ANIMATION
+/********************************************************************************/
+
+#pag-media-animation3 .instruction { text-align: center; }
+#pag-media-animation3 .box_stressed { width: 700px; }
+#pag-media-animation3 .box_connection { width: 700px;  margin: 0 auto 10px; }
+#pag-media-animation3 .stave { background: url(../content/img17.png) no-repeat; width: 450px; height: 110px; margin: auto; position: relative; }
+#pag-media-animation3 .musical-note-name { width: 22px; height: 20px; position: absolute; font-size: 15px; color: #16a183; opacity: 0; background: #16a183; -webkit-animation-fill-mode: backwards; animation-duration: 10s; animation-fill-mode: backwards; }
+
+#pag-media-animation3 .musical-note { width: 15px; height: 12px; background: url(../content/img17_1.png) no-repeat; position: absolute; -webkit-animation-fill-mode: forwards; animation-name: musical-note; animation-duration: 10s; animation-fill-mode: forwards; }
+
+@keyframes musical-note { 0% { left: 0; top: 0; } 10% { left: 46px; top: 65px; } 20% { left: 87px; top: 54px; } 30% { left: 128px; top: 42px; } 40% { left: 164px; top: 30px; } 50% { left: 200px; top: 18px; } 60% { left: 247px; top: 60px; } 70% { left: 291px; top: 48px; } 80% { left: 337px; top: 36px; } 100% { left: 388px; top: 25px; }
+}
+
+@keyframes musical-note-mi {
+    0% { opacity: 0; } 10% { opacity: 0.4; } 20% { opacity: 0; } 30% { opacity: 0; } 40% { opacity: 0; } 50% { opacity: 0; } 60% { opacity: 0; } 70% { opacity: 0; } 80% { opacity: 0; } 100% { opacity: 0; }
+}
+#pag-media-animation3 .musical-note-name.mi { left: 44px; top: 90px;  animation-name: musical-note-mi; }
+
+@keyframes musical-note-sol {
+    0% { opacity: 0; } 10% { opacity: 0; } 20% { opacity: 0.4; } 30% { opacity: 0; } 40% { opacity: 0; } 50% { opacity: 0; } 60% { opacity: 0; } 70% { opacity: 0; } 80% { opacity: 0; } 100% { opacity: 0; }
+}
+#pag-media-animation3 .musical-note-name.sol { left: 82px; top: 89px;  animation-name: musical-note-sol; }
+
+@keyframes musical-note-si {
+    0% { opacity: 0; } 10% { opacity: 0; } 20% { opacity: 0; } 30% { opacity: 0.4; } 40% { opacity: 0; } 50% { opacity: 0; } 60% { opacity: 0; } 70% { opacity: 0; } 80% { opacity: 0; } 100% { opacity: 0; }
+}
+#pag-media-animation3 .musical-note-name.si { left: 129px; top: 89px;  animation-name: musical-note-si; }
+
+@keyframes musical-note-re {
+    0% { opacity: 0; } 10% { opacity: 0; } 20% { opacity: 0; } 30% { opacity: 0; } 40% { opacity: 0.4; } 50% { opacity: 0; } 60% { opacity: 0; } 70% { opacity: 0; } 80% { opacity: 0; } 100% { opacity: 0; }
+}
+#pag-media-animation3 .musical-note-name.re { left: 164px; top: 89px;  animation-name: musical-note-re; }
+
+@keyframes musical-note-fa {
+    0% { opacity: 0; } 10% { opacity: 0; } 20% { opacity: 0; } 30% { opacity: 0; } 40% { opacity: 0; } 50% { opacity: 0.4; } 60% { opacity: 0; } 70% { opacity: 0; } 80% { opacity: 0; } 100% { opacity: 0; }
+}
+#pag-media-animation3 .musical-note-name.fa { left: 201px; top: 89px;  animation-name: musical-note-fa; }
+
+@keyframes musical-note-fa-down {
+    0% { opacity: 0; } 10% { opacity: 0; } 20% { opacity: 0; } 30% { opacity: 0; } 40% { opacity: 0; } 50% { opacity: 0; } 60% { opacity: 0.4; } 70% { opacity: 0; } 80% { opacity: 0; } 100% { opacity: 0; }
+}
+#pag-media-animation3 .musical-note-name.fa-down { left: 247px; top: 90px;  animation-name: musical-note-fa-down; }
+
+@keyframes musical-note-la {
+    0% { opacity: 0; } 10% { opacity: 0; } 20% { opacity: 0; } 30% { opacity: 0; } 40% { opacity: 0; } 50% { opacity: 0; } 60% { opacity: 0; } 70% { opacity: 0.4; } 80% { opacity: 0; } 100% { opacity: 0; }
+}
+#pag-media-animation3 .musical-note-name.la { left: 291px; top: 90px;  animation-name: musical-note-la; }
+
+
+@keyframes musical-note-do {
+    0% { opacity: 0; } 10% { opacity: 0; } 20% { opacity: 0; } 30% { opacity: 0; } 40% { opacity: 0; } 50% { opacity: 0; } 60% { opacity: 0; } 70% { opacity: 0; } 80% { opacity: 0.4; } 100% { opacity: 0; }
+}
+#pag-media-animation3 .musical-note-name.do { left: 337px; top: 90px;  animation-name: musical-note-do; }
+
+@keyframes musical-note-mi-up {
+    0% { opacity: 0; } 10% { opacity: 0; } 20% { opacity: 0; } 30% { opacity: 0; } 40% { opacity: 0; } 50% { opacity: 0; } 60% { opacity: 0; } 70% { opacity: 0; } 80% { opacity: 0; } 100% { opacity: 0.4; }
+}
+#pag-media-animation3 .musical-note-name.mi-up { left: 386px; top: 90px; -webkit-animation-fill-mode: forwards; animation-name: musical-note-mi-up; animation-duration: 10s; animation-fill-mode: forwards; }
+
+
+/********************************************************************************/
+/* Imágenes con texto
+/********************************************************************************/
+
+#pag-contenidointeractivo-viewfirst .view-content { font-size: 12px; }
+#pag-contenidointeractivo-viewfirst .view-content h2 { color: #fff; border-bottom: dotted 2px #fff; }
+#image_content .view-first { margin: 0 20px; float: left; }
+
+/********************************************************************************/
+/* Imágenes para ampliar
+/********************************************************************************/
+.expand-image { width: 200px; height: 200px; margin: 0 auto 5px; }
+
+/********************************************************************************/
+/* Pointers with text
+/********************************************************************************/
+#pag-contenidointeractivo-pointers .box_l { background: url(../content/cuerpo.png) no-repeat center top; margin: auto; width: 117px; height: 240px; position: relative; }
+#pag-contenidointeractivo-pointers .note_1 { left: -30px; top: 13px; }
+#pag-contenidointeractivo-pointers .note_2 { left: 72px; top: 100px; }
+#pag-contenidointeractivo-pointers .note_3 { left: -45px; top: 155px; }
+#pag-contenidointeractivo-pointers .note_4 { left: 75px; top: 195px; }
+
+/********************************************************************************/
+/* Actividad Quiz
+/********************************************************************************/
+.pag-actividades-cuestionario .chalkboard_content {
+    min-height: 350px;
+    height: auto;
+}
+
+.jpit_activities_quiz_question_answers { height: 150px; overflow: auto; }
+.jpit_activities_quiz_board { height: 220px; }
+
+/********************************************************************************/
+/* Actividad Sopa de letras
+/********************************************************************************/
+.pag-actividades-sopa .chalkboard_content {
+    min-height: 350px;
+    height: auto;
+}
+
+/********************************************************************************/
+/* Actividad arrastrar y soltar - apareamiento
+/********************************************************************************/
+#pag-actividades-arrastrar1 .chalkboard_content {
+    height: auto;
+}
+
+#arrastrar1.jpit-activities-droppable .words_container {
+    height: 50px;
+}
+
+#arrastrar1.jpit-activities-droppable table {
+    empty-cells: show;
+    clear: both;
+}
+
+#arrastrar1.jpit-activities-droppable th {
+    color: #000;
+    padding: 5px;
+    text-align: right;
+}
+
+#arrastrar1.jpit-activities-droppable td.droppable {
+    width: 80px;
+    height: 16px;
+}
+
+#arrastrar1.jpit-activities-droppable td.conection {
+    width: 30px;
+    border: none;
+    padding: 5px 10px;
+}
+
+#arrastrar1.jpit-activities-droppable .draggable {
+    float: left;
+    margin: 0 5px 5px 0;
+    position: absolute;
+    width: 80px;
+}
+
+#pag-actividades-arrastrar1 .item_1 {
+     left: 50px;
+}
+
+#pag-actividades-arrastrar1 .item_2 {
+     left: 150px;
+}
+
+#pag-actividades-arrastrar1 .item_3 {
+     left: 250px;
+}
+
+#pag-actividades-arrastrar1 .item_4 {
+     left: 350px;
+}
+
+#pag-actividades-arrastrar1 .item_5 {
+     left: 450px;
+}
+
+/********************************************************************************/
+/* Actividad arrastrar y soltar - dialogo
+/********************************************************************************/
+#pag-actividades-arrastrar2 .chalkboard_content {
+    height: auto;
+}
+
+#arrastrar2.jpit-activities-droppable td.sources {
+    padding-left: 100px;
+}
+
+#arrastrar2.jpit-activities-droppable .draggable {
+    width: 90px;
+    float: left;
+    margin-bottom: 5px;
+    clear: both;
+    height: 15px;
+}
+
+#arrastrar2.jpit-activities-droppable .droppable {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid;
+    width: 100px;
+    height: 25px;
+}
+
+#arrastrar2.jpit-activities-droppable .jpit_activities_jpitdroppable_dropped {
+    border: none;
+    background-color: transparent;
+    color: #000;
+    width: 92px;
+    height: 17px;
+}
+
+#arrastrar2.jpit-activities-droppable .jpit_activities_jpitdroppable_dropped.draggable.wrong {
+    color: #D60C1B;
+}
+
+/********************************************************************************/
+/* Actividad arrastrar y soltar - completar
+/********************************************************************************/
+#pag-actividades-arrastrar3 .chalkboard_content {
+    height: auto;
+}
+
+#arrastrar3.jpit-activities-droppable table {
+    empty-cells: show;
+    border-spacing: 0 5px;
+    color: #fff;
+}
+
+#arrastrar3.jpit-activities-droppable th {
+    color: #000;
+    padding: 5px;
+    text-align: right;
+    font-weight: normal;
+}
+
+#arrastrar3.jpit-activities-droppable td {
+    padding: 5px;
+    border: 1px dashed #777777;
+    text-align: left;
+    width: 180px;
+}
+
+#arrastrar3.jpit-activities-droppable .draggable {
+    margin: 0 5px 5px 0;
+    width: 180px;
+    text-align: left;
+}
+
+#arrastrar3.jpit-activities-droppable .jpit_activities_jpitdroppable_dropped {
+    background-color: #fbf9ea;
+    color: #000000;
+    border-color: #fbf9ea;
+}
+
+#arrastrar3.jpit-activities-droppable .jpit_activities_jpitdroppable_dropped.draggable.wrong {
+    color: #D60C1B;
+}
+
+/********************************************************************************/
+/* Actividad arrastrar y soltar - insertar
+/********************************************************************************/
+#pag-actividades-arrastrar4 .chalkboard_content {
+    height: auto;
+}
+
+#arrastrar4.jpit-activities-droppable table {
+    empty-cells: show;
+    border-spacing: 0 5px;
+}
+
+#arrastrar4.jpit-activities-droppable th {
+    padding: 5px;
+    text-align: right;
+    border-right: none;
+}
+
+#arrastrar4.jpit-activities-droppable td {
+    padding: 5px;
+    border: none;
+    border-bottom: 1px dashed #777777;
+    text-align: left;
+    width: 200px;
+}
+
+#arrastrar4.jpit-activities-droppable .draggable {
+    float: left;
+    margin: 0 5px 5px 0;
+}
+
+#arrastrar4.jpit-activities-droppable .wrong {
+    border-color: #D60C1B;
+    color: #D60C1B;
+    background-color: transparent;
+}
+
+/********************************************************************************/
+/* Actividad arrastrar y soltar multiple
+/********************************************************************************/
+#pag-actividades-arrastrargrupos .chalkboard_content {
+    height: auto;
+}
+
+#arrastrargrupos table {
+    margin: auto;
+    max-width: 590px;
+}
+
+#arrastrargrupos h5 {
+    text-align: center;
+    font-size: 16px;
+    color: #000;
+    border-bottom: 2px dotted #95B0CB;
+}
+
+#arrastrargrupos td {
+    height: 150px;
+    vertical-align: top;
+}
+
+#arrastrargrupos td .target {
+    min-height: 150px;
+    width: 190px;
+    overflow: auto;
+}
+
+#arrastrargrupos.jpit-activities-multidroppable .sources {
+    width: 100%;
+    height: 65px;
+    margin: 10px auto 0;
+}
+
+#arrastrargrupos.jpit-activities-multidroppable .draggable {
+    width: 165px;
+    float: left;
+    margin: 0 1px 5px;
+}
+
+#arrastrargrupos table .draggable.disabled {
+    cursor: default;
+}
+
+#arrastrargrupos.jpit-activities-multidroppable .buttons {
+    text-align: center;
+    padding: 5px 0;
+    clear: both;
+}
+
+/********************************************************************************/
+/* Ordenamiento en matríz
+/********************************************************************************/
+.pag-actividades-sortable-ejemplo2 .chalkboard_content {
+    height: 350px;
+}
+
+.jpit-activities-sortable.matriz ul.sortable {
+    display: flex;
+    flex-wrap: wrap;
+    width: 150px;
+    margin: auto;
+    float: none;
+    padding: 5px;
+    border: 1px solid;
+}
+
+.jpit-activities-sortable.matriz .sortable-item {
+    width: 44px;
+    height: 24px;
+    padding: 10px 0;
+    margin: 2px;
+    border: 1px solid #95B0CB;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 2px #aaa;
+    background-color: #ffffff;
+}
+
+.jpit-activities-sortable.matriz ul.sortable-horizontal .sortable-item:hover {
+    background-color: rgba(25, 56, 201, 0.1);
+}
+
+.jpit-activities-sortable.matriz ul.sortable-horizontal .sortable-item:hover:before {
+    content: "\f263";
+    font-size: 12px;
+    left: 0;
+    top: 0;
+}
+
+/********************************************************************************/
+/* Actividad Clasificar, formato de marcador.
+/********************************************************************************/
+.jpit-activities-check .check_left {
+    float: left;
+    width: 50%;
+}
+
+.jpit-activities-check .check_left .word_content {
+    background: #ffffff none repeat scroll 0 0;
+    box-shadow: 3px 3px 3px #dadbdc;
+    margin-bottom: 10px;
+    padding: 20px 10px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.jpit-activities-check .check_right {
+    float: right;
+}
+
+.jpit-activities-check .buttons {
+    text-align: center;
+}
+
+.jpit-activities-check .buttons button.yes,
+.jpit-activities-check .buttons button.not {
+    font-size: 30px;
+}
+
+.jpit-activities-check .box_result {
+    float: left;
+    font-size: 20px;
+    text-align: center;
+}
+
+.jpit-activities-check .box_result > div {
+    background-color: #ffffff;
+    box-shadow: 3px 3px 3px #cbcccc;
+    padding: 10px;
+    width: 110px;
+    float: left;
+    margin: 0 10px;
+}
+
+.jpit-activities-check .box_result .correct {
+    color: #8bc541;
+}
+.jpit-activities-check .box_result .hits {
+    font-size:30px;
+}
+
+.jpit-activities-check .box_result .wrong {
+    color: #d60c1b;
+}
+.jpit-activities-check .box_result .miss {
+    font-size:30px;
+}
+
+
+/********************************************************************************/
+/* Actividad marcar
+/********************************************************************************/
+.pag-actividades-marcar .chalkboard_content {
+    height: 520px;
+}
+
+.jpit-activities-mark {
+    width: 400px;
+    margin: auto;
+}
+
+/********************************************************************************/
+/* Actividad formulario
+/********************************************************************************/
+.jpit-activities-form .sheet {
+    background: url(../img/bg_papel.png) repeat-x left top;
+    width: 410px;
+    margin: auto;
+    padding-top: 35px;
+}
+
+.jpit-activities-form .sheet_body {
+    background-color: #f6f5f2;
+    padding: 10px 20px;
+    box-shadow: 3px 3px 0px #cbcccc;
+}
+
+.jpit-activities-form input[type=text] {
+    border: 2px dotted #aaaaaa;
+    width: 94%;
+    margin-bottom: 10px;
+    padding: 5px 3%;
+}
+
+.jpit-activities-form textarea {
+    width: 94%;
+    height: 40px;
+    padding: 3%;
+    border: 2px dotted #aaaaaa;
+}

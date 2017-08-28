@@ -1,0 +1,7 @@
+- Add images with interactive content with maphilight
+- Add "select" activity
+- Add more controls to form activity
+- Add minificador
+- Include lass o sass
+- Include content with http://www.turnjs.com/
+- Add Zoom with CSS transform. Example: transform: scale(0.8); transition: all 0.2s ease-in-out 0s; transform-origin: 0px 0px 0px;

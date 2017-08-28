@@ -1,0 +1,71 @@
+.jpit_activity_wordpuzzle_cell {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #fff;
+    cursor: pointer;
+    background-color: #eee;
+    color: #4D4D4D;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+    padding: 0;
+}
+
+.jpit_activity_wordpuzzle_cell_selected {
+    background-color: #d8061b;
+    color: #FFF;
+}
+
+.jpit_activity_wordpuzzle_correct {
+    background-color: #F15A24;
+    color: #FFF;
+}
+
+.jpit_activity_wordpuzzle_board {
+    border: 1px solid #000;
+    float: left;
+}
+
+.jpit_activity_wordpuzzle_line {
+    clear: both;
+    white-space: nowrap;
+}
+
+.jpit_activity_wordpuzzle_term_list .definition {
+    padding-left: 30px;
+}
+
+.jpit_activity_wordpuzzle_keyword {
+    font-size: 11px;
+    font-weight: bold;
+    color: #777777;
+}
+
+.jpit_activity_wordpuzzle_term_list {
+    width: 45%;
+    float: left;
+    margin: 5px;
+    padding: 5px;
+}
+
+.jpit_activity_wordpuzzle_term_list ul {
+    margin: 0;
+    padding: 0;
+}
+
+.jpit_activity_wordpuzzle_term_list li {
+    background-color: #f2f2f2;
+    margin: 5px;
+    list-style: none;
+    clear:both;
+    padding: 5px;
+}
+
+.jpit_activity_wordpuzzle_term_list input {
+    float:left;
+}
+
+.jpit_activity_wordpuzzle_word_founded {
+    color: #F15A24;
+    font-weight: bold;
+}

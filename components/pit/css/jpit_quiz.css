@@ -1,0 +1,49 @@
+ul.jpit_activities_quiz_question_answers {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.jpit_activities_quiz_question_option_control {
+    float: left;
+    clear: both;
+}
+
+input.jpit_activities_quiz_defineterm_control{
+    float: none;
+}
+
+.jpit_activities_quiz_question_option_answer_selected {
+    border: 2px dashed red;
+}
+
+.jpit_activities_quiz_question_feedback_true {
+    background-color: #F2D84C;
+}
+
+.jpit_activities_quiz_question_feedback_false {
+    background-color: #DF0015;
+}
+
+input.jpit_activities_defineterm_correct {
+    border-bottom: 1px dotted green;
+}
+
+input.jpit_activities_defineterm_mistake {
+   border-bottom: 1px dotted red;
+}
+
+.jpit_activities_quiz_question_option_control {
+    border: transparent;
+    background: transparent;
+    border-bottom: 1px dotted black;
+}
+
+/********************************************************************************/
+/* SPECIFIC QUIZ ACTIVITIES
+/********************************************************************************/
+
+.jpit_activities_quiz_question_answers select {
+    border: none;
+    border-bottom: 1px solid #000;
+}

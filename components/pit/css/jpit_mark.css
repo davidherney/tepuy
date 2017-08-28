@@ -1,0 +1,27 @@
+.jpit_activities_mark_zone {
+    position: absolute;
+    cursor: pointer;
+    border: 1px solid red;
+    background-color: #fff;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+    filter: alpha(opacity=10);
+    opacity: 0.1;
+}
+
+.jpit_activities_mark_map {
+    cursor: pointer;
+}
+
+.jpit_activities_mark_active {
+    background-color: #888;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+    filter: alpha(opacity=20);
+    opacity: 0.2;
+}
+
+.jpit_activities_mark_selected {
+    background-color: #00ffff;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+    filter: alpha(opacity=40);
+    opacity: 0.4;
+}

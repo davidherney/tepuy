@@ -1,0 +1,47 @@
+.jpit_activity_crossword_cell {
+    width: 20px;
+    height: 20px;
+    border: none;
+    float: left;
+    text-align: center;
+}
+
+.jpit_activity_crossword_cell input {
+    width: 18px;
+    height: 16px;
+    float: left;
+    text-align: center;
+    text-transform: uppercase;
+    border: 1px solid #c5c5c5;
+    color: #4D4D4D;
+    background-color: #fff;
+}
+
+.jpit_activity_crossword_label {
+    border: none;
+    height: 18px;
+    padding-top: 2px;
+    color: #FFF;
+}
+
+.jpit_activity_crossword_cell .pit_selected {
+    background-color: #b3b3b3;
+}
+
+input.jpit_activity_crossword_correct {
+    background-color: #f2d84d;
+}
+
+input.jpit_activity_crossword_mistake {
+    background-color: #df0015;
+    color: #FFF;
+}
+
+.jpit_activity_crossword_board {
+    display: inline-block;
+}
+
+.jpit_activity_crossword_line {
+    clear: both;
+    white-space: nowrap;
+}

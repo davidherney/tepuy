@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<manifest xmlns="http://www.imsglobal.org/xsd/imscp_v1p1" xmlns:imsmd="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_v1p3" xmlns:imsss="http://www.imsglobal.org/xsd/imsss" xmlns:adlseq="http://www.adlnet.org/xsd/adlseq_v1p3" xmlns:adlnav="http://www.adlnet.org/xsd/adlnav_v1p3" identifier="MANIFEST-0123456789ABCDEF0000000000000000" xsi:schemaLocation="http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd http://ltsc.ieee.org/xsd/LOM lom.xsd http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd http://www.adlnet.org/xsd/adlseq_v1p3 adlseq_v1p3.xsd http://www.adlnet.org/xsd/adlnav_v1p3 adlnav_v1p3.xsd">
+
+  <organizations default="SCO-1">
+    <organization identifier="SCO-1" structure="hierarchical">
+      <title>Contenido</title>
+      <item identifier="ITEM-1" isvisible="true" identifierref="Inicio">
+        <title>Inicio</title>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="Inicio" adlcp:scormtype="sco" type="webcontent" href="index.html">
+      <file href="index.html" />
+    </resource>
+  </resources>
+</manifest>

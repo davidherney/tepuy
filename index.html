@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Inicio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" href="img/icon.svg">
+    <link href="components/jquery/css/custom/jquery-ui.min.css" rel="stylesheet" type="text/css">
+    <link href="css/scormplayer.css" rel="stylesheet" type="text/css">
+
+    <script src="components/jquery/jquery.min.js"></script>
+    <script src="components/jquery/jquery-ui.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/lang.es.js"></script>
+    <script src="components/scorm/player.js"> </script>
+
+</head>
+<body data-autoload="false" data-display-window="modal" data-window-width="100" data-window-height="100">
+    <div id="body">
+        <div id="content">
+
+            <h1>Presentación</h1>
+            <p>
+                Esta página es la que se carga inicialmente, puede utilizarse para dar instrucciones a los usuarios, para hacer la presentación del contenido o puede obviarse configurándola para cargar el contenido automáticamente. En el caso de presentar el documento, se recomienda mostrar en esta página: una <strong>introducción</strong> al contenido que se encontrará en el documento, el <strong>objetivo</strong> que se espera lograr abordando el contenido, el tiempo aproximado (<strong>duración</strong>) que una persona debería dedicar a completar el documento.
+            </p>
+
+            <h2>Configuración</h2>
+            <p>
+                Esta página tiene los siguientes parámetros de configuración:
+            </p>
+            <ul>
+                <li>
+                    <strong>data-autoload="[true | <em>false</em>]"</strong>: Para indicar si se carga el contenido automáticamente saltándose esta página o si se despliega la página y el contenido se abre desde el botón de inicio. Propiedad definida en el elemento <em>body</em>. Ejemplo:<br />
+                    <pre>    &lt;body data-autoload="true"&gt;</pre>
+                </li>
+                <li>
+                    <strong>data-display-window="[<em>top</em> | popup | modal]"</strong>: Define la manera como se cargará el contenido, si en la misma página, como ventana modal (modal) o como ventana emergente (popup). Propiedad definida en el elemento <em>body</em>. Ejemplo:<br />
+                    <pre>   &lt;body data-display-window="top"&gt;</pre>
+                </li>
+                <li>
+                    <strong>data-window-width="[<em>number</em>]"</strong>: Indica el ancho de la ventana emergente, en pixeles. Esta propiedad está disponible en el caso de que <em>data-display-window</em> se establezca a <em>popup</em>. Si se establece en 100 y <em>data-window-height</em> también se establece en 100, se tomará como el 100% de la pantalla lo que equivale aproximadamente a "pantalla completa". Propiedad definida en el elemento <em>body</em>. Ejemplo:<br />
+                    <pre>   &lt;body data-display-window="popup" data-window-width="800"&gt;</pre>
+                </li>
+                <li>
+                    <strong>data-window-height="[<em>number</em>]"</strong>: Indica el alto de la ventana emergente, en pixeles. Esta propiedad está disponible en el caso de que <em>data-display-window</em> se establezca a <em>popup</em>. Si se establece en 100 y <em>data-window-width</em> también se establece en 100, se tomará como el 100% de la pantalla lo que equivale aproximadamente a "pantalla completa". Propiedad definida en el elemento <em>body</em>. Ejemplo:<br />
+                    <pre>   &lt;body data-display-window="popup" data-window-height="600"&gt;</pre>
+                </li>
+            </ul>
+            <h2>Personalización</h2>
+            <p>
+                Esta página inicial se puede personalizar principalmente mediante dos archivos:
+            </p>
+            <ol>
+                <li>
+                    <strong>index.html</strong>: Es el archivo donde se ingresa el contenido visible en la página, en HTML. Dentro del contenido se debe respetar el <em>div</em> marcado con el id <strong>play_scorm</strong> aunque su ubicación puede ser a discreción. En ese <em>div</em> es donde se incluye el botón para cargar el documento y donde se muestran algunos mensajes como el que indica si la página ha sido bloqueada por el bloqueador de popups, en caso de aplicar.
+                </li>
+                <li>
+                    <strong>css/scormplayer.css</strong>: Contiene los estilos CSS que se aplican a esta página, los cuales definen su apariencia. Como estilos especiales se debe considerar: <em>.ui-state-error</em> y <em>.ui-state-highlight</em> los cuales son utilizados para marcar los mensajes automáticos, de error o notificación respectivamente, en caso de que aplique.
+                </li>
+            </ol>
+            <p>
+                <strong>Nota:</strong> Cualquier imagen utilizada como contenido en ésta o en otra página debe ir en el directorio <em>content/</em>.
+            </p>
+            <div id="play_scorm"></div>
+        </div>
+    </div>
+</body>
+</html>
