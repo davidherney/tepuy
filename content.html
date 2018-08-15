@@ -146,6 +146,11 @@
                          Para realizar la acción anterior basta con agregar a cualquier elemento el atributo <em>data-page</em> con el valor igual al identificador de la página a cargar. Ejemplo:<br />
                         <pre>    &lt;a href="#" data-page="pag-textos"&gt;Textos especiales&lt;/a&gt;</pre>
                     </p>
+                    <p>
+                         También se puede ir a un lugar dentro de una página agregando al elemento el atributo adicional <em>data-section</em> con el valor igual al selector de un lugar en la página. Ejemplo:<br />
+                         Ir directamente al tipo de actividad "<a href="javascript:;" data-page="pag-actividades" data-section="#subpage-act-crucigrama">Crucigrama</a>".
+                        <pre>    Ir directamente al tipo de actividad "&lt;a href="#" data-page="pag-actividades" data-section="#subpage-act-crucigrama"&gt;Crucigrama&lt;/a&gt;"</pre>
+                    </p>
                 </div>
 
                 <div class="subpage">
@@ -253,6 +258,48 @@
 &lt;div class="box-text note" label="Nota"&gt;
   &lt;p&gt;
     Acá una anotación.
+  &lt;/p&gt;
+&lt;/div&gt;
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="subpage">
+                    <h3>Enlaces</h3>
+                    <div class="box-text link" label="Enlace">
+                        <p>Se utiliza la clase <em>link</em> y es para referencias a páginas web o sitios en internet. Ejemplo:</p>
+                        <pre>
+&lt;div class="box-text link" label="Enlace"&gt;
+  &lt;p&gt;
+    Acá un <a href="https://bambuco.co" target="_blank">enlace</a>.
+  &lt;/p&gt;
+&lt;/div&gt;
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="subpage">
+                    <h3>Conexión</h3>
+                    <div class="box-text connection">
+                        <p>Se utiliza la clase <em>connection</em> y es para destacar párrafos que unen un contenido con el siguiente. No suelen llevar título. Ejemplo:</p>
+                        <pre>
+&lt;div class="box-text connection"&gt;
+  &lt;p&gt;
+    Acá un párrafo de conexión.
+  &lt;/p&gt;
+&lt;/div&gt;
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="subpage">
+                    <h3>Actividad</h3>
+                    <div class="box-text activity" label="Actividad de aprendizaje">
+                        <p>Se utiliza la clase <em>activity</em> y es para destacar actividades dentro del contenido. Ejemplo:</p>
+                        <pre>
+&lt;div class="box-text connection" label="Actividad de aprendizaje"&gt;
+  &lt;p&gt;
+    Acá la descripción de la actividad.
   &lt;/p&gt;
 &lt;/div&gt;
                         </pre>
@@ -1901,7 +1948,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div class="subpage" id="subpage-act-crucigrama">
                     <h3>Crucigrama</h3>
                     <p>
                         Una crucigrama se define agregando la clase <em>jpit-activities-crossword</em> a un contenedor y dentro de él agregando dos elementos: <em>horizontal</em> y <em>vertical</em>; y en el interior de ellos una lista de elementos de tipo <em>li</em> con el atributo <em>data-term</em> que debe contener la palabra correcta, el atributo <em>data-row</em> con el número de la fila y el atributo <em>data-col</em> con el número de la columna desde donde inicia la palabra.

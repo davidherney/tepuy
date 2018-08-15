@@ -271,10 +271,23 @@ dhbgApp.mobile.start = function() {
     // ==============================================================================================
     // Buttons to load page
     // ==============================================================================================
+    dhbgApp.DB.dataPage = null;
+
     $('[data-page]').on('click', function () {
         var $this = $(this);
         dhbgApp.loadPageN($this.attr('data-page'));
+
+        if ($this.attr('data-section')) {
+            dhbgApp.DB.dataPage = $this.attr('data-section');
+        }
     });
+
+    dhbgApp.actions.afterChangePage[dhbgApp.actions.afterChangePage.length] = function($current_subpage) {
+        if (dhbgApp.DB.dataPage) {
+            $("html, body").animate({ scrollTop: $(dhbgApp.DB.dataPage).offset().top }, 500);
+            dhbgApp.DB.dataPage = null;
+        }
+    };
 
     $('[next-page]').on('click', function () {
         if ($(this).hasClass('disabled')) {
@@ -567,8 +580,8 @@ dhbgApp.mobile.start = function() {
     var $results_modal = $('#results_page').dialog({
         modal: true,
         autoOpen: false,
-        width: dhbgApp.documentWidth,
-        height: dhbgApp.documentHeight,
+        width: dhbgApp.documentWidth - 10,
+        height: dhbgApp.documentHeight - 10,
         classes: {
             "ui-dialog": "results_page_dialog"
         },
@@ -1315,7 +1328,9 @@ dhbgApp.mobile.start = function() {
                 "orientation": orientation,
                 "default_offset_pct": offset,
                 "before_label": s_before,
-                "after_label": s_after
+                "after_label": s_after,
+                "move_with_handle_only": true,
+                "click_to_move": true
             });
         }
     });
@@ -1720,6 +1735,8 @@ dhbgApp.mobile.load_operations = function() {
 
             var $new_page = $('main > section.page_' + npage);
 
+            dhbgApp.DB.currentSubPage = nsubpage;
+
             if ($current_page.length > 0) {
                 $('[previous-page], [next-page]').addClass('disabled');
                 $current_page.hide(dhbgApp.transition, dhbgApp.transitionOptions, dhbgApp.transitionDuration, function() {
@@ -1743,12 +1760,6 @@ dhbgApp.mobile.load_operations = function() {
                 dhbgApp.scorm.saveVisit(dhbgApp.scorm.indexPages[npage][nsubpage]);
             }
 
-            dhbgApp.DB.currentSubPage = nsubpage;
-
-            //Actions in change page
-            $.each(dhbgApp.actions.afterChangePage, function(i, v){
-                v($new_page);
-            });
         }
         dhbgApp.printNumberPage(npage, nsubpage);
     };
@@ -1771,6 +1782,10 @@ dhbgApp.mobile.load_operations = function() {
             $this.attr('src', img_src + '?' + (new Date().getTime()));
         });
 
+        //Actions in change page
+        $.each(dhbgApp.actions.afterChangePage, function(i, v){
+            v($new_subpage);
+        });
     };
 
     dhbgApp.actions.autoLoadSounds = function ($parent) {
