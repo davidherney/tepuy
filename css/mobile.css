@@ -69,6 +69,7 @@ pre {
     border: #000 dashed 1px;
     padding: 6px;
     overflow: auto;
+    color: #333;
 }
 
 cite {
@@ -616,6 +617,55 @@ footer {
     margin: 0;
 }
 
+
+/********* box link ********/
+.box-text.link {
+    margin: auto;
+    background: #222D32;
+    position: relative;
+    padding: 10px;
+    min-height: 100px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px 2px #c2c2c2;
+    color: #ffffff;
+}
+
+.box-text.link .title,
+.box-text.link em {
+    color: #F7931E;
+}
+
+/********* box connection ********/
+.box-text.connection {
+    margin: auto;
+    background: #3476A3;
+    position: relative;
+    padding: 10px;
+    min-height: 100px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px 2px #c2c2c2;
+    color: #ffffff;
+}
+
+.box-text.connection .title,
+.box-text.connection em {
+    color: #E5E5E6;
+}
+
+/********* box activity ********/
+.box-text.activity {
+    margin: auto;
+    background: #f5f0f5;
+    position: relative;
+    padding: 10px;
+    min-height: 100px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px 2px #c2c2c2;
+}
+
+.box-text.activity .title {
+    color: #3476A3;
+}
 
 /********************************************************************************/
 /* Float window
