@@ -43,6 +43,7 @@ input.jpit_activities_defineterm_mistake {
 /* SPECIFIC QUIZ ACTIVITIES
 /********************************************************************************/
 
+.jpit_activities_quiz_question_answers input[type="text"],
 .jpit_activities_quiz_question_answers select {
     border: none;
     border-bottom: 1px solid #000;
