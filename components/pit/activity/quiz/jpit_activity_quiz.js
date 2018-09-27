@@ -2179,6 +2179,14 @@ jpit.activities.quiz.question.complete = function (statement, $paragraph, correc
                 $list.val(1);
             });
 
+            obj.paragraph.find('input[type="text"]').each(function() {
+                var $this = $(this);
+                $this.prop('disabled', false);
+                $this.data('data-response', $this.attr('data-response'));
+                $this.removeAttr('data-response');
+                $this.val('');
+            });
+
             obj.control = control;
             return control;
         },
@@ -2197,11 +2205,12 @@ jpit.activities.quiz.question.complete = function (statement, $paragraph, correc
 
         "disableQuestion" : function(){
             obj.control.find("select").attr('disabled', 'disabled');
+            obj.control.find('input[type="text"]').attr('disabled', 'disabled');
         },
 
         "correct" : function () {
             var corrects = 0;
-            var lists = this.paragraph.find('select').length;
+            var total = this.paragraph.find('select').length;
             this.paragraph.find('select').each(function() {
                 var $this = $(this);
                 $this.find('option:selected').each(function(){
@@ -2212,12 +2221,22 @@ jpit.activities.quiz.question.complete = function (statement, $paragraph, correc
                 });
             });
 
-            return lists == corrects;
+            total += this.paragraph.find('input[type="text"]').length;
+            this.paragraph.find('input[type="text"]').each(function() {
+                var $this = $(this);
+                var val = $this.val().trim().toUpperCase();
+
+                if ($this.data('data-response').toUpperCase() == val) {
+                    corrects++;
+                }
+            });
+
+            return total == corrects;
         },
 
         "answered" : function () {
             var answered = 0;
-            var lists = this.paragraph.find('select').length;
+            var total = this.paragraph.find('select').length;
             this.paragraph.find('select').each(function() {
                 var $this = $(this);
                 $this.find('option:selected').each(function(){
@@ -2228,7 +2247,15 @@ jpit.activities.quiz.question.complete = function (statement, $paragraph, correc
                 });
             });
 
-            return lists == answered;
+            total += this.paragraph.find('input[type="text"]').length;
+            this.paragraph.find('input[type="text"]').each(function() {
+                var $this = $(this);
+                if ($this.val().trim() !== '') {
+                    answered++;
+                }
+            });
+
+            return total == answered;
         },
 
         "getQuestionData" : function () {
@@ -2251,6 +2278,13 @@ jpit.activities.quiz.question.complete = function (statement, $paragraph, correc
                     }
                 });
                 response.answer[response.answer.length] = answered;
+            });
+
+            this.paragraph.find('input[type="text"]').each(function() {
+                var $this = $(this);
+                if ($this.val().trim() !== '') {
+                    response.answer[response.answer.length] = $this.val().trim();
+                }
             });
 
             return response;
