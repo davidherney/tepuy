@@ -572,6 +572,43 @@
 }
 
 /********************************************************************************/
+/* Actividad seleccionar 1
+/********************************************************************************/
+.pag-actividades-naruto .jpit-activities-selection .col-2 > div {
+    margin-bottom: 5px;
+    cursor: pointer;
+    padding: 2px 5px;
+}
+
+.pag-actividades-naruto .jpit-activities-selection .left {
+    text-align: right;
+    margin-right: 20px;
+}
+
+.pag-actividades-naruto .jpit-activities-selection .right {
+    text-align: left;
+}
+
+.pag-actividades-naruto .jpit-activities-selection .left .radio {
+    float: right;
+    margin-left: 5px;
+}
+
+.pag-actividades-naruto .jpit-activities-selection .right .radio {
+    float: left;
+    margin-right: 5px;
+}
+
+/********************************************************************************/
+/* Actividad seleccionar 2
+/********************************************************************************/
+.pag-actividades-escritores .jpit-activities-selection li {
+    margin-bottom: 5px;
+    cursor: pointer;
+    padding: 2px 5px;
+}
+
+/********************************************************************************/
 /* Actividad formulario
 /********************************************************************************/
 .jpit-activities-form .sheet {
