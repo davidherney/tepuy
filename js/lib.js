@@ -1282,6 +1282,13 @@ dhbgApp.standard.start = function() {
         $('#printent_content').hide();
         $('body').removeClass('print_mode');
         $('#printent_content div.content').empty();
+
+        var offset_return;
+        if (offset_return = $('#printent_back').data('offset_return')) {
+            $("body, html").animate({
+                scrollTop: offset_return
+            }, 100);
+        }
     });
 
     // ==============================================================================================
@@ -3060,6 +3067,7 @@ dhbgApp.standard.load_operations = function() {
                     $dialog_answer_required.dialog('open');
                 }
                 else {
+                    $('#printent_back').data('offset_return', $this.offset().top);
                     $('body').addClass('print_mode');
                     $('#printent_content').show();
                     $('#printent_content div.content').append(activity.printableContent());

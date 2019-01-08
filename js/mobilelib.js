@@ -2199,7 +2199,7 @@ dhbgApp.mobile.load_operations = function() {
 
         var scorm_id = $this.attr('data-act-id') ? $this.attr('data-act-id') : 'crossword';
 
-        if (dhbgApp.scorm && dhbgApp.scorm.lms) {
+        if (dhbgApp.scorm) {
             if (!dhbgApp.scorm.activities[scorm_id]) { dhbgApp.scorm.activities[scorm_id] = []; }
         }
 
