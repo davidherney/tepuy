@@ -1,5 +1,4 @@
 - Add images with interactive content with maphilight
-- Add "select" activity
 - Add more controls to form activity
 - Add minificador
 - Include lass o sass

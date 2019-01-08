@@ -1770,6 +1770,36 @@ sup.tooltip {
 }
 
 /********************************************************************************/
+/* SPECIFIC ACTIVITIES: SELECTION
+/********************************************************************************/
+.jpit-activities-selection .radio {
+    width: 15px;
+    border: 1px solid #000;
+    border-radius: 100%;
+    height: 15px;
+    background-color: #ffffff;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.jpit-activities-selection .selected .radio {
+    background-color: #f6ae00;
+}
+
+.jpit-activities-selection .check {
+    width: 15px;
+    border: 1px solid #000;
+    height: 15px;
+    background-color: #ffffff;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.jpit-activities-selection .selected .check {
+    background-color: #f6ae00;
+}
+
+/********************************************************************************/
 /* SPECIFIC ACTIVITIES: FORM
 /********************************************************************************/
 .jpit-activities-form {

@@ -1222,6 +1222,11 @@ dhbgApp.mobile.start = function() {
         dhbgApp.actions.activityMark($this);
     });
 
+    $('.jpit-activities-selection').each(function(){
+        var $this = $(this);
+        dhbgApp.actions.activitySelection($this);
+    });
+
     $('.jpit-activities-form').each(function(){
         var $this = $(this);
         dhbgApp.actions.activityForm($this);
@@ -2927,6 +2932,246 @@ dhbgApp.mobile.load_operations = function() {
 
             $this.find('img').maphilight( { fill : true, fillColor: fill_color, fillOpacity: opacity, strokeColor: stroke_color } );
         }
+    };
+
+    dhbgApp.actions.activitySelection = function ($this) {
+        var scorm_id = $this.attr('data-act-id') ? $this.attr('data-act-id') : 'selection';
+
+        if (dhbgApp.scorm) {
+            if (!dhbgApp.scorm.activities[scorm_id]) { dhbgApp.scorm.activities[scorm_id] = []; }
+        }
+
+        var d_answer_buttons = {};
+        var ok = dhbgApp.s('accept');
+        d_answer_buttons[ok] = function() { $(this).dialog('close'); };
+        var $dialog_answer_required = $('<div>' + dhbgApp.s('answer_required') + '</div>').dialog({modal: true, autoOpen: false, buttons: d_answer_buttons });
+
+        // Load custom feedback, if exists.
+        var feedbacktrue = null, feedbackfalse = null;
+
+        if ($this.find('feedback correct').text() != '') {
+            feedbacktrue = $this.find('feedback correct').html();
+        }
+
+        if ($this.find('feedback wrong').text() != '') {
+            feedbackfalse = $this.find('feedback wrong').html();
+        }
+
+        $this.find('feedback').empty();
+        // End feedback.
+
+        var mark_parent = $this.attr('data-parent-mark-selector') ? $this.attr('data-parent-mark-selector') : false;
+
+        // It can be: single or multi.
+        var mode = $this.attr('data-mode') ? $this.attr('data-mode') : 'multi';
+
+        var groups = [];
+        var groups_by_index = [];
+        $this.find('[data-group]').each(function (k, element) {
+            var $element = $(element);
+
+            var group_index = $element.attr('data-group');
+            var correct = $element.attr('data-correct') && $element.attr('data-correct') == 'true';
+
+            var node = {
+                element: $element,
+                index: group_index
+            };
+
+            var position;
+            if (typeof groups_by_index[group_index] == 'undefined') {
+                position = groups.length;
+                groups_by_index[group_index] = position;
+                groups[position] = {correct: [], wrong: [] };
+            }
+            else {
+                position = groups_by_index[group_index];
+            }
+
+            if (correct) {
+                groups[position].correct[groups[position].correct.length] = node;
+            }
+            else {
+                groups[position].wrong[groups[position].wrong.length] = node;
+            }
+
+            $element.on('click', function(){
+                var $e = $(this);
+                if ($this.hasClass('answered')) {
+                    return;
+                }
+
+                if (mode == 'single') {
+                    $this.find('[data-group="' + $e.attr('data-group') + '"]').removeClass('selected');
+                    $e.addClass('selected');
+                }
+                else {
+                    $e.toggleClass('selected');
+                }
+            });
+        });
+
+        var definition_error = false;
+        $.each(groups, function(i, g) {
+            if (g.correct.length == 0 && g.wrong.length == 0) {
+                definition_error = true;
+                console.log('Error on group definition: ');
+                console.log(g);
+            }
+        });
+
+        if (definition_error) {
+            return;
+        }
+
+
+        // Shuffle elements.
+        var if_shuffle = function() {
+            var shuffle = 1 && $this.attr('data-shuffle-selector');
+
+            if (shuffle) {
+                $this.find($this.attr('data-shuffle-selector')).randomize();
+                if ($this.attr('data-shuffle-index')) {
+                    $this.find($this.attr('data-shuffle-selector')).children().each(function(i, element) {
+                        $(element).find($this.attr('data-shuffle-index')).html(i + 1);
+                    });
+                }
+            }
+        };
+
+        if_shuffle();
+
+        var $box_end = $this.find('.box_end');
+
+        var $msg_end = $('<div class="msg"></div>');
+        $box_end.append($msg_end);
+
+        var $button_check = $('<button class="general">' + dhbgApp.s('verify') + '</button>');
+        $box_end.append($button_check);
+
+        var $button_again = $('<button class="general">' + dhbgApp.s('restart_activity') + '</button>');
+        $box_end.append($button_again);
+        $button_again.hide();
+
+
+        $button_check.on('click', function() {
+            var full = true;
+            $.each(groups, function(i, g) {
+
+                var answer_one = false;
+                $.each(g.correct, function(j, item) {
+                    if (item.element.hasClass('selected')) {
+                        answer_one = true;
+                    }
+                });
+
+                $.each(g.wrong, function(j, item) {
+                    if (item.element.hasClass('selected')) {
+                        answer_one = true;
+                    }
+                });
+
+                if (!answer_one) {
+                    full = false;
+                }
+            });
+
+            if (!full) {
+                $dialog_answer_required.dialog('open');
+                return;
+            }
+
+            var count_corrects = 0;
+            $.each(groups, function(i, g) {
+
+                var sub_correct = 0;
+                $.each(g.correct, function(j, item) {
+                    if (item.element.hasClass('selected')) {
+                        if (mode != 'multi') {
+                            item.element.addClass('correct');
+                        }
+
+                        if (mark_parent) {
+                            item.element.parents(mark_parent).addClass('correct');
+                        }
+                        sub_correct++;
+                    }
+                    else {
+                        if (mode == 'multi') {
+                            sub_correct--;
+                        }
+                    }
+                });
+
+                $.each(g.wrong, function(j, item) {
+                    if (item.element.hasClass('selected')) {
+                        if (mode != 'multi') {
+                            item.element.addClass('wrong');
+                        }
+
+                        if (mark_parent) {
+                            item.element.parents(mark_parent).addClass('wrong');
+                        }
+
+                        if (mode == 'multi') {
+                            sub_correct--;
+                        }
+                    }
+                    else {
+                        if (mode == 'multi') {
+                            sub_correct++;
+                        }
+                    }
+                });
+
+                if (mode == 'multi') {
+                    if (sub_correct > 0) {
+                        count_corrects += sub_correct / (g.correct.length + g.wrong.length);
+                    }
+                }
+                else {
+                    count_corrects += sub_correct;
+                }
+            });
+
+            var weight = Math.round(count_corrects * 100 / groups.length);
+
+            if (dhbgApp.scorm) {
+                dhbgApp.scorm.activityAttempt(scorm_id, weight);
+            }
+            dhbgApp.printProgress();
+
+            var msg;
+            if (weight >= dhbgApp.evaluation.approve_limit) {
+                msg = '<div class="correct">' + (feedbacktrue ? feedbacktrue : dhbgApp.s('all_correct_percent', weight)) + '</div>';
+            }
+            else {
+                msg = '<div class="wrong">' + (feedbackfalse ? feedbackfalse : dhbgApp.s('wrong_percent', (100 - weight))) + '</div>';
+            }
+
+            $msg_end.empty();
+            $msg_end.append(msg);
+
+            $this.addClass('answered');
+
+            $button_check.hide();
+
+            if (weight < 100) {
+                $button_again.show();
+            }
+
+        });
+
+        $button_again.on('click', function() {
+            $this.find('.correct').removeClass('correct');
+            $this.find('.wrong').removeClass('wrong');
+            $this.find('.selected').removeClass('selected');
+            $this.removeClass('answered');
+            $msg_end.empty();
+            if_shuffle();
+            $button_again.hide();
+            $button_check.show();
+        });
     };
 
     dhbgApp.actions.activityForm = function ($this) {

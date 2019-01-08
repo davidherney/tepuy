@@ -3274,6 +3274,263 @@
                     </div>
                 </div>
 
+                <div class="subpage">
+                    <h3>Seleccionar</h3>
+                    <p>
+                        Sirve para seleccionar elementos dentro de un contenidos, sea como opciones individuales o como opciones dentro de un grupo de posibilidades. Una actividad de seleccionar se define agregando la clase <em>jpit-activities-selection</em> a un contenedor y se deben definir secciones seleccionables con el atributo <em>data-group</em> indicando un número que define el grupo al que pertenece el elemento, además, se indica cuales elementos son correctos mediante el atributo <em>data-correct</em> con valor <em>true</em>.
+                    </p>
+
+                    <p>
+                        El atributo <em>data-parent-mark-selector</em> sirve para indicar si se quiere adicionar la marca de correcto/incorrecto al padre del elemento selecionado. Eso permite que se pueda indicar visualmente y de manera sencilla si todo el contenedor es correcto o no. El valor del atributo es un selector CSS válido como ancestro del elemento seleccionado.
+                    </p>
+
+                    <p>
+                        La retroalimentación se puede adicionar a la actividad mediante un elemento <em>feedback</em> que tiene dos posibles valores, definidos con los elementos <em>correct</em> y <em>wrong</em>.
+                    </p>
+
+                    <p>
+                        Dentro del contenido HTML es importante incluir un elemento con la clase CSS <em>box_end</em> en cuyo interior se cargará el resultado al validar la actividad.
+                    </p>
+
+                    <div class="horizontal-menu pag-actividades-naruto">
+                        <dl>
+                            <dt>Ejemplo</dt>
+                            <dd>
+                                <p>Seleccione cuál personaje, A o B, pertenece a la serie de ánime "Naruto".</p>
+                                <div class="jpit-activities-selection" data-act-id="seleccionar_1" data-parent-mark-selector="false" data-mode="single">
+                                    <div class="row">
+                                        <div class="col-2 left">
+                                            <div>
+                                                <strong>A</strong>
+                                            </div>
+                                            <div data-group="1">
+                                                Kakarotto
+                                                <div class="radio"></div>
+                                            </div>
+
+                                            <div data-group="2" data-correct="true">
+                                                Hinata
+                                                <div class="radio"></div>
+                                            </div>
+
+                                            <div data-group="3">
+                                                Bulma
+                                                <div class="radio"></div>
+                                            </div>
+
+                                            <div data-group="4" data-correct="true">
+                                                Kakashi
+                                                <div class="radio"></div>
+                                            </div>
+
+                                            <div data-group="5" data-correct="true">
+                                                Neji
+                                                <div class="radio"></div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-2 right">
+                                            <div>
+                                                <strong>B</strong>
+                                            </div>
+                                            <div data-group="1" data-correct="true">
+                                                <div class="radio"></div>
+                                                Itachi
+                                            </div>
+
+                                            <div data-group="2">
+                                                <div class="radio"></div>
+                                                Rukia Kuchiki
+                                            </div>
+
+                                            <div data-group="3" data-correct="true">
+                                                <div class="radio"></div>
+                                                Shino Aburame
+                                            </div>
+
+                                            <div data-group="4">
+                                                <div class="radio"></div>
+                                                Lelouch Lamperouge
+                                            </div>
+
+                                            <div data-group="5">
+                                                <div class="radio"></div>
+                                                Edward Elric
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="box_end"></div>
+                                    <feedback>
+                                        <correct>
+                                            Muy bien ¡parece que sabes de Naruto!
+                                        </correct>
+                                    </feedback>
+                                </div>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>HTML</dt>
+                            <dd>
+<pre>
+&lt;div class="jpit-activities-selection" data-act-id="seleccionar" data-parent-mark-selector="false" data-mode="single"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-2 left"&gt;
+            &lt;div&gt;
+                &lt;strong&gt;A&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div data-group="1"&gt;
+                Kakarotto
+                &lt;div class="radio"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div data-group="2" data-correct="true"&gt;
+                Hinata
+                &lt;div class="radio"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div data-group="3"&gt;
+                Bulma
+                &lt;div class="radio"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div data-group="4" data-correct="true"&gt;
+                Kakashi
+                &lt;div class="radio"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div data-group="5" data-correct="true"&gt;
+                Neji
+                &lt;div class="radio"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class="col-2 right"&gt;
+            &lt;div&gt;
+                &lt;strong&gt;B&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div data-group="1" data-correct="true"&gt;
+                &lt;div class="radio"&gt;&lt;/div&gt;
+                Itachi
+            &lt;/div&gt;
+
+            &lt;div data-group="2"&gt;
+                &lt;div class="radio"&gt;&lt;/div&gt;
+                Rukia Kuchiki
+            &lt;/div&gt;
+
+            &lt;div data-group="3" data-correct="true"&gt;
+                &lt;div class="radio"&gt;&lt;/div&gt;
+                Shino Aburame
+            &lt;/div&gt;
+
+            &lt;div data-group="4"&gt;
+                &lt;div class="radio"&gt;&lt;/div&gt;
+                Lelouch Lamperouge
+            &lt;/div&gt;
+
+            &lt;div data-group="5"&gt;
+                &lt;div class="radio"&gt;&lt;/div&gt;
+                Edward Elric
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="box_end"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>CSS personalizado</dt>
+                            <dd>
+<pre>
+.jpit-activities-selection .col-2 > div {
+    margin-bottom: 5px;
+    cursor: pointer;
+    padding: 2px 5px;
+}
+
+.jpit-activities-selection .left {
+    text-align: right;
+    margin-right: 20px;
+}
+
+.jpit-activities-selection .right {
+    text-align: left;
+}
+
+.jpit-activities-selection .left .radio {
+    float: right;
+    margin-left: 5px;
+}
+
+.jpit-activities-selection .right .radio {
+    float: left;
+    margin-right: 5px;
+}
+</pre>
+                            </dd>
+                        </dl>
+                    </div>
+
+                    <p>
+                        Y haciendo uso del atributo <em>data-mode</em> se puede indicar si la selección es única "<em>single</em>" o múltiple "<em>multi</em>".
+                    </p>
+
+                    <div class="horizontal-menu pag-actividades-escritores">
+                        <dl>
+                            <dt>Ejemplo</dt>
+                            <dd>
+                                <p>Cuáles de los siguientes artistas se caracterizaron por ser escritores.</p>
+                                <div class="jpit-activities-selection" data-act-id="escritores" data-act-title="Escritores" data-mode="multi">
+                                    <ul class="writers data_list">
+                                        <li data-group="1" data-correct="true"><div class="check"></div> Alexandre Dummas</li>
+                                        <li data-group="1"><div class="check"></div> Pablo Picaso</li>
+                                        <li data-group="1"><div class="check"></div> Johann Sebastian Bach</li>
+                                        <li data-group="1" data-correct="true"><div class="check"></div> Walter Scott</li>
+                                        <li data-group="1" data-correct="true"><div class="check"></div> Hermann Hesse</li>
+                                    </ul>
+
+                                    <div class="box_end"></div>
+                                </div>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>HTML</dt>
+                            <dd>
+<pre>
+&lt;div class="jpit-activities-selection" data-act-id="escritores" data-act-title="Escritores" data-mode="multi"&gt;
+    &lt;ul class="writers data_list"&gt;
+        &lt;li data-group="1" data-correct="true"&gt;&lt;div class="check"&gt;&lt;/div&gt; Alexandre Dummas&lt;/li&gt;
+        &lt;li data-group="1"&gt;&lt;div class="check"&gt;&lt;/div&gt; Pablo Picaso&lt;/li&gt;
+        &lt;li data-group="1"&gt;&lt;div class="check"&gt;&lt;/div&gt; Johann Sebastian Bach&lt;/li&gt;
+        &lt;li data-group="1" data-correct="true"&gt;&lt;div class="check"&gt;&lt;/div&gt; Walter Scott&lt;/li&gt;
+        &lt;li data-group="1" data-correct="true"&gt;&lt;div class="check"&gt;&lt;/div&gt; Hermann Hesse&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div class="box_end"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>CSS personalizado</dt>
+                            <dd>
+<pre>
+.jpit-activities-selection li {
+    margin-bottom: 5px;
+    cursor: pointer;
+    padding: 2px 5px;
+}
+</pre>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+
                 <div class="subpage" id="pag-actividades-form">
                     <h3>Formulario</h3>
 
