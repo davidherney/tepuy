@@ -438,7 +438,7 @@ dhbgApp.mobile.start = function() {
     $('.mouse-over-one').each(function(){
         var $this = $(this);
 
-        $this.find('[data-ref]').on('mouseover', function() {
+        $this.find('[data-ref]').on('click', function() {
             $this.find('[data-ref]').each(function() {
                 $($(this).attr('data-ref')).hide();
             });
@@ -2414,11 +2414,11 @@ dhbgApp.mobile.load_operations = function() {
                         dhbgApp.printProgress();
 
                         var msg;
-                        if (weight >= 99) {
-                            msg = '<div class="correct">' + dhbgApp.s('all_correct_percent', weight) + '</div>';
+                        if (weight >= dhbgApp.evaluation.approve_limit) {
+                            msg = '<div class="correct">' + (feedbacktrue ? feedbacktrue : dhbgApp.s('all_correct_percent', weight)) + '</div>';
                         }
                         else {
-                            msg = '<div class="wrong">' + dhbgApp.s('wrong_percent', (100 - weight)) + '</div>';
+                            msg = '<div class="wrong">' + (feedbackfalse ? feedbackfalse : dhbgApp.s('wrong_percent', (100 - weight))) + '</div>';
                         }
 
                         $box_end.append(msg).show();
