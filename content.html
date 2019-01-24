@@ -2498,6 +2498,81 @@
                     </div>
                 </div>
 
+                <div class="subpage" id="pag-actividades-arrastrar5">
+                    <h3>Arrastrar y soltar - muchos a uno</h3>
+                    <p>Posible modificación de la actividad de arrastrar y soltar, en este caso para arrastrar varios objetivos a un solo destino.</p>
+
+                    <p>Su característica principal es que se puede definir cuántos objetos deben ser movidos al destino. Para hacer esa definición se utiliza el atributo <em>data-target-multi</em> colocando el valor de los elementos que acepta el destino. También se puede establecer el atributo <em>data-autoalign</em> con un valor de <strong>false</strong> para que los elementos no se alineen automáticamente, muy útil cuando los elementos de orígen pueden no caber en el destino.</p>
+
+                    <div class="horizontal-menu">
+                        <dl>
+                            <dt>Ejemplo</dt>
+                            <dd>
+                                <div id="arrastrar5" class="jpit-activities-droppable"  data-act-id="arrastrar5" data-target-multi="3" data-autoalign="false">
+                                    <div>
+                                        Arrastre al recuadro los nombres de los tres personajes que aparecen en la serie de los Caballeros del Zodíaco.
+                                        <div data-target-group="1"></div>
+                                    </div>
+                                    <div>
+                                        <h4>Personajes:</h4>
+                                        <div>
+                                            <div data-group="1">Aldebarán</div>
+                                            <div data-group="2">Óliver</div>
+                                            <div data-group="2">Bruce Harper</div>
+                                            <div data-group="1">Hyoga</div>
+                                            <div data-group="2">Benji Price</div>
+                                            <div data-group="1">Shiryu</div>
+                                        </div>
+                                        <br class="clear" />
+                                    </div>
+                                    <div class="box_end"></div>
+                                </div>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>HTML</dt>
+                            <dd>
+<pre>
+&lt;div id="arrastrar" class="jpit-activities-droppable"  data-act-id="arrastrar5" data-target-multi="3" data-autoalign="false"&gt;
+    &lt;div&gt;
+        Arrastre al recuadro los nombres de los tres personajes que aparecen en la serie de los Caballeros del Zodíaco.
+        &lt;div data-target-group="1"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;h4&gt;Personajes:&lt;/h4&gt;
+        &lt;div&gt;
+            &lt;div data-group="1"&gt;Aldebarán&lt;/div&gt;
+            &lt;div data-group="2"&gt;Óliver &lt;/div&gt;
+            &lt;div data-group="2"&gt;Bruce Harper&lt;/div&gt;
+            &lt;div data-group="1"&gt;Hyoga&lt;/div&gt;
+            &lt;div data-group="2"&gt;Benji Price&lt;/div&gt;
+            &lt;div data-group="1"&gt;Shiryu&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;br class="clear" /&gt;
+    &lt;/div&gt;
+    &lt;div class="box_end"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>CSS personalizado</dt>
+                            <dd>
+<pre>
+#arrastrar .droppable {
+    width: 300px;
+    height: 150px;
+}
+
+#arrastrar .draggable {
+    display: inline-block;
+}
+</pre>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+
                 <div class="subpage" id="pag-actividades-arrastrargrupos">
                     <h3>Arrastrar y soltar por grupos / Clasificar</h3>
                     <p>

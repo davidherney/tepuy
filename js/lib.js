@@ -2195,7 +2195,7 @@ dhbgApp.standard.load_operations = function() {
 
         var activity;
         var unique_id = 'activity_droppable_' + dhbgApp.rangerand(0, 1000, true);
-        var feedbacktrue = dhbgApp.s('all_correct'), feedbackfalse = dhbgApp.s('all_wrong');
+        var feedbacktrue = '', feedbackfalse = '';
         var html_body = $this.html();
 
         var helper = '';
@@ -2229,6 +2229,15 @@ dhbgApp.standard.load_operations = function() {
 
         var type_verification = $this.attr('data-verify-type') ? $this.attr('data-verify-type') : 'source';
 
+        var multi;
+        if (multi = $this.attr('data-target-multi')) {
+            activityOptions.multiTarget = multi;
+        }
+
+        var autoalign;
+        if (autoalign = $this.attr('data-autoalign')) {
+            activityOptions.autoAlignNodes = !(autoalign == 'false');
+        }
         // Build the board.
         var origins = [], targets = [], pairs = [],  pair_indexs = [];
 
@@ -2462,7 +2471,7 @@ dhbgApp.standard.load_operations = function() {
 
         var activity;
         var unique_id = 'activity_cloze_' + dhbgApp.rangerand(0, 1000, true);
-        var feedbacktrue = dhbgApp.s('all_correct'), feedbackfalse = dhbgApp.s('all_correct');
+        var feedbacktrue = '', feedbackfalse = '';
 
         var html_body = $this.html();
         var $box_end = $this.find('.box_end');
@@ -2475,6 +2484,7 @@ dhbgApp.standard.load_operations = function() {
         if ($this.find('feedback wrong').text() != '') {
             feedbackfalse = $this.find('feedback wrong').html();
         }
+        $this.find('feedback').empty();
 
         var d_answer_buttons = {};
         var ok = dhbgApp.s('accept');
@@ -2507,11 +2517,12 @@ dhbgApp.standard.load_operations = function() {
 
                 var msg;
                 if (weight >= dhbgApp.evaluation.approve_limit) {
-                    msg = '<div class="correct">' + dhbgApp.s('all_correct_percent', weight) + '</div>';
+                    msg = '<div class="correct">' + (feedbacktrue ? feedbacktrue : dhbgApp.s('all_correct_percent', weight)) + '</div>';
                 }
                 else {
-                    msg = '<div class="wrong">' + dhbgApp.s('wrong_percent', (100 - weight)) + '</div>';
+                    msg = '<div class="wrong">' + (feedbackfalse ? feedbackfalse : dhbgApp.s('wrong_percent', (100 - weight))) + '</div>';
                 }
+
                 $box_end.append(msg).show();
 
                 activity.disable();

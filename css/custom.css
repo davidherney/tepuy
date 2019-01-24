@@ -407,6 +407,22 @@
 }
 
 /********************************************************************************/
+/* Actividad arrastrar y soltar - muchos a uno
+/********************************************************************************/
+#pag-actividades-arrastrar5 .chalkboard_content {
+    height: auto;
+}
+
+#arrastrar5 .droppable {
+    width: 300px;
+    height: 150px;
+}
+
+#arrastrar5 .draggable {
+    display: inline-block;
+}
+
+/********************************************************************************/
 /* Actividad arrastrar y soltar multiple
 /********************************************************************************/
 #pag-actividades-arrastrargrupos .chalkboard_content {
