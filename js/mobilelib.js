@@ -356,10 +356,26 @@ dhbgApp.mobile.start = function() {
 
         if ($this.attr('data-property-width')) {
             properties.width = $this.attr('data-property-width');
+
+            if (properties.width.indexOf('%') >= 0) {
+                var window_w = $(window).width();
+                var tmp_w = Number(properties.width.replace('%', ''));
+                if (!isNaN(tmp_w) && tmp_w > 0) {
+                    properties.width = tmp_w * window_w / 100;
+                }
+            }
         }
 
         if ($this.attr('data-property-height')) {
             properties.height = $this.attr('data-property-height');
+
+            if (properties.height.indexOf('%') >= 0) {
+                var window_h = $(window).height();
+                var tmp_h = Number(properties.height.replace('%', ''));
+                if (!isNaN(tmp_h) && tmp_h > 0) {
+                    properties.height = tmp_h * window_h / 100;
+                }
+            }
         }
 
         if ($this.attr('data-cssclass')) {
@@ -375,10 +391,26 @@ dhbgApp.mobile.start = function() {
         var h = $this.attr('data-property-height');
 
         if (w) {
+            if (w.indexOf('%') >= 0) {
+                var window_w = $(window).width();
+                var tmp_w = Number(w.replace('%', ''));
+                if (!isNaN(tmp_w) && tmp_w > 0) {
+                    w = tmp_w * window_w / 100;
+                }
+            }
+
             $($this.attr('data-content')).dialog('option', 'width', w);
         }
 
         if (h) {
+            if (h.indexOf('%') >= 0) {
+                var window_h = $(window).height();
+                var tmp_h = Number(h.replace('%', ''));
+                if (!isNaN(tmp_h) && tmp_h > 0) {
+                    h = tmp_h * window_h / 100;
+                }
+            }
+
             $($this.attr('data-content')).dialog('option', 'height', h);
         }
 
