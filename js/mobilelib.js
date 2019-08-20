@@ -2372,11 +2372,6 @@ dhbgApp.mobile.load_operations = function() {
             var feedbacktrue = dhbgApp.s('all_correct'), feedbackfalse = dhbgApp.s('all_wrong');
             var html_body = $this.html();
 
-            var helper = '';
-            if ($this.attr('data-droppable-content-inner') && $this.attr('data-droppable-content-helper')) {
-                helper = $this.attr('data-droppable-content-helper');
-            }
-
             var $box_end = $this.find('.box_end');
             $box_end.hide();
 
@@ -2439,85 +2434,82 @@ dhbgApp.mobile.load_operations = function() {
                 $item.removeAttr('data-target-group');
             });
 
+            activityOptions.onDrop = function(dragEl) {
+                var dropzone = this;
+                if ($this.attr('data-adjust-size') && $this.attr('data-adjust-size') == 'true') {
+                    dragEl.width(dropzone.width());
+                    dragEl.height(dropzone.height());
+                }
+
+                dragEl.trigger('click');
+
+                var end = type_verification == 'target' ? activity.isComplete() : activity.isFullComplete();
+                if (!end) return;
+
+                var weight = Math.round(activity.countCorrect() * 100 / pairs.length);
+                activity.disable();
+
+                if (dhbgApp.scorm) {
+                    dhbgApp.scorm.activityAttempt(scorm_id, weight)
+                }
+                dhbgApp.printProgress();
+
+                var msg;
+                if (weight >= dhbgApp.evaluation.approve_limit) {
+                    msg = '<div class="correct">' + (feedbacktrue ? feedbacktrue : dhbgApp.s('all_correct_percent', weight)) + '</div>';
+                }
+                else {
+                    msg = '<div class="wrong">' + (feedbackfalse ? feedbackfalse : dhbgApp.s('wrong_percent', (100 - weight))) + '</div>';
+                }
+
+                var $msg = $(msg);
+                var $close;
+                if ($box_end.attr('data-enable-close-button')) {
+                    $close = $('<span class="icon_more button"></span>').on('click', function() {
+                        $box_end.empty().hide();
+                    });
+                    $msg.append($close);
+                }
+
+                var continueWith = $this.attr('data-continue-with');
+                if (continueWith) {
+                    var $continue = $('<button class="general">Continuar</button>').on('click', function() {
+                        $(continueWith).show(200);
+                        $("html, body").animate({ scrollTop: $(continueWith).offset().top }, 500);
+                        $box_end.empty().hide();
+                    });
+                    $close && $close.remove();
+                    $msg.append($continue);
+                }
+
+                $box_end.append($msg).show();
+                $this.addClass('completed');
+
+                if (weight < 99) {
+                    var $button_again = $('<button class="button general">' + dhbgApp.s('restart_activity') + '</button>');
+                    $button_again.on('click', function(){
+                        $box_end.empty().hide();
+                        $this.find('.draggable,.droppable').removeClass('wrong correct');
+
+                        $this.removeClass('completed');
+                        activity.resetStage();
+                    });
+
+                    $box_end.append($button_again);
+                }
+
+                $this.find('.draggable,.droppable').addClass('wrong');
+                var corrects = activity.getCorrects();
+
+                if (corrects.length > 0) {
+                    $.each(corrects, function(index, correct){
+                        correct.o.removeClass('wrong').addClass('correct');
+                        correct.t.removeClass('wrong').addClass('correct');
+                    });
+                }
+            };
+
             activity = new jpit.activities.droppable.board(activityOptions, origins, targets, pairs);
-
-            $.each(origins, function(index, origin){
-                origin.on('dragstop', function(event, ui){
-
-                    var end = type_verification == 'target' ? activity.isComplete() : activity.isFullComplete();
-
-                    if (end) {
-                        var weight = Math.round(activity.countCorrect() * 100 / pairs.length);
-                        activity.disable();
-
-                        if (dhbgApp.scorm) {
-                            dhbgApp.scorm.activityAttempt(scorm_id, weight)
-                        }
-                        dhbgApp.printProgress();
-
-                        var msg;
-                        if (weight >= dhbgApp.evaluation.approve_limit) {
-                            msg = '<div class="correct">' + (feedbacktrue ? feedbacktrue : dhbgApp.s('all_correct_percent', weight)) + '</div>';
-                        }
-                        else {
-                            msg = '<div class="wrong">' + (feedbackfalse ? feedbackfalse : dhbgApp.s('wrong_percent', (100 - weight))) + '</div>';
-                        }
-
-                        $box_end.append(msg).show();
-
-                        if (weight < 99) {
-                            var $button_again = $('<button class="button general">' + dhbgApp.s('restart_activity') + '</button>');
-                            $button_again.on('click', function(){
-                                $box_end.empty().hide();
-                                $this.find('.draggable').removeClass('wrong');
-                                $this.find('.draggable').removeClass('correct');
-                                $this.find('.droppable').removeClass('wrong');
-                                $this.find('.droppable').removeClass('correct');
-
-                                if ($this.attr('data-droppable-content-inner')) {
-                                    $this.find('.draggable').show();
-                                    $this.find('.droppable').html(helper);
-                                }
-
-                                activity.resetStage();
-                            });
-
-                            $box_end.append($button_again);
-                        }
-
-                        $this.find('.draggable').addClass('wrong');
-                        $this.find('.droppable').addClass('wrong');
-                        var corrects = activity.getCorrects();
-
-                        if (corrects.length > 0) {
-                            $.each(corrects, function(index, correct){
-                                correct.o.removeClass('wrong');
-                                correct.o.addClass('correct');
-                                correct.t.removeClass('wrong');
-                                correct.t.addClass('correct');
-                            });
-                        }
-                    }
-                });
-            });
-
-            if ($this.attr('data-droppable-content-inner')) {
-                $.each(targets, function(index, target){
-                    target.on('drop', function(event, ui){
-                        ui.draggable.hide();
-                        target.html(ui.draggable.html());
-                    });
-                });
-            }
-            else if ($this.attr('data-adjust-size') && $this.attr('data-adjust-size') == 'true') {
-                $.each(targets, function(index, target){
-                    target.on('drop', function(event, ui){
-                        ui.draggable.width(target.width());
-                        ui.draggable.height(target.height());
-                    });
-                });
-            }
-
             $this.data('loaded', true);
         }
 

@@ -18,6 +18,7 @@
     <script src="components/jquery/jquery-ui.min.js"></script>
     <script type="text/javascript" src="components/jquery-mobile/jquery.ui.touch-punch.min.js"></script>
 
+    <script src="components/interact/interact.min.js"></script>
 <!--jQuery components -->
     <script src="components/twentytwenty/js/jquery.event.move.js" type="text/javascript"></script>
     <script src="components/twentytwenty/js/jquery.twentytwenty.js" type="text/javascript"></script>
@@ -2000,7 +2001,7 @@
                 <div class="subpage" id="pag-actividades-arrastrar1">
                     <h3>Arrastrar y soltar - modo apareamiento</h3>
                     <p>
-                        Una actividad de arrastrar se define agregando la clase <em>jpit-activities-droppable</em> a un contenedor y dentro de él definiendo un contenido HTML teniendo en cuenta: definir los orígenes marcando elementos con la clase <em>data-group</em> cuyo valor será el número del grupo al que pertenece el elemento y definir los destinos marcando elementos con el atributo <em>data-target-gorup</em> cuyo valor será el número del grupo que acepta como correcto.
+                        Una actividad de arrastrar se define agregando la clase <em>jpit-activities-droppable</em> a un contenedor y dentro de él definiendo un contenido HTML teniendo en cuenta: definir los orígenes marcando elementos con la clase <em>data-group</em> cuyo valor será el número del grupo al que pertenece el elemento y definir los destinos marcando elementos con el atributo <em>data-target-group</em> cuyo valor será el número del grupo que acepta como correcto.
                     </p>
                     <p>
                         Si la actividad tiene más elementos para arrastrar que destinos, entonces debe llevar el atributo <em>data-verify-type="target"</em>.
@@ -2579,7 +2580,7 @@
                         Es similar a la actividad de arrastrar y soltar pero permite arrastrar múltiples elementos a un mismo contenedor, para clasificar todos los elementos por grupos, además, no reinicia cuando finaliza con errores sino que permite continuar desde el estado actual. Otra diferencia es que esta actividad sí requiere que el usuario la verifique, al contrario de la actividad de arrastrar normal que se verifica cuando se terminan de arrastrar los elementos o cuando se llenan los destinos.
                     </p>
                     <p>
-                        Se define agregando la clase <em>jpit-activities-multidroppable</em> a un contenedor y dentro de él definiendo un contenido HTML teniendo en cuenta: definir los orígenes marcando elementos con la clase <em>data-group</em> cuyo valor será el número del grupo al que pertenece el elemento y definir los destinos marcando elementos con el atributo <em>data-target-gorup</em> cuyo valor será el número del grupo que acepta como correcto.
+                        Se define agregando la clase <em>jpit-activities-multidroppable</em> a un contenedor y dentro de él definiendo un contenido HTML teniendo en cuenta: definir los orígenes marcando elementos con la clase <em>data-group</em> cuyo valor será el número del grupo al que pertenece el elemento y definir los destinos marcando elementos con el atributo <em>data-target-group</em> cuyo valor será el número del grupo que acepta como correcto.
                     </p>
                     <p>Los estilos correspondientes se encuentran en <strong>css/custom.css</strong>, en la sección "Actividad arrastrar y soltar por grupos".</p>
 

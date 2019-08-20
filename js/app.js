@@ -17,6 +17,7 @@
 var dhbgApp = {};
 
 dhbgApp.DEBUG_MODE = true;
+dhbgApp.SHOWNOTSCORMMSG = false;
 dhbgApp.MODE = 'standard'; // standard or mobile
 dhbgApp.FULL_PAGES = true;
 dhbgApp.WINDOWS_MODE = 'top'; // top or modal

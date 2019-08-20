@@ -1592,6 +1592,9 @@ sup.tooltip {
     text-align: center;
     cursor: move;
     padding: 5px;
+    -ms-touch-action: none;
+    touch-action: none;
+    user-select: none;
 }
 
 .jpit-activities-droppable .draggable.disabled {
