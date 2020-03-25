@@ -80,6 +80,8 @@ dhbgApp.strings = {
 
     'restart_activity': 'Restart the activity',
 
+    'end_activity': 'Reveal response',
+
     'result_to': '{a} out of {b}',
 
     'save': 'Save',

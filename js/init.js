@@ -49,8 +49,9 @@ dhbgApp.start = function() {
         dhbgApp.MODE = 'mobile';
 
         if (dhbgApp.DEBUG_MODE) {
-            style_path = "css/mobile.css";
-            custom_path = "css/custommobile.css";
+            var refresh = new Date().getTime();
+            style_path = "css/mobile.css?t="+refresh;
+            custom_path = "css/custommobile.css?t="+refresh;
         }
         else {
             style_path = "css/mobile.min.css";

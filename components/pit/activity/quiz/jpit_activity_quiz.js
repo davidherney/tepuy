@@ -461,6 +461,7 @@ jpit.activities.quiz.question.simplechoice = function (statement, possibles, cor
         "displayFeedback" : false,
         "feedbackIfTrue" : '',
         "feedbackIfFalse" : '',
+        "feedbackAll" : '',
         "control": null,
         "weight":10,
         "key" : null,
@@ -540,6 +541,7 @@ jpit.activities.quiz.question.simplechoice = function (statement, possibles, cor
             var control = $('<div class="jpit_activities_quiz_question_feedback"></div>');
             control.append($('<div id="' + this.getUniqueId() + '_true" class="jpit_activities_quiz_question_feedback_true" style="display: none;"></div>').html(this.feedbackIfTrue));
             control.append($('<div id="' + this.getUniqueId() + '_false" class="jpit_activities_quiz_question_feedback_false" style="display: none;"></div>').html(this.feedbackIfFalse));
+            control.append($('<div id="' + this.getUniqueId() + '_all" class="jpit_activities_quiz_question_feedback_all" style="display: none;"></div>').html(this.feedbackAll));
             return control;
         },
 
@@ -557,6 +559,12 @@ jpit.activities.quiz.question.simplechoice = function (statement, possibles, cor
                 }
             }
             return this.correctAnswer == userAnswer;
+        },
+
+        "resolve": function () {
+            var $correct = $('.' + this.getUniqueId() + '[value='+this.correctAnswer+']');
+            $correct.removeAttr('disabled').trigger('click');
+            obj.disableQuestion();
         },
 
         "answered" : function () {
@@ -616,6 +624,10 @@ jpit.activities.quiz.question.simplechoice = function (statement, possibles, cor
                 else if (this.feedbackIfFalse != '') {
                     $('#' + this.getUniqueId() + '_false').show();
                 }
+
+                if (this.feedbackAll != '') {
+                    $('#' + this.getUniqueId() + '_all').show();
+                }
             }
         },
 
@@ -641,6 +653,10 @@ jpit.activities.quiz.question.simplechoice = function (statement, possibles, cor
         }
         if (options.feedbackIfFalse != 'undefined' && options.feedbackIfFalse != undefined) {
             obj.feedbackIfFalse = options.feedbackIfFalse;
+            obj.displayFeedback = true;
+        }
+        if (options.feedbackAll != 'undefined' && options.feedbackAll != undefined) {
+            obj.feedbackAll = options.feedbackAll;
             obj.displayFeedback = true;
         }
         if (options.classQuestionContainer != 'undefined' && options.classQuestionContainer  != undefined) {
@@ -680,6 +696,7 @@ jpit.activities.quiz.question.multichoice = function (statement, possibles, corr
         "displayFeedback" : false,
         "feedbackIfTrue" : '',
         "feedbackIfFalse" : '',
+        "feedbackAll" : '',
         "control":null,
         "weight":10,
         "key": null,
@@ -759,6 +776,7 @@ jpit.activities.quiz.question.multichoice = function (statement, possibles, corr
             var control = $('<div class="jpit_activities_quiz_question_feedback"></div>');
             control.append($('<div id="' + this.getUniqueId() + '_true" class="jpit_activities_quiz_question_feedback_true" style="display: none;"></div>').html(this.feedbackIfTrue));
             control.append($('<div id="' + this.getUniqueId() + '_false" class="jpit_activities_quiz_question_feedback_false" style="display: none;"></div>').html(this.feedbackIfFalse));
+            control.append($('<div id="' + this.getUniqueId() + '_all" class="jpit_activities_quiz_question_feedback_all" style="display: none;"></div>').html(this.feedbackAll));
             return control;
         },
         "disableQuestion" : function(){
@@ -774,6 +792,15 @@ jpit.activities.quiz.question.multichoice = function (statement, possibles, corr
                 }
             }
             return $.compare(this.userAnswerArray,this.correctAnswer);
+        },
+
+        "resolve": function () {
+            var options = $('.' + this.getUniqueId());
+            for(var i = 0; i < this.correctAnswer.length; i++){
+                var $correct = options.find('[value='+this.correctAnswer[i]+']');
+                $correct.removeAttr('disabled').trigger('click');
+            }            
+            obj.disableQuestion();
         },
 
         "answered" : function () {
@@ -837,6 +864,10 @@ jpit.activities.quiz.question.multichoice = function (statement, possibles, corr
                 else if (this.feedbackIfFalse != '') {
                     $('#' + this.getUniqueId() + '_false').show();
                 }
+
+                if (this.feedbackAll != '') {
+                    $('#' + this.getUniqueId() + '_all').show();
+                }
             }
         },
 
@@ -862,6 +893,10 @@ jpit.activities.quiz.question.multichoice = function (statement, possibles, corr
         }
         if (options.feedbackIfFalse != 'undefined' && options.feedbackIfFalse != undefined) {
             obj.feedbackIfFalse = options.feedbackIfFalse;
+            obj.displayFeedback = true;
+        }
+        if (options.feedbackAll != 'undefined' && options.feedbackAll != undefined) {
+            obj.feedbackAll = options.feedbackAll;
             obj.displayFeedback = true;
         }
         if (options.classQuestionContainer != 'undefined' && options.classQuestionContainer  != undefined) {
@@ -901,6 +936,7 @@ jpit.activities.quiz.question.trueorfalse = function (statement, correct, option
         "displayFeedback" : false,
         "feedbackIfTrue" : '',
         "feedbackIfFalse" : '',
+        "feedbackAll" : '',
         "textTrue" : 'true',
         "textFalse" : 'false',
         "control":null,
@@ -979,6 +1015,7 @@ jpit.activities.quiz.question.trueorfalse = function (statement, correct, option
             var control = $('<div class="jpit_activities_quiz_question_feedback"></div>');
             control.append($('<div id="' + this.getUniqueId() + '_true" class="jpit_activities_quiz_question_feedback_true" style="display: none;"></div>').html(this.feedbackIfTrue));
             control.append($('<div id="' + this.getUniqueId() + '_false" class="jpit_activities_quiz_question_feedback_false" style="display: none;"></div>').html(this.feedbackIfFalse));
+            control.append($('<div id="' + this.getUniqueId() + '_all" class="jpit_activities_quiz_question_feedback_all" style="display: none;"></div>').html(this.feedbackAll));
             return control;
         },
         "disableQuestion" : function(){
@@ -995,6 +1032,12 @@ jpit.activities.quiz.question.trueorfalse = function (statement, correct, option
             }
 
             return this.correctAnswer == this.userAnswer;
+        },
+
+        "resolve": function () {
+            var $correct = $('.'+this.getUniqueId()+'[value='+this.correctAnswer+']');
+            $correct.removeAttr('disabled').trigger('click');
+            obj.disableQuestion();
         },
 
         "answered" : function () {
@@ -1058,6 +1101,10 @@ jpit.activities.quiz.question.trueorfalse = function (statement, correct, option
                 else if (this.feedbackIfFalse != '') {
                     $('#' + this.getUniqueId() + '_false').show();
                 }
+
+                if (this.feedbackAll != '') {
+                    $('#' + this.getUniqueId() + '_all').show();
+                }
             }
         },
 
@@ -1087,6 +1134,10 @@ jpit.activities.quiz.question.trueorfalse = function (statement, correct, option
         }
         if (options.textFalse != 'undefined' && options.textFalse != undefined) {
             obj.possibleAnswers[0] = options.textFalse;
+        }
+        if (options.feedbackAll != 'undefined' && options.feedbackAll != undefined) {
+            obj.feedbackAll = options.feedbackAll;
+            obj.displayFeedback = true;
         }
         if (options.textTrue != 'undefined' && options.textTrue != undefined) {
             obj.possibleAnswers[1] = options.textTrue;
@@ -1231,6 +1282,11 @@ jpit.activities.quiz.question.defineterm = function (statement, statements, corr
                 }
             });
             return response;
+        },
+        "resolve": function () {
+            var $correct = $('.'+this.getUniqueId()+'[value='+this.correctAnswer+']');
+            $correct.removeAttr('disabled').trigger('click');
+            obj.disableQuestion();
         },
         "disableQuestion" : function(){
             obj.control.find("input").attr('disabled', 'disabled');
@@ -1464,6 +1520,12 @@ jpit.activities.quiz.question.multisetchoice = function (statement, possibles, c
                 }
             });
             return response;
+        },
+
+        "resolve": function () {
+            var $correct = $('.'+this.getUniqueId()+'[value='+this.correctAnswer+']');
+            $correct.removeAttr('disabled').trigger('click');
+            obj.disableQuestion();
         },
 
         "answered" : function () {

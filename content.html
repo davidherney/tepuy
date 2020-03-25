@@ -29,6 +29,7 @@
     <script src="components/maphilight/jquery.maphilight.min.js" type="text/javascript"></script>
 <!--End jQuery components -->
 
+    <script src="components/interact/interact.min.js"></script>
     <script src="components/pit/jpit_api.js"></script>
     <script src="components/pit/utilities/jpit_utilities.js"></script>
     <script src="components/pit/activity/jpit_activity.js"></script>
@@ -80,7 +81,7 @@
     </style>
 
 </head>
-<body class="loading" data-debug="true" data-display-mode="onlypages" data-approve-limit="70" data-activities-percentaje="60" data-mobile-mode="512">
+<body class="loading" data-debug="true" data-model="scorm" data-display-mode="onlypages" data-approve-limit="70" data-activities-percentaje="60" data-mobile-mode="512">
     <div id="body" class="not_print">
         <div id="not_scorm_msg" style="display: none;"></div>
 
@@ -188,6 +189,8 @@
                         <li><strong>data-approve-limit="[<em>número</em>]"</strong>: Un valor numérico que indica el porcentaje correspondiente al límite inferior con el cual se aprueba una actividad. Esta información determina como se muestran algunos mensajes de retroalimentación y como se comportan algunas actividades. El valor por defecto es <strong>100</strong>, es decir, una actividad debe estar correcta en un 100% para considerarse completada.</li>
 
                         <li><strong>data-activities-percentaje="[<em>número</em>]"</strong>: Un valor numérico que indica el porcentaje que se le asigna como peso a la calificación obtenida en las actividades, el porcentaje restante se asigna a la revisión/visita de las páginas y subpáginas del documento. Es de considerar que solamente se computa la calificación más alta obtenida en la realización de una actividad, independiente de los demás intentos. Si el documento se encuentra como SCORM, para que se considere completado se debe aprobar el 100%. El valor por defecto es <strong>60</strong>, es decir, el computo de los resultados obtenidos en las actividades aporta el 60% del progreso y la navegación por los contenidos aporta el 40% restante.</li>
+
+                        <li><strong> data-model="[<em>scorm</em> | page]"</strong>: Define el tipo de modelo elegido para ejecutar el paquete. Por defecto se utiliza un modelo SCORM lo que indica que se intenta la conexión con el LMS.</li>
                     </ul>
                 </div>
             </section>
@@ -204,6 +207,7 @@
                     <h3>Encabezado de nivel 3 (<em>h3</em>)</h3>
                     <h4>Encabezado de nivel 4 (<em>h4</em>)</h4>
                     <h5>Encabezado de nivel 5 (<em>h5</em>)</h5>
+                    <h6>Encabezado de nivel 6 (<em>h6</em>)</h6>
 
                     <p>Apariencia de los <a href="#">enlaces</a> (<em>a</em>).</p>
                     <p>Apariencia de un <strong>texto destacado</strong> (<em>strong</em>).</p>
@@ -227,7 +231,7 @@
                     <div class="box-text important" label="Importante">
                         <p>Se utiliza la clase <em>important</em> y es para los párrafos que requieren un énfasis. Ejemplo:</p>
                         <pre>
-&lt;div class="box-text important"&gt;
+&lt;div class="box-text important" label="Importante"&gt;
   &lt;p&gt;
     Acá un párrafo importante,
     del que se requiere hacer énfasis.
@@ -297,7 +301,7 @@
                     <div class="box-text activity" label="Actividad de aprendizaje">
                         <p>Se utiliza la clase <em>activity</em> y es para destacar actividades dentro del contenido. Ejemplo:</p>
                         <pre>
-&lt;div class="box-text connection" label="Actividad de aprendizaje"&gt;
+&lt;div class="box-text activity" label="Actividad de aprendizaje"&gt;
   &lt;p&gt;
     Acá la descripción de la actividad.
   &lt;/p&gt;
@@ -445,7 +449,8 @@
                         <li><strong>Botón general: </strong><button class="general">Aceptar</button>, usar &lt;button class="general"&gt;Aceptar&lt;/button&gt;</li>
                         <li><strong>Apuntador arriba-abajo: </strong><span class="icon_inline ui-icon ui-icon-arrowthick-2-n-s"></span>, usar &lt;span class="icon_inline ui-icon ui-icon-arrowthick-2-n-s"&gt;&lt;/span&gt;</li>
                         <li><strong>Apuntador izquierda-derecha: </strong><span class="icon_inline ui-icon ui-icon-arrowthick-2-e-w"></span>, usar &lt;span class="icon_inline ui-icon ui-icon-arrowthick-2-e-w"&gt;&lt;/span&gt;</li>
-                        <li><strong>Ver más: </strong><span class="iconmore button"></span>, usar &lt;span class="icon_more button"&gt;&lt;/span&gt;. Se adiciona la clase button si debe tener el evento "Sobre".</li>
+                        <li><strong>Ver más: </strong><span class="icon_more button"></span>, usar &lt;span class="icon_more button"&gt;&lt;/span&gt;. Se adiciona la clase button si debe tener el evento "Sobre".</li>
+                        <li><strong>Ver menos: </strong><span class="icon_less button"></span>, usar &lt;span class="icon_less button"&gt;&lt;/span&gt;. Se adiciona la clase button si debe tener el evento "Sobre".</li>
                         <li><strong>Apuntador izquierda: </strong><div class="note_pointer_left"></div>, usar &lt;div class="note_pointer_left"&gt;&lt;/div&gt;</li>
                         <li><strong>Apuntador derecha: </strong><div class="note_pointer_right"></div>, usar &lt;div class="note_pointer_right"&gt;&lt;/div&gt;</li>
                         <li><strong>Ícono de video: </strong> <button class="iconvideo button"></button></li>
@@ -811,7 +816,7 @@
 
                 <div class="subpage" id="pag-textos-mouseover2">
                     <h3>Mouse "sobre" un elemento</h3>
-                    <p>Para desplegar contenido pasando el mouse por un elemento, se utiliza la clase <em>mouse-over</em> en un elemento que debe tener el atributo <em>data-ref</em>, la cual debe contener la ruta CSS del elemento que se muestra al pasar el mouse. Al quitar el mouse el elemento se vuelve a ocultar.</p>
+                    <p>Para desplegar contenido pasando el mouse por un elemento, se utiliza la clase <em>mouse-over</em> en un elemento que debe tener el atributo <em>data-ref</em>, el cual debe contener la ruta CSS del elemento que se muestra al pasar el mouse. Al quitar el mouse el elemento se vuelve a ocultar.</p>
 
                     <div class="box-text important" label="Importante">
                         <p>No se controla la visualización inicial por lo que se debe ocultar explícitamente el elemento al inicio.</p>
@@ -824,6 +829,44 @@
                     <div class="contenido_sobre" style="display: none;">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras semper tincidunt sem, et placerat nunc venenatis sed. Fusce id leo a mi fringilla rhoncus quis in felis. In quis diam et ante sollicitudin venenatis vel id arcu. Donec aliquam dictum scelerisque. In sodales enim et nisl sagittis tempor. Cras ac volutpat nisi. Fusce at metus volutpat, sollicitudin lorem eu, tincidunt sapien. Cras nibh nulla, ornare eu nibh pharetra, faucibus pellentesque neque. Vivamus id augue tortor. Donec gravida dolor at ullamcorper venenatis. Ut consequat sapien libero, eget pretium magna ultrices ac.</p>
                     </div>
+                </div>
+
+                <div class="subpage" id="pag-textos-ocultarmostrar">
+                    <h3>Ocultar/Mostrar un elemento</h3>
+
+                    <p>Para mostrar u ocultar un elemento, se utiliza la clase <em>more-less</em> en un elemento que debe tener el atributo <em>data-ref</em>, el cual debe contener la ruta CSS del elemento que se muestra o se oculta.</p>
+
+                    <p>Para definir el efecto que se utiliza al momento de ocultar/mostrar se utiliza el atributo <em>data-effect</em> con uno de los siguientes posibles valores: <em>blind</em>, <em>bounce</em>, <em>clip</em>, <em>drop</em>, <em>explode</em>, <em>fade</em>, <em>fold</em>, <em>highlight</em>, <em>puff</em>, <em>pulsate</em>, <em>shake</em>, <em>slide</em>, <em>scale</em>, <em>size</em></p>
+
+                    <div class="box-text example" label="Ejemplo">
+                        <div class="instruction"><span class="onlymobile">Toque</span><span class="notmobile">De clic en</span> el <span class="icon_more button"></span> para ampliar la información</div>
+
+                        <div class="more-less viewless" data-ref="#pag-textos-ocultarmostrar .contenido" data-effect="explode">
+                            <span class="icon_more button"></span><span class="icon_less button"></span> Ver código
+                        </div>
+
+                        <div class="contenido" style="display: none;">
+                            <p>
+                                Un ejemplo del código utilizado:
+                            </p>
+<pre>
+&lt;div class="more-less viewless" data-ref="#ocultarmostrar" data-effect="explode"&gt;
+    &lt;span class="icon_more button"&gt;
+    &lt;/span&gt;&lt;span class="icon_less button"&gt;&lt;/span&gt;
+        Ver más
+&lt;/div&gt;
+
+&lt;div id="ocultarmostrar" style="display: none;"&gt;
+    &lt;p&gt;Lorem ipsum&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+                        </div>
+                    </div>
+
+                    <div class="box-text important" label="Importante">
+                        <p>La visualización inicial se debe definir directamente en el estilo del elemento destino. Además, el estado inicial del controlador se puede definir con las clases <em>viewmore</em> cuando inicia desplegado o <em>viewless</em> cuando incia contraido.</p>
+                    </div>
+
                 </div>
 
                 <div class="subpage">
@@ -1389,6 +1432,35 @@
                             <h5>Ejemplo</h5>
 <pre>
 &lt;div class="ctrl-pagination" data-layer-height="180px" <strong class="change">data-orientation="vertical"</strong> &gt;
+  &lt;li&gt;
+    Contenido primera página
+  &lt;/li&gt;
+  &lt;li&gt;
+    Segunda página
+  &lt;/li&gt;
+&lt;/div&gt;
+</pre>
+                        </li>
+                        <li>
+                            <p>Otra página.</p>
+                        </li>
+                    </div>
+                    <div class="instruction">Haga clic sobre las flechas para pasar entre páginas</div>
+                </div>
+
+                <div class="subpage">
+                    <h3>Paginación secuencial a ambos lados</h3>
+
+                    <div class="ctrl-pagination" data-layer-height="230px" data-orientation="sides">
+                        <li>
+                            <p>
+                                La misma paginación secuencial pero sus flechas de desplazamiento se ubican a ambos lados del contenido. Se construye de la misma manera pero se adiciona el atributo <em>data-orientation</em> con el valor <em>sides</em>.
+                            </p>
+                        </li>
+                        <li>
+                            <h5>Ejemplo</h5>
+<pre>
+&lt;div class="ctrl-pagination" data-layer-height="180px" <strong class="change">data-orientation="sides"</strong> &gt;
   &lt;li&gt;
     Contenido primera página
   &lt;/li&gt;
@@ -2162,10 +2234,10 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <p>¡Oh, gloria <button data-target-group="1">&nbsp;</button>!</p>
-                                                        <p>!Oh, <button data-target-group="2">&nbsp;</button> inmortal!</p>
+                                                        <p>¡Oh, gloria <button data-target-group="1"></button>!</p>
+                                                        <p>!Oh, <button data-target-group="2"></button> inmortal!</p>
                                                         <p>¡En surcos de dolores</p>
-                                                        <p>el bien <button data-target-group="3">&nbsp;</button> ya!</p>
+                                                        <p>el bien <button data-target-group="3"></button> ya!</p>
                                                     </td>
                                                     <td class="sources">
                                                         <div data-group="3">germina</div>
@@ -3640,6 +3712,11 @@
                                                 Opinión:
                                                 <textarea name="opinion" class="tooltip" title="Escribe en este espacio tu opinión" data-position-at="right bottom" ></textarea>
                                             </p>
+                                            <p>
+                                                Decisión:
+                                                <input type="radio" name="decision" ftitle="Decisión" value="Sí" />
+                                                <input type="radio" name="decision" ftitle="Decisión" value="No" />
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -3662,6 +3739,11 @@
                 &lt;textarea name="opinion"
                     class="tooltip" title="Escribe en este espacio tu opinión"
                     data-position-at="right bottom" &gt;&lt;/textarea&gt;
+            &lt;/p&gt;
+            &lt;p&gt;
+                Decisión:
+                &lt;input type="radio" name="decision" ftitle="Decisión" value="Sí" /&gt;
+                &lt;input type="radio" name="decision" ftitle="Decisión" value="No" /&gt;
             &lt;/p&gt;
         &lt;/div&gt;
     &lt;/div&gt;
@@ -3700,6 +3782,46 @@
     border: 2px dotted #aaaaaa;
 }
 </pre>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+
+                <div class="subpage" id="pag-actividades-view">
+                    <h3>Ver - Abrir</h3>
+
+                    <p>
+                        Esta actividad se define agregando la clase <em>jpit-activities-view</em> a un elemento que ejecuta una acción como mostrar un contenido o abrir una ventana. Al elemento que es "visitado" se le agrega la clase CSS <em>visited</em>.
+                    </p>
+                    <p>
+                        Sirve para controlar que el usuario haya visto un contenido o donde la actividad simplemente sea seleccionar algo. Dado que sólo hay dos estados posibles (sin completar o completada), entonces la posible calificación de la actividad es únicamente "sin completar" o 100%.
+                    </p>
+
+                    <div class="horizontal-menu">
+                        <dl>
+                            <dt>
+                                Ejemplo
+                            </dt>
+                            <dd>
+                                <p>
+                                    Vea el siguiente contenido: <button class="w-content-controler general jpit-activities-view" data-content="#ventana_act_ver">Abrir contenido</button>
+                                </p>
+                                <div id="ventana_act_ver" class="w-content">
+                                    Acá estaría el contenido. En este momento la actividad ya se marca como completada.
+                                </div>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>HTML</dt>
+                            <dd>
+<pre>
+&lt;p&gt;
+    Vea el siguiente contenido:
+    &lt;button class="w-content-controler general jpit-activities-view" data-content="#ventana_act_ver"&gt;Abrir contenido&lt;/button&gt;
+&lt;/p&gt;
+&lt;div id="ventana_act_ver" class="w-content"&gt;
+    Acá estaría el contenido. En este momento la actividad ya se marca como completada.
+&lt;/div&gt;</pre>
                             </dd>
                         </dl>
                     </div>
@@ -3781,6 +3903,12 @@
             <!--Maquetación-->
             <section id="pag-maquetacion" ptitle="Maquetación">
                 <div class="subpage">
+                    <div class="box-text important" label="Caso especial">
+                        <p>
+                            Esta plantilla dispone de una condición especial para reducir el espacio en caso de que se tengan actividades de una sola página. Para ello se debe agregar la clase <em>single</em> a la etiqueta <em>html</em> del contenido.
+                        </p>
+                    </div>
+
                     <p>
                         La maquetación es la manera en la que se distribuye el contenido del documento por defecto. Algunas partes de ellas hacen parte del comportamiento del documento y otras únicamente se utilizan como parte de la estructura gráfica. Las partes tenidas en cuenta para asociarlas con algún comportamiento, y que por ende deben respetar algunas consideraciones, son:
                     </p>

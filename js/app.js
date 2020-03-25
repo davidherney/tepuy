@@ -22,6 +22,7 @@ dhbgApp.FULL_PAGES = true;
 dhbgApp.WINDOWS_MODE = 'top'; // top or modal
 dhbgApp.evaluation = { "approve_limit": 100, "activities_percentage": 60 }
 dhbgApp.MOBILE_WIDTH = 512;
+dhbgApp.MODEL = 'scorm'; // scorm or page
 
 $(function () {
     var $body = $('body');
@@ -33,6 +34,16 @@ $(function () {
 
     // It can be top or modal
     dhbgApp.WINDOWS_MODE = $body.attr('data-display-window') ? $body.attr('data-display-window') : 'top';
+
+    // It can be scorm or page
+    dhbgApp.MODEL = $body.attr('data-model') ? $body.attr('data-model') : 'scorm';
+
+    var models = '|scorm|page|';
+    if (models.indexOf('|' + dhbgApp.MODEL + '|') < 0) {
+        dhbgApp.MODEL = 'scorm';
+    }
+
+    console.log(dhbgApp.MODEL);
 
     // If mobile mode is enabled or disabled and the window width to define the mobile mode
     if ($body.attr('data-mobile-mode')) {

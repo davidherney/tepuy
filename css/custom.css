@@ -250,8 +250,8 @@
 }
 
 #arrastrar1.jpit-activities-droppable td.droppable {
-    width: 80px;
-    height: 16px;
+    width: 90px;
+    height: 26px;
 }
 
 #arrastrar1.jpit-activities-droppable td.conection {
@@ -261,9 +261,6 @@
 }
 
 #arrastrar1.jpit-activities-droppable .draggable {
-    float: left;
-    margin: 0 5px 5px 0;
-    position: absolute;
     width: 80px;
 }
 
@@ -319,7 +316,8 @@
     background-color: transparent;
     color: #000;
     width: 92px;
-    height: 17px;
+    margin: 0;
+    float: unset;
 }
 
 #arrastrar2.jpit-activities-droppable .jpit_activities_jpitdroppable_dropped.draggable.wrong {
@@ -347,7 +345,6 @@
 }
 
 #arrastrar3.jpit-activities-droppable td {
-    padding: 5px;
     border: 1px dashed #777777;
     text-align: left;
     width: 180px;
@@ -363,6 +360,7 @@
     background-color: #fbf9ea;
     color: #000000;
     border-color: #fbf9ea;
+    margin: 0;
 }
 
 #arrastrar3.jpit-activities-droppable .jpit_activities_jpitdroppable_dropped.draggable.wrong {

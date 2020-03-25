@@ -699,14 +699,24 @@ footer {
     margin: 0 2px;
 }
 
-.iconmore {
+.icon_more {
     background: url(../img/sprite.png) no-repeat -662px -12px;
     padding: 8px 14px;
     font-size: 10px;
 }
 
-.iconmore.active {
+.icon_more.active {
     background-position: -662px -51px;
+}
+
+.icon_less {
+    background: url(../img/sprite.png) no-repeat -662px -100px;
+    padding: 8px 14px;
+    font-size: 10px;
+}
+
+.icon_less.active {
+    background-position: -662px -140px;
 }
 
 .note_pointer_left, .note_pointer_right {
@@ -848,6 +858,15 @@ sup.tooltip {
 /* SPECIAL CONTENT: MOUSE OVER
 /********************************************************************************/
 .mouse-over { cursor: pointer; }
+
+/********************************************************************************/
+/* SPECIAL CONTENT: MORE - LEST
+/********************************************************************************/
+.more-less { cursor: pointer; }
+
+.viewmore .icon_more { display: none; }
+
+.viewless .icon_less { display: none; }
 
 /********************************************************************************/
 /* TEXTO EN COLUMNAS
@@ -1141,6 +1160,32 @@ sup.tooltip {
 
 /* End Vertical pagination */
 
+/* Left and right pagination */
+.ctrl-pagination.sides .button.previous {
+    position: absolute;
+    left: 0;
+    top: 50%;
+}
+
+.ctrl-pagination.sides .button.next {
+    position: absolute;
+    right: 0;
+    top: 50%;
+}
+
+.ctrl-pagination.sides .position {
+    position: absolute;
+    bottom: -12px;
+    left: calc(50% - 50px);
+    color: #ffffff;
+    background-color: #003543;
+    padding: 5px 20px;
+    border-radius: 9px;
+    font-size: 16px;
+}
+
+/* End Left and right pagination */
+
 /********************************************************************************/
 /* SPECIAL CONTENT: Data tables
 /********************************************************************************/
@@ -1217,6 +1262,12 @@ sup.tooltip {
 
 .view-first .view-content {
     padding: 0 5px;
+}
+
+.view-first .view-content h2 {
+    color: #fff;
+    border: none;
+    font-size: 22px;
 }
 
 /********************************************************************************/
@@ -1583,7 +1634,7 @@ sup.tooltip {
 .jpit-activities-droppable .droppable {
     border: 1px solid #007fff;
     text-align: left;
-    padding: 5px;
+    padding: 0;
 }
 
 .jpit-activities-droppable .draggable {
@@ -1592,6 +1643,9 @@ sup.tooltip {
     text-align: center;
     cursor: move;
     padding: 5px;
+    -ms-touch-action: none;
+    touch-action: none;
+    user-select: none;
 }
 
 .jpit-activities-droppable .draggable.disabled {
@@ -1601,7 +1655,6 @@ sup.tooltip {
 .jpit-activities-droppable .jpit_activities_jpitdroppable_dropped {
     background-color: #E2793D;
     color: #ffffff;
-    border: 1px solid #ffffff;
 }
 
 .jpit-activities-droppable .draggable.wrong, .jpit-activities-droppable .droppable.wrong {
@@ -1615,6 +1668,48 @@ sup.tooltip {
     display: inline-block;
 }
 
+.jpitdroppable_select_dialog {
+
+}
+.jpitdroppable_select_dialog.ui-dialog .ui-dialog-content {
+    padding: 0;
+}
+
+.jpitdroppable_select_dialog .ui-dialog-titlebar {
+    display: none;
+}
+
+.jpitdroppable_select_list {
+    display: flex;
+    flex-flow: column;
+    align-content: flex-start;
+}
+
+.jpitdroppable_select_list_item {
+    position: relative;
+    flex: 1;
+    border: solid 1px #cccccc;
+    margin: 1px 0;
+    padding: 10px;
+    user-select: none;
+}
+.jpitdroppable_select_list_item.selected {
+    background-color: #dedede;
+    border-color: #bcbcbc
+}
+
+.jpitdroppable_select_list_item.dropped:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-top: 20px solid #22c1c9;
+    border-bottom: 20px solid transparent;
+    clear: both;
+}
 /********************************************************************************/
 /* SPECIFIC ACTIVITIES: MULTIDROPPABLE
 /********************************************************************************/
@@ -1640,7 +1735,8 @@ sup.tooltip {
     cursor: default;
 }
 
-.jpit-activities-multidroppable .draggable.wrong, .jpit-activities-multidroppable .droppable.wrong {
+.jpit-activities-multidroppable .draggable.wrong,
+.jpit-activities-multidroppable .droppable.wrong {
     background-color: #ffffff;
     border-color: #D60C1B;
     color: #D60C1B;
@@ -2038,6 +2134,27 @@ sup.tooltip {
 /********************************************************************************/
 /* SIZE ADJUSTMENT
 /********************************************************************************/
+html.single #body {
+    padding-top: 0;
+}
+
+html.single header {
+    padding: 0 10px;
+}
+
+html.single .page-title,
+html.single nav.main {
+    display: none;
+}
+
+html.single h2 {
+    padding: 0;
+}
+
+html.single h1 {
+    margin: 5px;
+}
+
 @media (max-width:800px) {
     .col-2 {
         width: 95%;

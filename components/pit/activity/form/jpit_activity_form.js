@@ -77,7 +77,7 @@ jpit.activities.form.init = function (container) {
         "weight" : function () {
             var size = $form.find('input, textarea, button, select').length;
             var completed = 0;
-            $form.find('input, textarea, button, select').each(function(){
+            $form.find('input, textarea, select').each(function(){
                 var val = $(this).val();
                 if (val) {
                     completed++;
@@ -93,9 +93,9 @@ jpit.activities.form.init = function (container) {
         },
 
         "fullAnswered" : function () {
-            var size = $form.find('input, textarea, button, select').length;
+            var size = $form.find('input[type!="radio"], textarea, select').length;
             var completed = 0;
-            $form.find('input, textarea, button, select').each(function(){
+            $form.find('input[type!="radio"], textarea, select').each(function(){
                 var val = $(this).val();
                 if (val) {
                     completed++;
@@ -107,7 +107,7 @@ jpit.activities.form.init = function (container) {
 
         "printableContent" : function () {
             var $html = $('<dl/>');
-            $container.find('input, textarea, button, select').each(function(){
+            $container.find('input, textarea, select').each(function(){
                 var $control = $(this);
                 var $dt = $('<dt/>');
                 var $dd = $('<dd/>');
@@ -118,9 +118,14 @@ jpit.activities.form.init = function (container) {
                     $dt.html($control.attr('name'));
                 }
 
-                $dd.html($control.val().replace(/\n/g, "<br />"));
-                $html.append($dt);
-                $html.append($dd);
+                if (($control.attr('type') == 'radio' || $control.attr('type') == 'checkbox') && !$control.is(':checked')) {
+                    // Nothing to do.
+                }
+                else {
+                    $dd.html($control.val().replace(/\n/g, "<br />"));
+                    $html.append($dt);
+                    $html.append($dd);
+                }
             });
 
             return $html;
@@ -130,21 +135,30 @@ jpit.activities.form.init = function (container) {
             var $html = '';
             $container.find('input, textarea, select').each(function(){
                 var $control = $(this);
-                $html += '►';
-                if ($control.attr('ftitle')) {
-                    $html += $control.attr('ftitle') + ": ";
-                }
-                else if ($control.attr('name')) {
-                    $html += $control.attr('name') + ": ";
-                }
 
-                $html += $control.val() + "|\n";
+                if (($control.attr('type') == 'radio' || $control.attr('type') == 'checkbox') && !$control.is(':checked')) {
+                    // Nothing to do.
+                }
+                else {
+
+                    $html += '►';
+                    if ($control.attr('ftitle')) {
+                        $html += $control.attr('ftitle') + ": ";
+                    }
+                    else if ($control.attr('name')) {
+                        $html += $control.attr('name') + ": ";
+                    }
+
+                    $html += $control.val() + "|\n";
+                }
             });
 
             return $html;
         },
 
         "serialize" : function () {
+            var a = $form.serializeArray();
+            console.log(a);
             return JSON.stringify($form.serializeArray());
         },
 
@@ -158,7 +172,14 @@ jpit.activities.form.init = function (container) {
             if (values) {
                 $.each(values, function(i, field_value){
                     if (typeof field_value == 'object' && field_value.value) {
-                        $form.find('[name="' + field_value.name + '"]').val(field_value.value)
+                        var $control = $form.find('[name="' + field_value.name + '"]')
+
+                        if (($control.attr('type') == 'radio' || $control.attr('type') == 'checkbox')) {
+                            $form.find('[name="' + field_value.name + '"][value="' + field_value.value + '"]').prop('checked', true);
+                        }
+                        else {
+                            $control.val(field_value.value)
+                        }
                     }
                 });
             }

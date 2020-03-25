@@ -34,7 +34,7 @@ dhbgApp.strings = {
 
     'answer_corrent': 'La respuesta es correcta',
 
-    'answer_required': 'Por favor, asigne una respuesta para continuar.',
+    'answer_required': 'Por favor, asigne una respuesta a cada ítem.',
 
     'answer_wrong': 'La respuesta es incorrecta',
 
@@ -79,6 +79,7 @@ dhbgApp.strings = {
     'repeat_animation': 'Clic para repetir la animación',
 
     'restart_activity': 'Reiniciar la actividad',
+    'end_activity': 'Terminar',
 
     'result_to': '{a} de {b}',
 
