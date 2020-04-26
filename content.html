@@ -2881,7 +2881,7 @@
                         Si se requiere que el ordenamiento sea horizontal es preciso agregar al <em>ul</em> contenedor la clase <em>sortable-horizontal</em>. Se pueden tener varias listas horizontales o combinar horizontales con verticales, pero se debe mantener coherencia en el indice desde cero en la primera lista hasta la cantidad total de elementos ordenados en la última lista.
                     </p>
                     <p>
-                        Existe un atributo adicional que es <em>data-set-position</em>, el cual sirve para indicar que se debe agregar la posición a un elemento dentro del contenido ordenado. Es útil si se quiere colocar, en un lugar al interior del contenido del elemento, la posición que está ocupando en el listado completo. El valor del atributo debe ser el selector CSS del elemento dentro del contenido del ítem.
+                        Existe un atributo adicional que es <em>data-set-position</em>, el cual sirve para indicar que se debe agregar la posición a un elemento dentro del contenido ordenado. Es útil si se quiere colocar, en un lugar al interior del contenido del elemento, la posición que está ocupando en el listado completo. El valor del atributo debe ser el selector CSS del elemento dentro del contenido del ítem. Si adicionalmente hay varios grupos cuyo índice debe reiniciarse para cada uno de ellos, se debe utilizar el atributo <em>data-group</em> y numerar los grupos secuencialmente, para que cada grupo pueda iniciar con su índice desde 1.
                     </p>
                     <p>
                         Dentro del contenido HTML es importante incluir un elemento con la clase CSS <em>box_end</em> en cuyo interior se cargará el resultado al validar la actividad.

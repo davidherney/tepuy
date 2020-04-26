@@ -2966,9 +2966,23 @@ dhbgApp.standard.load_operations = function() {
         // Build the board.
         activity = new jpit.activities.sortable.activity($this);
 
-        $this.find('.ui-sortable').on('sortstop', function() {
-            $this.find(set_position).each(function(i, o) { $(this).html(i + 1); });
-        });
+        if (set_position) {
+            $this.find('.ui-sortable').on('sortstop', function() {
+                $this.find(set_position).each(function(i, o) {
+                    var $item = $(this);
+                    var group = Number($item.parent().attr('data-group'));
+                    var minus = 0;
+
+                    if (group) {
+                        for (var j = group - 1; j > 0; j--) {
+                            minus += $this.find('[data-group=' + j + ']').length;
+                        }
+                    }
+
+                    $item.html(i + 1 - minus);
+                });
+            });
+        }
 
         var $verify = $('<button class="button general">' + dhbgApp.s('verify') + '</button>');
         $verify.on('mouseover', dhbgApp.defaultValues.buttonover);
