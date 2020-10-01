@@ -158,7 +158,7 @@ jpit.activities.form.init = function (container) {
 
         "serialize" : function () {
             var a = $form.serializeArray();
-            console.log(a);
+
             return JSON.stringify($form.serializeArray());
         },
 

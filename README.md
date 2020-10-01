@@ -2,7 +2,7 @@
 Template for interactive content editing
 
 ### Version: 2.0
-### Release: 20200929.0
+### Release: 20200929.1
 
 ## Sobre este proyecto
 Esta plantilla ha sido creada con el aporte de varias personas e instituciones, principalmente las que se definen más abajo. No obstante, utiliza varias liberías OpenSource y sus fuentes son liberadas bajo la licencia GNU/GPL v3, la cual debe estar adjunta a este paquete. Cada librería externa utilizada en este proyecto posee unas licencias y autorías particulares que deben ser respetadas. A su vez, la documentación posee una licencia Creative Commons.
