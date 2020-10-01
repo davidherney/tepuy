@@ -111,7 +111,7 @@
 
             <section id="pag-inicio" ptitle="Presentación">
 
-                <div class="subpage">
+                <div data-title="Introducción" class="subpage">
                     <h3>Introducción</h3>
                     <p>
                         En este espacio encontrará ejemplos de los controles que se pueden utilizar para dar formato a los contenidos del documento y para construir rápidamente actividades, además de instrucciones para usar los controles e información para estandarizar el proceso de montaje.
@@ -121,7 +121,7 @@
                     </p>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Páginas" class="subpage">
                     <h3>Páginas</h3>
                     <p>
                         Las páginas son los bloques principales que dividen el contenido. Cada página es un elemento <em>section</em> dentro del elemento <em>main</em>. Las páginas tienen los siguientes atributos especiales:
@@ -154,7 +154,7 @@
                     </p>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Dispositivos" class="subpage">
                     <h3>Dispositivos</h3>
                     <p>
                         Al momento de mostrar el contenido no se hace una detección real de dispositivos sino que se asumen dos posibilidades dependiendo del ancho del navegador desde el que se visita el documento. La primera es la por defecto o de escritorio y la segunda es la de móvil. Por defecto se asume que un dispositivo es móvil si tiene un ancho inferior a <strong>512 pixeles</strong>, aunque ese valor es configurable mediante el atributo <em>data-mobile-mode</em> definido en la etiqueta <em>body</em>. Dicho atributo acepta los valores: <strong>0</strong> o <strong>false</strong> para no separar los dispositivos sino utilizar únicamente el modo de escritorio; <strong>true</strong> para utilizar la configuración por defecto; o un valor numérico indicando el ancho en pixeles que determina el límite que separa ambos modos, sólo el número, sin unidades de medida. Si no se establece el atributo, se utiliza la configuración por defecto.
@@ -178,7 +178,7 @@
                     </p>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Otras configuraciones" class="subpage">
                     <h3>Otras configuraciones</h3>
                     <p>Se encuentran disponibles otros parámetros de configuración para definir comportamientos del documento. A continuación se presenta una descripción de cada uno de ellos, considerando que deben ser definidos como atributos en la etiqueta <em>body</em>, además, todos son opcionales y en caso de no ser definidos se aplicará el valor por defecto.</p>
                     <ul class="data_list">
@@ -197,7 +197,7 @@
 
             <!--Textos especiales-->
             <section id="pag-textos" ptitle="1. Textos especiales">
-                <div class="subpage">
+                <div data-title="Elementos comunes" class="subpage">
                     <h3>Elementos comunes</h3>
                     <p>
                         A continuación, algunos elementos genéricos que se utilizan en diferentes momentos cuando se interactúa con los contenidos. Al lado de cada uno se muestra su respectiva etiqueta. No se incluye el encabezado de nivel 1 ya que se utiliza como título principal y solamente debe haber uno en todo el documento.
@@ -216,7 +216,7 @@
                     </p>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Bloques de texto" class="subpage">
                     <h3>Bloques de texto</h3>
                     <p>
                         Sirven para dar énfasis o categorizar los tipos de textos especiales. Para utilizarlos basta con agregar a un elemento <em>div</em> la clase <em>box-text</em> y para indicar el tipo de texto se utiliza una marca personal, de las cuales se encuentran definidas por defecto las siguiente: <em>important</em>, <em>example</em>, <em>note</em>.
@@ -226,7 +226,7 @@
                     </p>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Importante" class="subpage">
                     <h3>Importante</h3>
                     <div class="box-text important" label="Importante">
                         <p>Se utiliza la clase <em>important</em> y es para los párrafos que requieren un énfasis. Ejemplo:</p>
@@ -240,7 +240,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Ejemplos" class="subpage">
                     <h3>Ejemplos</h3>
                     <div class="box-text example" label="Ejemplo">
                         <p>Se utiliza la clase <em>example</em> y es para los párrafos que muestran un ejemplo. Ejemplo:</p>
@@ -254,7 +254,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Anotaciones" class="subpage">
                     <h3>Anotaciones</h3>
                     <div class="box-text note" label="Nota">
                         <p>Se utiliza la clase <em>note</em> y es para hacer anotaciones. Ejemplo:</p>
@@ -268,7 +268,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Enlaces" class="subpage">
                     <h3>Enlaces</h3>
                     <div class="box-text link" label="Enlace">
                         <p>Se utiliza la clase <em>link</em> y es para referencias a páginas web o sitios en internet. Ejemplo:</p>
@@ -282,7 +282,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Conexión" class="subpage">
                     <h3>Conexión</h3>
                     <div class="box-text connection">
                         <p>Se utiliza la clase <em>connection</em> y es para destacar párrafos que unen un contenido con el siguiente. No suelen llevar título. Ejemplo:</p>
@@ -296,7 +296,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Actividad" class="subpage">
                     <h3>Actividad</h3>
                     <div class="box-text activity" label="Actividad de aprendizaje">
                         <p>Se utiliza la clase <em>activity</em> y es para destacar actividades dentro del contenido. Ejemplo:</p>
@@ -310,7 +310,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Instrucciones" class="subpage">
                     <h3>Instrucciones</h3>
                     <p>
                         Son contenidos simples que se utilizan para dar indicaciones en algún punto del contenido, como por ejemplo donde hay una acción que realizar como pasar el mouse sobre un elemento. La instrucción se define agregando la clase <em>instruction</em> a un elemento html.
@@ -350,7 +350,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Enlaces no enlaces" class="subpage">
                     <h3>Enlaces no enlaces</h3>
 
                     <p>Para elementos que no son "a" y deben abrir un enlace, utilizar la clase <em>open-url</em> y colocar el atributo <em>data-url</em> para especificar la dirección. Siempre abre en ventana nueva.</p>
@@ -366,7 +366,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Ventana modal" class="subpage">
                     <h3>Abrir contenido en ventana modal</h3>
 
                     <p>Para abrir contenidos en ventanas modales dentro del mismo objeto. Se agrega la clase <em>w-content-controler</em> al elemento que debe abrir la ventana (origen), por defecto con el evento clic. No tiene que ser botón o enlace, puede ser cualquier elemento. Se debe establecer el atributo <em>data-content</em> con la ruta CSS del elemento que se convertirá en ventana (destino). El elemento que se abre como ventana debe tener la clase <em>w-content</em>. Se puede utilizar el atributo <em>data-property-width</em>, tanto en el origen como en el destino, para definir el ancho de la ventana modal y <em>data-property-height</em> para definir el alto, ambos valores pueden indicarse en porcentaje con un valor como: <em>80%</em>. También se puede asignar una clase al destino mediante el atributo <em>data-cssclass</em> en el elemento destino.</p>
@@ -388,7 +388,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Ventana flotante" class="subpage">
                     <h3>Abrir contenido en ventana flotante no modal</h3>
 
                     <p>Para abrir contenidos en ventanas flotantes dentro del mismo objeto. Se agrega la clase <em>wf-content-controler</em> al elemento que debe abrir la ventana (origen), por defecto con el evento clic. No tiene que ser botón o enlace, puede ser cualquier elemento. Se debe establecer el atributo <em>data-content</em> con la ruta CSS del elemento que se convertirá en ventana (destino). El elemento que se abre como ventana debe tener la clase <em>wf-content</em>. Se puede utilizar el atributo <em>data-property-width</em>, tanto en el origen como en el destino, para definir el ancho de la ventana y <em>data-property-height</em> para definir el alto.</p>
@@ -434,7 +434,7 @@
                     </div>
                 </div>
 
-                <div class="subpage" id="pag-textos-infografia">
+                <div data-title="Infografía" class="subpage" id="pag-textos-infografia">
                     <h3>Infografía</h3>
 
                     <p>Algunos elementos gráficos que pueden ser útiles en el montaje y que ya están definidos.</p>
@@ -459,7 +459,7 @@
                     </ul>
                 </div>
 
-                <div class="subpage" id="pag-textos-iconografia">
+                <div data-title="Iconografía" class="subpage" id="pag-textos-iconografia">
                     <h3>Iconografía</h3>
 
                     <p>Los íconos sirven para representar, marcar, dar ideas visuales de elementos, entre otros. Para ello se incluye una etiqueta <em>&lt;i&gt;</em> con la clase correspondiente (mouse sobre el ícono para conocer la clase). Está basado en <em>ionicons</em> por lo que se puede utilizar cualquiera de los elementos que dicha librería incluye (ver listado oficial en <a href="http://www.ionicons.com" target="_blank">www.ionicons.com</a>). A continuación algunos ejemplos:</p>
@@ -756,7 +756,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Tooltips" class="subpage">
                     <h3>Notas emergentes - Tooltips</h3>
 
                     <p>Para las notas emergentes se utiliza la clase <em>tooltip</em>, normalmente en un elemento <em>sup</em> y el texto a mostrar en el tooltip se define en el atributo <em>label</em>. El contenido puede ser texto plano o HTML. Un uso frecuente de los tooltip es reemplazar las "notas al pie" de los documentos tradicionales.</p>
@@ -779,7 +779,7 @@
 
                 </div>
 
-                <div class="subpage">
+                <div data-title="Citas" class="subpage">
                     <h3>Citas</h3>
                     <p>Textos que se citan al pie de la letra. Se utiliza la etiqueta <em>blockquote</em>. La información de la referencia se escribe utilizando la etiqueta <em>label</em>.</p>
                     <blockquote>
@@ -788,7 +788,7 @@
                     </blockquote>
                 </div>
 
-                <div class="subpage" id="pag-textos-mouseover1">
+                <div data-title="Mouse sobre" class="subpage" id="pag-textos-mouseover1">
                     <h3>Mouse "sobre"</h3>
                     <p>Para desplegar contenido pasando el mouse por un elemento, se utiliza la clase <em>mouse-over-one</em> en un contenedor con elementos que tengan la clase CSS <em>button</em> y adicionan el atributo <em>data-ref</em>, el cual debe contener la ruta CSS del elemento que se muestra al pasar el mouse. Se mantiene visible el último elemento mostrado.</p>
                     <div class="box-text important" label="Importante">
@@ -814,7 +814,7 @@
                     </div>
                 </div>
 
-                <div class="subpage" id="pag-textos-mouseover2">
+                <div data-title="Mouse sobre uno" class="subpage" id="pag-textos-mouseover2">
                     <h3>Mouse "sobre" un elemento</h3>
                     <p>Para desplegar contenido pasando el mouse por un elemento, se utiliza la clase <em>mouse-over</em> en un elemento que debe tener el atributo <em>data-ref</em>, el cual debe contener la ruta CSS del elemento que se muestra al pasar el mouse. Al quitar el mouse el elemento se vuelve a ocultar.</p>
 
@@ -831,7 +831,7 @@
                     </div>
                 </div>
 
-                <div class="subpage" id="pag-textos-ocultarmostrar">
+                <div data-title="Ocultar / Mostrar" class="subpage" id="pag-textos-ocultarmostrar">
                     <h3>Ocultar/Mostrar un elemento</h3>
 
                     <p>Para mostrar u ocultar un elemento, se utiliza la clase <em>more-less</em> en un elemento que debe tener el atributo <em>data-ref</em>, el cual debe contener la ruta CSS del elemento que se muestra o se oculta.</p>
@@ -869,7 +869,7 @@
 
                 </div>
 
-                <div class="subpage">
+                <div data-title="Columnas" class="subpage">
                     <h3>Contenido en columnas</h3>
                     <div class="row">
                         <div class="col-2">
@@ -900,7 +900,7 @@
             <!--Multimedia-->
             <section id="pag-media" ptitle="2. Multimedia">
 
-                <div class="subpage">
+                <div data-title="Audios" class="subpage">
                     <h3>Audios</h3>
 
                     <p>
@@ -940,7 +940,7 @@
 
                 </div>
 
-                <div class="subpage">
+                <div data-title="Videos" class="subpage">
                     <h3>Videos</h3>
 
                     <p>
@@ -1026,7 +1026,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Animaciones" class="subpage">
                     <h3>Animaciones</h3>
 
                     <p>Las imágenes que sean animadas deben llevar la clase CSS <em>animation</em>. Por accesibilidad, toda imágen debe tener el atributo <em>title</em> con una breve descripción de la imagen.</p>
@@ -1067,7 +1067,7 @@
                     </div>
                 </div>
 
-                <div class="subpage" id="pag-media-animation1">
+                <div data-title="Animaciones programadas" class="subpage" id="pag-media-animation1">
                     <h3>Programación de animaciones</h3>
 
                     <p>Para animar HTML, incluido, pero no limitado a, imágenes. Las animaciones se definen en dos partes: en el contenido (<strong>content.html</strong>) y en el archivo de <cite>historias</cite> (<strong>js/stories.js</strong>).</p>
@@ -1099,7 +1099,7 @@
                     </p>
                 </div>
 
-                <div class="subpage" id="pag-media-animation3">
+                <div data-title="Animaciones CSS" class="subpage" id="pag-media-animation3">
                     <h3>Programación de animaciones mediante CSS</h3>
                     <p>
                         Las animaciones mediante CSS utilizan los efectos que se asocian a los <a href="https://www.w3schools.com/cssref/css3_pr_animation-keyframes.asp" target="_blank">keyframes</a> de CSS. Se debe agregar la clase <em>css-animation</em> al contenedor de la animación y la definición del comportamiento de la animación se debe sealizar en los archivos de estilos personalizados: <strong>css/custom.css</strong> y <strong>css/custommobile.css</strong>.
@@ -1119,7 +1119,7 @@
                     <div class="instruction">Haga clic sobre la animación para reiniciarla</div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Zoom" class="subpage">
                     <h3>Zoom en imágenes</h3>
 
                     <p>Para permitir hacer zoom sobre imágenes de manera interactiva, por ejemplo en mapas conceptuales, agregar a la imagen la clase <em>pit-resources-zoom</em>. Se puede manipular el alcance del zoom con el atributo <em>data-magnification</em> (un entero) y el tamaño de la "lupa" con el atributo <em>data-magnifier-size</em>.</p>
@@ -1140,7 +1140,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Antes y después" class="subpage">
                     <h3>Antes y después</h3>
 
                     <p>
@@ -1190,7 +1190,7 @@
 
             <!--Formato de contenido-->
             <section id="pag-contenidointeractivo" ptitle="3. Formatos de contenido">
-                <div class="subpage">
+                <div data-title="Menú vertical" class="subpage">
                     <h3>Menú vertical</h3>
 
                     <div class="vertical-menu">
@@ -1248,7 +1248,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Menú horizonal" class="subpage">
                     <h3>Menú horizontal</h3>
 
                     <div class="horizontal-menu">
@@ -1307,7 +1307,7 @@
 
                 </div>
 
-                <div class="subpage">
+                <div data-title="Menú vertical 2" class="subpage">
                     <h3>Menú verticales a ambos lados</h3>
 
                     <div class="vertical-menu-both-sides">
@@ -1385,7 +1385,7 @@
 
                 </div>
 
-                <div class="subpage">
+                <div data-title="Paginación" class="subpage">
                     <h3>Paginación secuencial</h3>
 
                     <div class="ctrl-pagination" data-layer-height="230px" data-labelcurrent="true">
@@ -1419,7 +1419,7 @@
                     <div class="instruction">Haga clic sobre las flechas para pasar entre páginas</div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Paginación vertical" class="subpage">
                     <h3>Paginación secuencial vertical</h3>
 
                     <div class="ctrl-pagination" data-layer-height="230px" data-orientation="vertical">
@@ -1448,7 +1448,7 @@
                     <div class="instruction">Haga clic sobre las flechas para pasar entre páginas</div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Paginación lateral" class="subpage">
                     <h3>Paginación secuencial a ambos lados</h3>
 
                     <div class="ctrl-pagination" data-layer-height="230px" data-orientation="sides">
@@ -1477,7 +1477,7 @@
                     <div class="instruction">Haga clic sobre las flechas para pasar entre páginas</div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Paginación numérica" class="subpage">
                     <h3>Paginación por numeral</h3>
 
                     <div class="ctrl-pagination" data-numeric-pagination="true" data-layer-height="220px">
@@ -1508,7 +1508,7 @@
                     <div class="instruction">Haga clic sobre los números para pasar entre páginas</div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Paginación por letras" class="subpage">
                     <h3>Paginación por letras</h3>
 
                     <div class="ctrl-pagination" data-numeric-pagination="true" data-layer-height="200px" data-type="a">
@@ -1536,7 +1536,7 @@
                     <div class="instruction">Haga clic sobre cada letra para pasar entre páginas</div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Tabla de datos" class="subpage">
                     <h3>Tabla de datos</h3>
 
                     <table class="datatable">
@@ -1594,7 +1594,7 @@
                     </table>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Acordeón" class="subpage">
                     <h3>Acordeón</h3>
                     <p>Para agrupar información por secciones desplegando el contenido de cada sección al dar clic en el título.</p>
                     <p>Los estilos gráficos son los asignados al tema gráfico de <a href="http://jqueryui.com/" target="_blank">jQuery UI</a>.</p>
@@ -1620,9 +1620,9 @@
                     </div>
                 </div>
 
-                <div class="subpage" id="pag-contenidointeractivo-viewfirst">
+                <div data-title="Imágenes con contenido" class="subpage" id="pag-contenidointeractivo-viewfirst">
 
-                    <h3>Imagenes con contenido de texto</h3>
+                    <h3>Imágenes con contenido de texto</h3>
                     <p>Este formato es útil para desplegar contenido explicativo, que será mostrado sobre una imagen al pasar el mouse sobre ella. Para utilizarlo agregue la clase <em>view-first</em> a un contenedor, usualmente un <em>div</em>, al interior agregue una imagen y otro contenedor con la clase <em>view-content</em> en el cual debe ir el contenido que se muestra con la interacción.</p>
 
                     <div class="box-text example" label="Ejemplo">
@@ -1703,7 +1703,7 @@
                     <br class="clear" />
                 </div>
 
-                <div class="subpage">
+                <div data-title="Ampliar imagen" class="subpage">
                     <h3>Imagen para ampliar</h3>
                     <p>
                         Se utiliza para ampliar una imagen al dar clic sobre ella, en casos por ejemplo donde no quepa la imagen original por ser muy grande. Para ello se asigna la clase <em>expand-image</em> a un contenedor y se le define el atributo <em>data-src</em> cuyo valor debe ser la ruta de la imagen. Por defecto, el tamaño de la previsualización será de <strong>100px * 100px</strong>, si se desea dar otro tamaño debe hacerse por estilos al contenedor y de esa manera la previsualización se ajustará al tamaño de éste.
@@ -1725,7 +1725,7 @@
                     </div>
                 </div>
 
-                <div class="subpage" id="pag-contenidointeractivo-pointers">
+                <div data-title="Apuntadores" class="subpage" id="pag-contenidointeractivo-pointers">
                     <h3>Apuntadores informativos</h3>
                     <p>
                         No son un control nuevo sino una mezcla de otros controles con el objetivo de señalar información al interior de una imagen.
@@ -1766,7 +1766,7 @@
 
             <!--Actividades-->
             <section id="pag-actividades" ptitle="4. Tipos de actividades">
-                <div class="subpage">
+                <div data-title="Generalidades" class="subpage">
                     <h3>Generalidades</h3>
                     <p>
                         Para darle una identificación propia a cada actividad con el fin de reconocerlas fácilmente en la revisión, se deben agregar dos atributos a la etiqueta principal que define la actividad:
@@ -1778,7 +1778,7 @@
                     <p>Ver ejemplo en actividad <strong>Cuestionario</strong>.</p>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Cuestionario" class="subpage">
                     <h3>Cuestionario</h3>
 
                     <p>
@@ -1952,7 +1952,7 @@
 
                 </div>
 
-                <div class="subpage">
+                <div data-title="Sopa de letras" class="subpage">
                     <h3>Sopa de letras</h3>
                     <p>
                         Una sopa de letras se define agregando la clase <em>jpit-activities-wordpuzzle</em> a un contenedor y dentro de él agregando un elemento <em>letters</em> compuesto por elementos de tipo <em>row</em> con las letras que componen una fila separadas entre ellas por una coma. Adicionalmente, se debe agregar un contenedor con la clase <em>words</em> y en el interior de él elementos de tipo <em>li</em> con el atributo <em>data-term</em> que debe contener la palabra a buscar.
@@ -2020,7 +2020,7 @@
                     </div>
                 </div>
 
-                <div class="subpage" id="subpage-act-crucigrama">
+                <div data-title="Crucigrama" class="subpage" id="subpage-act-crucigrama">
                     <h3>Crucigrama</h3>
                     <p>
                         Una crucigrama se define agregando la clase <em>jpit-activities-crossword</em> a un contenedor y dentro de él agregando dos elementos: <em>horizontal</em> y <em>vertical</em>; y en el interior de ellos una lista de elementos de tipo <em>li</em> con el atributo <em>data-term</em> que debe contener la palabra correcta, el atributo <em>data-row</em> con el número de la fila y el atributo <em>data-col</em> con el número de la columna desde donde inicia la palabra.
@@ -2069,7 +2069,7 @@
                     </div>
                 </div>
 
-                <div class="subpage" id="pag-actividades-arrastrar1">
+                <div data-title="Arrastrar - Apareamiento" class="subpage" id="pag-actividades-arrastrar1">
                     <h3>Arrastrar y soltar - modo apareamiento</h3>
                     <p>
                         Una actividad de arrastrar se define agregando la clase <em>jpit-activities-droppable</em> a un contenedor y dentro de él definiendo un contenido HTML teniendo en cuenta: definir los orígenes marcando elementos con la clase <em>data-group</em> cuyo valor será el número del grupo al que pertenece el elemento y definir los destinos marcando elementos con el atributo <em>data-target-gorup</em> cuyo valor será el número del grupo que acepta como correcto.
@@ -2217,7 +2217,7 @@
                     </div>
                 </div>
 
-                <div class="subpage" id="pag-actividades-arrastrar2">
+                <div data-title="Arrastrar - Diálogo" class="subpage" id="pag-actividades-arrastrar2">
                     <h3>Arrastrar y soltar - modo diálogo</h3>
                     <p>Posible modificación de la actividad de arrastrar y soltar, en este caso para completar un diálogo.</p>
 
@@ -2325,7 +2325,7 @@
                     </div>
                 </div>
 
-                <div class="subpage" id="pag-actividades-arrastrar3">
+                <div data-title="Arrastrar - Completar" class="subpage" id="pag-actividades-arrastrar3">
                     <h3>Arrastrar y soltar - modo completar</h3>
                     <p>Posible modificación de la actividad de arrastrar y soltar, en este caso para completar una oración.</p>
 
@@ -2443,7 +2443,7 @@
                     </div>
                 </div>
 
-                <div class="subpage" id="pag-actividades-arrastrar4">
+                <div data-title="Arrastrar - Insertando" class="subpage" id="pag-actividades-arrastrar4">
                     <h3>Arrastrar y soltar - insertando contenido</h3>
                     <p>Posible modificación de la actividad de arrastrar y soltar, en este caso para completar una oración.</p>
 
@@ -2570,7 +2570,7 @@
                     </div>
                 </div>
 
-                <div class="subpage" id="pag-actividades-arrastrar5">
+                <div data-title="Arrastrar - Muchos a uno" class="subpage" id="pag-actividades-arrastrar5">
                     <h3>Arrastrar y soltar - muchos a uno</h3>
                     <p>Posible modificación de la actividad de arrastrar y soltar, en este caso para arrastrar varios objetivos a un solo destino.</p>
 
@@ -2645,7 +2645,7 @@
                     </div>
                 </div>
 
-                <div class="subpage" id="pag-actividades-arrastrargrupos">
+                <div data-title="Arrastrar - Clasificar" class="subpage" id="pag-actividades-arrastrargrupos">
                     <h3>Arrastrar y soltar por grupos / Clasificar</h3>
                     <p>
                         Es similar a la actividad de arrastrar y soltar pero permite arrastrar múltiples elementos a un mismo contenedor, para clasificar todos los elementos por grupos, además, no reinicia cuando finaliza con errores sino que permite continuar desde el estado actual. Otra diferencia es que esta actividad sí requiere que el usuario la verifique, al contrario de la actividad de arrastrar normal que se verifica cuando se terminan de arrastrar los elementos o cuando se llenan los destinos.
@@ -2778,7 +2778,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Cloze" class="subpage">
                     <h3>Cloze</h3>
                     <p>
                         Una actividad tipo Cloze se define agregando la clase <em>jpit-activities-cloze</em> a un contenedor y, dentro de él, construyendo un contenido HTML en el que se encuentren elementos <em>select</em> e <em>input</em> de tipo <em>text</em> (indicado explícitamente).
@@ -2869,7 +2869,7 @@
 
                 </div>
 
-                <div class="subpage">
+                <div data-title="Ordenar" class="subpage">
                     <h3>Ordenar</h3>
                     <p>
                         Una actividad de ordenar se define agregando la clase <em>jpit-activities-sortable</em> a un contenedor y, dentro de él, construyendo el contenido HTML.
@@ -3025,7 +3025,7 @@
 
                 </div>
 
-                <div class="subpage">
+                <div data-title="Clasificar" class="subpage">
                     <h3>Clasificar</h3>
                     <p>
                         Permite realizar una actividad donde se clasifican contenidos entre dos posibles valores, como: <strong>Verdadero/Falso</strong> o <strong>Si/No</strong>.
@@ -3290,7 +3290,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Marcar" class="subpage">
                     <h3>Marcar</h3>
                     <p>
                         Sirve para señalar zonas dentro de una imagen, definiendo cuales son correctas y cuales no. Una actividad de clasificar se define agregando la clase <em>jpit-activities-mark</em> a un contenedor y se deben definir "áreas" con la etiqueta <em>area</em> indicando cuales áreas son correctas mediante el atributo <em>correct</em> con valor <em>true</em>, las posiciones en <em>x</em> y en <em>y</em> y el tamaño de ancho (<em>w</em>) y alto (<em>h</em>).
@@ -3421,7 +3421,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Seleccionar" class="subpage">
                     <h3>Seleccionar</h3>
                     <p>
                         Sirve para seleccionar elementos dentro de un contenidos, sea como opciones individuales o como opciones dentro de un grupo de posibilidades. Una actividad de seleccionar se define agregando la clase <em>jpit-activities-selection</em> a un contenedor y se deben definir secciones seleccionables con el atributo <em>data-group</em> indicando un número que define el grupo al que pertenece el elemento, además, se indica cuales elementos son correctos mediante el atributo <em>data-correct</em> con valor <em>true</em>.
@@ -3678,7 +3678,7 @@
                     </div>
                 </div>
 
-                <div class="subpage" id="pag-actividades-form">
+                <div data-title="Formulario" class="subpage" id="pag-actividades-form">
                     <h3>Formulario</h3>
 
                     <p>
@@ -3787,7 +3787,7 @@
                     </div>
                 </div>
 
-                <div class="subpage" id="pag-actividades-view">
+                <div data-title="Ver - Abrir" class="subpage" id="pag-actividades-view">
                     <h3>Ver - Abrir</h3>
 
                     <p>
@@ -3831,7 +3831,7 @@
             <!--Referencias-->
             <section id="pag-referencias" ptitle="5. Referencias">
 
-                <div class="subpage">
+                <div data-title="Introducción" class="subpage">
                     <p>
                         Lo siguiente es una guía sugerida para referenciar recursos digitales como imágenes, videos y otros elementos utilizados como parte del contenido en el montaje del documento hipermedial. El contenedor de la referencia debe tener la clase <em>about</em>, además se recomienda que el recurso y su referencia estén en un contenedor con la clase <em>box_media</em>.
                     </p>
@@ -3848,7 +3848,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Autoría propia" class="subpage">
                     <h3>Si la autoría es del proyecto</h3>
                     <p>Si el recurso es de autoría del proyecto, por ejemplo para diseño de vectores, ilustraciones o fotografías de autoría de uno de los miembros del equipo de trabajo, o en general es un archivo producido para la realización del proyecto, se cita de la siguiente manera:</p>
                     <blockquote><strong>Tipo de recurso #.</strong> Nombre del recurso (año).</blockquote>
@@ -3859,7 +3859,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Autoría de un proveedor" class="subpage">
                     <h3>Si la autoría es de un proveedor ajeno al equipo de trabajo</h3>
                     <p>Si el recurso proviene de la empresa o entidad a quien se le está prestando el servicio de producción, el pie de imagen se usa de la siguiente manera:</p>
                     <blockquote><strong>Tipo de recurso #.</strong> Nombre del recurso.<br /><strong>Fuente:</strong> nombre entidad que suministra la fotografía (año).</blockquote>
@@ -3869,7 +3869,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Atribución" class="subpage">
                     <h3>Si la autoría es de atribución</h3>
                     <p>Si el recurso tiene derechos de atribución bajo una licencia abierta como la licencia creative commons, se hace la cita del autor de la siguiente manera:</p>
                     <blockquote><strong>Tipo de recurso #.</strong> Nombre del recurso. <br /><strong>Fuente:</strong> <a href="#">Autor</a> (Año).</blockquote>
@@ -3881,7 +3881,7 @@
                     </div>
                 </div>
 
-                <div class="subpage">
+                <div data-title="Atribución con modificaciones" class="subpage">
                     <h3>Si la autoría es de atribución con intervención gráfica o modificaciones</h3>
                     <p>Si el recurso se crea a partir de la modificación de otro, es importante verificar los derechos de atribución y referenciar de la siguiente manera:</p>
                     <blockquote><strong>Tipo de recurso #.</strong> Nombre del recurso, diseño referenciado. <br /><strong>Fuente:</strong> <a href="#">Autor</a> (Año).</blockquote>
@@ -3902,7 +3902,7 @@
 
             <!--Maquetación-->
             <section id="pag-maquetacion" ptitle="Maquetación">
-                <div class="subpage">
+                <div data-title="Generalidades" class="subpage">
                     <div class="box-text important" label="Caso especial">
                         <p>
                             Esta plantilla dispone de una condición especial para reducir el espacio en caso de que se tengan actividades de una sola página. Para ello se debe agregar la clase <em>single</em> a la etiqueta <em>html</em> del contenido.
@@ -3938,7 +3938,7 @@
 
             <!--Créditos-->
             <section id="pag-creditos" ptitle="Créditos">
-                <div class="subpage" id="credits_subpage">
+                <div data-title="Créditos" class="subpage" id="credits_subpage">
 
                     <p>
                         Esta plantilla ha sido creada con el aporte de varias personas e instituciones, principalmente las que se definen más abajo. No obstante, utiliza varias liberías OpenSource y sus fuentes son liberadas bajo la licencia GNU/GPL v3, la cual debe estar adjunta a este paquete. Cada librería externa utilizada en este proyecto posee unas licencias y autorías particulares que deben ser respetadas. A su vez, la documentación posee una licencia Creative Commons como se denota al pie de esta página.
