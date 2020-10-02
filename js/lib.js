@@ -33,138 +33,11 @@ dhbgApp.standard.start = function() {
     // ==============================================================================================
     // Build menus.
     // ==============================================================================================
-    $('nav > menu').each(function(){
-        var $this = $(this);
-        var $nav = $this.parent();
-
-        var $more_class = $this.attr('type') ? $this.attr('type') : 'horizontal';
-        var $menu = $('<ul class="menu ' + $more_class + '" role="menu"></ul>');
-
-        var f_builditem;
-
-        var f_buildsubmenu = function($sub) {
-            var $submenu = $('<ul class="submenu" role="menu"></ul>');
-            $sub.find('> menuitem').each(function(){
-                var $item = f_builditem($(this));
-                $submenu.append($item);
-            });
-
-            $submenu.find('> li').first().addClass('first-child');
-            $submenu.find('> li:last-child').first().addClass('last-child');
-            return $submenu;
-        };
-
-        f_builditem = function($li) {
-            var $item = $('<li class="button"></li>');
-
-            if ($li.attr('label')) {
-                $item.html($li.attr('label'));
-            }
-            else {
-                var $children = $li.children();
-                if ($children.length > 0) {
-                    $item.append($children);
-                }
-                else {
-                    $item.html($li.html());
-                }
-            }
-
-            var $withsub = false;
-            $li.find('> menu').each(function(){
-                $item.append(f_buildsubmenu($(this)));
-                $withsub = true;
-            });
-
-            if ($withsub) {
-                $item.addClass('withsubitems');
-            }
-
-            if ($li.attr('data-page')) {
-                $item.attr('data-page', $li.attr('data-page'));
-            }
-
-            if ($li.attr('data-global-id')) {
-                $item.attr('data-global', $li.attr('data-global-id'));
-            }
-
-            return $item;
-        };
-
-        $this.find('> menuitem').each(function(){
-            var $item = f_builditem($(this));
-            $menu.append($item);
-        });
-
-        $menu.find('> li').first().addClass('first-child');
-        $menu.find('> li:last-child').first().addClass('last-child');
-
-        $nav.empty();
-        $nav.append($menu);
-    });
-
+    $('nav > menu').tepuyMenu();
     // ==============================================================================================
     // Progress control
     // ==============================================================================================
-    $('.measuring-progress').each(function() {
-        if (typeof dhbgApp.scorm == 'object') {
-            var $this = $(this);
-            var type = $this.attr('data-type') ? $this.attr('data-type') : 'default';
-            $this.addClass(type);
-            var progress_text = dhbgApp.s('progress');
-
-            switch (type) {
-                case 'horizontal':
-                    var $box_label = $('<div class="results_value"><label>0</label><br />%</div>');
-                    var $label = $box_label.find('label');
-                    var $box_bar = $('<div class="results_level"><div></div></div>');
-                    var $bar = $box_bar.find('div');
-                    $this.append($box_label);
-                    $this.append($box_bar);
-                    $this.append('<div class="progress_text">' + progress_text + '</div>')
-                    dhbgApp.loadProgress = function(progress) {
-                        $bar.css('width', progress + '%');
-                        $label.text(progress);
-                    };
-                    break;
-                case 'vertical':
-                    var $box_label = $('<div class="results_value"><label>0</label><br />%</div>');
-                    var $label = $box_label.find('label');
-                    var $box_bar = $('<div class="results_level"><div></div></div>');
-                    var $bar = $box_bar.find('div');
-                    $this.append($box_label);
-                    $this.append($box_bar);
-                    $this.append('<div class="progress_text">' + progress_text + '</div>')
-                    dhbgApp.loadProgress = function(progress) {
-                        $bar.css('height', (100 - progress) + '%');
-                        $label.text(progress);
-                    };
-                    break;
-                case 'circle':
-                    $this.addClass('c100 small');
-                    var $label = $('<span></span>');
-                    var $bar = $('<div class="slice"><div class="bar"></div><div class="fill"></div></div>');
-                    $this.append($label);
-                    $this.append($bar);
-                    dhbgApp.loadProgress = function(progress) {
-                        $this.addClass('p' + progress);
-                        $label.text(progress + '%');
-                    };
-                    break;
-                default:
-                    var $label = $('<label></label)');
-                    var $bar = $('<progress value="0" max="100"></progress>');
-                    $this.append('<div class="progress_text">' + progress_text + '</div>')
-                    $this.append($bar);
-                    $this.append($label);
-                    dhbgApp.loadProgress = function(progress) {
-                        $label.html(progress + '%');
-                        $bar.attr('value', progress);
-                    };
-            }
-        }
-    });
-
+    $('.measuring-progress').tepuyProgressIndicator();
     // ==============================================================================================
     // Actions on buttons
     // ==============================================================================================
@@ -245,69 +118,25 @@ dhbgApp.standard.start = function() {
     // ==============================================================================================
     // Special box text
     // ==============================================================================================
-    $('.box-text').each(function(){
-        var $this = $(this);
-        var $children = $this.children();
-        var $box_body = $('<div class="box_body"></div>');
-
-        var $object = ($children.length > 0) ? $children : $this.html();
-
-        $box_body.append($object);
-
-        $this.empty();
-
-        if ($this.attr('label')) {
-            var $box_title = $('<div class="title">' + $this.attr('label') + '</div>');
-            $this.append($box_title);
-        }
-
-        $this.append($box_body);
-    });
-
+    $('.box-text').tepuyBoxText();
     // ==============================================================================================
     // Modal Windows
     // ==============================================================================================
-    $('.w-content').each(function() {
-        var $this = $(this);
-        var properties = {
-            modal: true,
-            autoOpen: false,
-            close: function( event, ui ) {
-                $('body').removeClass('dhbgapp_fullview');
-            }
-        };
+    $('.w-content').tepuyModalWindowContent();
+    // ==============================================================================================
+    // Float Window
+    // ==============================================================================================
+    $('.wf-content').tepuyFloatingWindowContent();
 
-        if ($this.attr('data-property-width')) {
-            properties.width = $this.attr('data-property-width');
+    // ==============================================================================================
+    // "Mouse over" with one visible
+    // ==============================================================================================
+    $('.mouse-over-one').tepuyMouseOverOne();
 
-            if (properties.width.indexOf('%') >= 0) {
-                var window_w = $(window).width();
-                var tmp_w = Number(properties.width.replace('%', ''));
-                if (!isNaN(tmp_w) && tmp_w > 0) {
-                    properties.width = tmp_w * window_w / 100;
-                }
-            }
-        }
-
-        if ($this.attr('data-property-height')) {
-            properties.height = $this.attr('data-property-height');
-
-            if (properties.height.indexOf('%') >= 0) {
-                var window_h = $(window).height();
-                var tmp_h = Number(properties.height.replace('%', ''));
-                if (!isNaN(tmp_h) && tmp_h > 0) {
-                    properties.height = tmp_h * window_h / 100;
-                }
-            }
-        }
-
-        if ($this.attr('data-cssclass')) {
-            properties.dialogClass = $this.attr('data-cssclass');
-        }
-
-        $this.dialog(properties);
-    });
-
+    // Event Listeners
+    // ==============================================================================================
+    // Watch Modal Window controlers
+    // ==============================================================================================
     $(document).on('click', '.w-content-controler', function(){
         var $this = $(this);
         var w = $this.attr('data-property-width');
@@ -339,38 +168,11 @@ dhbgApp.standard.start = function() {
 
         $($this.attr('data-content')).dialog('open');
         $('body').addClass('dhbgapp_fullview');
-    });
-
+    })
     // ==============================================================================================
-    // Float Window
+    // Watch Float Window controllers
     // ==============================================================================================
-    $('.wf-content').each(function() {
-        var $this = $(this);
-
-        var style = '';
-        if ($this.attr('data-property-width')) {
-            style += 'width:' + $this.attr('data-property-width') + ';';
-        }
-
-        if ($this.attr('data-property-height')) {
-            style += 'height:' + $this.attr('data-property-height') + ';';
-        }
-
-        var $close = $('<div class="close button">X</div>');
-        $close.on('click', function(event) {
-            $this.hide({ effect: 'slide', direction: 'down' });
-            event.stopPropagation();
-        });
-
-        if (style != '') {
-            $this.attr('style', style);
-        }
-
-        $this.append($close);
-        $this.hide();
-    });
-
-    $('.wf-content-controler').on('click', function(){
+    .on('click', '.wf-content-controler', function(){
         var $this = $(this);
         var w = $this.attr('data-property-width');
         var h = $this.attr('data-property-height');
@@ -386,44 +188,23 @@ dhbgApp.standard.start = function() {
         }
 
         $float_window.show({ effect: 'slide', direction: 'down' });
-    });
-
+    })
     // ==============================================================================================
-    // "Mouse over" with one visible
+    // Watch "Mouse over"
     // ==============================================================================================
-    $('.mouse-over-one').each(function(){
-        var $this = $(this);
-
-        $this.find('[data-ref]').on('mouseover', function() {
-            $this.find('[data-ref]').each(function() {
-                $($(this).attr('data-ref')).hide();
-            });
-
-            $this.parent().find('> .button').removeClass('current');
-
-            var selector = $(this).attr('data-ref');
-            $(selector).show();
-            $(this).addClass('current');
-        });
-    });
-
-    // ==============================================================================================
-    // "Mouse over"
-    // ==============================================================================================
-    $('.mouse-over').on('mouseover', function() {
+    .on('mouseover', '.mouse-over', function(e) {
+        e.stopImmediatePropagation();
         var selector = $(this).attr('data-ref');
         $(selector).show();
-    });
-
-    $('.mouse-over').on('mouseout', function() {
+    })
+    .on('mouseout', '.mouse-over', function() {
         var selector = $(this).attr('data-ref');
         $(selector).hide();
-    });
-
+    })
     // ==============================================================================================
-    // "More - Less"
+    // Watch "More - Less"
     // ==============================================================================================
-    $('.more-less').on('click', function() {
+    .on('click', '.more-less', function() {
         var $this = $(this);
         var selector = $this.attr('data-ref');
         var effect = $this.attr('data-effect');
@@ -442,63 +223,18 @@ dhbgApp.standard.start = function() {
             $this.removeClass('viewless');
             $this.addClass('viewmore');
         }
+    })
+    // ==============================================================================================
+    // Watch open url links
+    // ==============================================================================================
+    .on('click', '.open-url', function(){
+        window.open($(this).attr('data-url'));
     });
 
     // ==============================================================================================
     // Image animations
     // ==============================================================================================
-    var f_reloadanimation = function ($this) {
-        var img_src = $this.data('original_src');
-        $this.css('width', $this.width());
-        $this.css('height', $this.height());
-        $this.attr('src', 'img/transparent.png');
-        $this.addClass('loading');
-
-        var img = new Image();
-        var new_img_src = img_src + '?' + (new Date().getTime());
-
-        img.onload = function(){
-            $this.attr('src', new_img_src);
-            $this.removeClass('loading');
-        };
-
-        img.src = new_img_src;
-    };
-
-    $('img.animation').each(function () {
-        var $this = $(this);
-        $this.data('original_src', $this.attr('src'));
-        var $label = $('<div class="label instruction">' + dhbgApp.s('repeat_animation') + '</div>');
-        $this.wrapAll('<div class="animation_image"></div>');
-        $this.parent().append($label);
-
-        $label.on('click', function () {
-            f_reloadanimation($this);
-        });
-
-        $this.on('click', function () {
-            f_reloadanimation($this);
-        });
-
-    });
-
-    $('img.play-animation').each(function () {
-        var $this = $(this);
-        $this.data('original_src', $this.attr('data-animation'));
-        var $label = $('<div class="label instruction">' + dhbgApp.s('play_animation') + '</div>');
-        $this.wrapAll('<div class="animation_image play_animation"></div>');
-        $this.parent().append($label);
-
-        $label.on('click', function () {
-            f_reloadanimation($this);
-        });
-
-        $this.on('click', function () {
-            f_reloadanimation($this);
-        });
-
-    });
-
+    $('img.animation,img.play-animation').tepuyAnimation();
     // ==============================================================================================
     // CSS animation
     // ==============================================================================================
@@ -529,7 +265,7 @@ dhbgApp.standard.start = function() {
     // ==============================================================================================
 
     // Return and "close all" control.
-    if (window.parent.document != window.document) {
+    if (window.parent.dhbgApp && window.parent.document != window.document) { //Executes only if parent window is a tepuy window (it has a dhbgApp defined)
         var $scorm_frame = $('body', window.parent.document);
         $('[data-global="return"]').on('click', function () {
             var $this = $(this);
@@ -677,7 +413,6 @@ dhbgApp.standard.start = function() {
     });
 
     $('[data-global="credits"]').on('click', function () {
-
         $('body').addClass('dhbgapp_fullview');
         $credits_modal.dialog('open');
     });
@@ -697,7 +432,6 @@ dhbgApp.standard.start = function() {
     });
 
     $('[data-global="library"]').on('click', function () {
-
         $('body').addClass('dhbgapp_fullview');
         $library_modal.dialog('open');
     });
@@ -706,403 +440,26 @@ dhbgApp.standard.start = function() {
     // Special control: Accordion
     // ==============================================================================================
     $('.accordion').accordion({ autoHeight: false, heightStyle: "content"});
-
     // ==============================================================================================
     // Special control: View first
     // ==============================================================================================
-    $('.view-first').each(function () {
-        var $this = $(this);
-
-        var $mask = $('<div class="mask"></div>');
-        $mask.append($this.find('.view-content'));
-
-        $this.append($mask);
-    });
-
+    $('.view-first').tepuyViewFirst();
     // ==============================================================================================
     // Horizontal menu
     // ==============================================================================================
-    $('.horizontal-menu').each(function(){
-
-        var $this = $(this);
-        var $chalkboard_items = $('<div class="chalkboard_items board"></div>');
-        var $chalkboard_content = $('<div class="chalkboard_content elements"></div>');
-
-        $this.find('>dl').each(function() {
-            var $dl = $(this);
-
-            var $dd= $('<div class="element rule_1 tab_content"></div>');
-            $dd.append($dl.find('>dd').children());
-            var $dt = $('<div class="chalkboard_item button">' + $dl.find('>dt').html() + '</div>').on('click', function(){
-
-                var $item_dt = $(this);
-
-                if (dhbgApp.DB.loadSound) {
-                    dhbgApp.DB.loadSound.pause();
-                    $chalkboard_content.find('audio').each(function(){
-                        this.pause();
-                    });
-                }
-
-                $chalkboard_content.find('.element').hide();
-
-                $chalkboard_items.find('.current').removeClass('current');
-                $item_dt.addClass('current');
-                $dd.show();
-            });
-
-            $dt.on('mouseover', dhbgApp.defaultValues.buttonover);
-
-            $dt.on('mouseout', dhbgApp.defaultValues.buttonout);
-
-            $chalkboard_items.append($dt);
-
-            $chalkboard_content.append($dd);
-        });
-
-        $chalkboard_content.find('.element').hide();
-        $chalkboard_items.find(':first-child').addClass('current');
-        $chalkboard_items.find(':last-child').addClass('last-item');
-        $chalkboard_content.find('.element:first-child').show();
-        $this.empty();
-
-        $this.append($chalkboard_items);
-        $this.append('<div class="clear"></div>');
-        $this.append($chalkboard_content);
-        $this.append('<div class="clear"></div>');
-
-    });
-
+    $('.horizontal-menu').tepuyInnerMenu();
     // ==============================================================================================
     // Vertical menu
     // ==============================================================================================
-    $('.vertical-menu').each(function(){
-
-        var $this = $(this);
-        var $chalkboard_items = $('<div class="chalkboard_vertical_items board"></div>');
-        var $chalkboard_content = $('<div class="chalkboard_vertical_content elements"></div>');
-
-        $this.find('>dl').each(function() {
-            var $dl = $(this);
-
-            var $dd= $('<div class="element rule_1 tab_content"></div>');
-            $dd.append($dl.find('>dd').children());
-            var $dt = $('<div class="chalkboard_vertical_item button">' + $dl.find('dt').html() + '</div>').on('click', function(){
-                var $item_dt = $(this);
-                $chalkboard_content.find('> .element').hide();
-                $chalkboard_items.find('.current').removeClass('current');
-                $item_dt.addClass('current');
-                $dd.show();
-            });
-
-            $dt.on('mouseover', dhbgApp.defaultValues.buttonover);
-
-            $dt.on('mouseout', dhbgApp.defaultValues.buttonout);
-
-            $chalkboard_items.append($dt);
-
-            $chalkboard_content.append($dd);
-        });
-
-        $chalkboard_content.find('> .element').hide();
-        $chalkboard_items.find(':first-child').addClass('current');
-        $chalkboard_items.find(':last-child').addClass('last-item');
-        $chalkboard_content.find('> .element:first-child').show();
-        $this.empty();
-
-        $this.append($chalkboard_items);
-        $this.append($chalkboard_content);
-        $this.append('<div class="clear"></div>');
-
-    });
-
+    $('.vertical-menu').tepuyInnerMenu();
     // ==============================================================================================
     // Vertical menu both sides
     // ==============================================================================================
-    $('.vertical-menu-both-sides').each(function(){
-
-        var $this = $(this);
-        var $chalkboard_items_left = $('<div class="chalkboard_both_items_left board"></div>');
-        var $chalkboard_items_right = $('<div class="chalkboard_both_items_right board"></div>');
-        var $chalkboard_content = $('<div class="chalkboard_both_content elements"></div>');
-
-        $this.find('left').each(function(){
-            var $left = $(this);
-            $left.find('>dl').each(function() {
-                var $dl = $(this);
-
-                var $dd= $('<div class="element rule_1 tab_content"></div>');
-                $dd.append($dl.find('dd').children());
-
-                var $dt = $('<div class="chalkboard_both_item button">' + $dl.find('dt').html() + '</div>').on('click', function(){
-
-                        var $item_dt = $(this);
-
-                    $chalkboard_content.find('> .element').hide();
-
-                    $this.find('.chalkboard_both_current').removeClass('chalkboard_both_current');
-                    $item_dt.addClass('chalkboard_both_current');
-                    $dd.show();
-                });
-
-                $dt.on('mouseover', dhbgApp.defaultValues.buttonover);
-
-                $dt.on('mouseout', dhbgApp.defaultValues.buttonout);
-
-                $chalkboard_items_left.append($dt);
-
-                $chalkboard_content.append($dd);
-            });
-        });
-
-        $this.find('right').each(function(){
-
-            var $right = $(this);
-            $right.find('>dl').each(function() {
-                var $dl = $(this);
-
-                var $dd= $('<div class="element rule_1 tab_content"> ' + $dl.find('dd').html() + ' </div>');
-
-                var $dt = $('<div class="chalkboard_both_item button">' + $dl.find('dt').html() + '</div>').on('click', function(){
-                    var $item_dt = $(this);
-
-                    $chalkboard_content.find('> .element').hide();
-
-                    $this.find('.chalkboard_both_current').removeClass('chalkboard_both_current');
-                    $item_dt.addClass('chalkboard_both_current');
-                    $dd.show();
-                });
-
-                $dt.on('mouseover', dhbgApp.defaultValues.buttonover);
-
-                $dt.on('mouseout', dhbgApp.defaultValues.buttonout);
-
-                $chalkboard_content.append($dd);
-                $chalkboard_items_right.append($dt);
-            });
-        });
-
-        $chalkboard_content.find('> .element').hide();
-        $chalkboard_items_left.find(':first-child').addClass('chalkboard_both_current');
-        $chalkboard_items_left.find(':last-child').addClass('last-item');
-        $chalkboard_items_right.find(':last-child').addClass('last-item');
-        $chalkboard_content.find(':first-child').show();
-        $this.empty();
-
-        $this.append($chalkboard_items_left);
-        $this.append($chalkboard_items_right);
-        $this.append($chalkboard_content);
-        $this.append('<div class="clear"></div>');
-
-    });
-
+    $('.vertical-menu-both-sides').tepuyInnerMenu();
     // ==============================================================================================
     // Pagination
     // ==============================================================================================
-    $('.ctrl-pagination').each(function() {
-        var $this = $(this);
-        var $items = $this.find('>li');
-        var $list = $('<ul class="layers"></ul>');
-        var total_pages = $items.length;
-
-        if ($this.attr('data-layer-height')) {
-            $list.height($this.attr('data-layer-height'));
-        }
-
-        var numeric_pagination  = ($this.attr('data-numeric-pagination') && $this.attr('data-numeric-pagination') == 'true');
-        var data_labelcurrent   = ($this.attr('data-labelcurrent') && $this.attr('data-labelcurrent') == 'true');
-        var orientation         = $this.attr('data-orientation') ? $this.attr('data-orientation') : 'horizontal';
-
-        $this.addClass(orientation);
-
-        //var buttons = [];
-        var $list_buttons = $('<ul class="pagination ' + (numeric_pagination ? 'numeric' : 'arrows') + '"></ul>');
-
-        var i = 1;
-
-        $items.each(function(){
-            var $item = $(this);
-            $item.addClass('layer');
-            $list.append($item);
-
-            var label = i;
-            if ($this.attr('data-type') == 'a') {
-                label = String.fromCharCode(96 + i);
-            }
-            else if ($this.attr('data-type') == 'A') {
-                label = String.fromCharCode(96 + i).toUpperCase(); ;
-            }
-
-            if (data_labelcurrent) {
-                $item.append('<div class="label_current">' + label + '</div>');
-            }
-
-            if (numeric_pagination) {
-                var $new_button = $('<li class="button"><div>' + label + '</div></li>');
-                $new_button.on('mouseover', dhbgApp.defaultValues.buttonover);
-                $new_button.on('mouseout', dhbgApp.defaultValues.buttonout);
-
-                $new_button.on('click', function() {
-                    $items.hide();
-                    $item.show();
-                    $list_buttons.find('.current').removeClass('current');
-                    $(this).addClass('current');
-                });
-
-                $list_buttons.append($new_button);
-
-                if (i == 1) {
-                    $new_button.addClass('current');
-                }
-            }
-
-            if (i > 1) {
-                $item.hide();
-            }
-
-            i++;
-        });
-
-        if (!numeric_pagination) {
-            $items.data('current', 0);
-
-            // Next button.
-            var $next_button = $('<li><div class="button next"></div></li>');
-            $next_button.on('mouseover', dhbgApp.defaultValues.buttonover);
-            $next_button.on('mouseout', dhbgApp.defaultValues.buttonout);
-
-            // Back button.
-            var $back_button = $('<li><div class="button previous"></div></li>');
-            $back_button.on('mouseover', dhbgApp.defaultValues.buttonover);
-            $back_button.on('mouseout', dhbgApp.defaultValues.buttonout);
-
-            // It in first page is hidden.
-            $back_button.css('visibility', 'hidden');
-
-            var $position_index_label;
-
-            // Back button event.
-            $back_button.on('click', function() {
-
-                if (dhbgApp.DB.loadSound) {
-                    dhbgApp.DB.loadSound.pause();
-                    dhbgApp.DB.loadSound.currentTime = 0;
-                }
-                var new_item_index = $items.data('current') - 1;
-
-                if (new_item_index < 0) {
-                    return;
-                }
-
-                var prevpage = $items.get(new_item_index);
-                showPage(prevpage, false);
-                $items.data('current', new_item_index);
-                $position_index_label.text(dhbgApp.s('pagination_label', { 'a': (new_item_index + 1), 'b': $items.length } ));
-
-                if (new_item_index < $items.length) {
-                    $next_button.css('visibility', 'visible');
-                }
-
-                if (new_item_index == 0) {
-                    $back_button.css('visibility', 'hidden');
-                }
-                $this.trigger('jpit:pagination:changed', prevpage);
-            });
-
-            $list_buttons.append($back_button);
-            // End Back button.
-
-            if (orientation == 'vertical' || orientation == 'sides') {
-                $position_index_label = $('<div class="position">' + dhbgApp.s('pagination_label', { 'a': 1, 'b': $items.length } )  + '</div>');
-                $this.append($position_index_label);
-            }
-            else {
-                $position_index_label = $('<li class="position">' + dhbgApp.s('pagination_label', { 'a': 1, 'b': $items.length } )  + '</li>');
-                $list_buttons.append($position_index_label);
-            }
-
-            // Next button event.
-            $next_button.on('click', function() {
-                var $self = $(this);
-                if ($self.has('.button.next[disabled]').length > 0) {
-                    return;
-                }
-
-                if (dhbgApp.DB.loadSound) {
-                    dhbgApp.DB.loadSound.pause();
-                    dhbgApp.DB.loadSound.currentTime = 0;
-                }
-
-                var new_item_index = $items.data('current') + 1;
-                if (new_item_index >= $items.length) {
-                    return;
-                }
-
-                var nextpage = $items.get(new_item_index);
-                showPage(nextpage, true);
-                $items.data('current', new_item_index);
-                $position_index_label.text(dhbgApp.s('pagination_label', { 'a': (new_item_index + 1), 'b': $items.length } ));
-
-                if (new_item_index == $items.length - 1) {
-                    $next_button.css('visibility', 'hidden');
-                }
-
-                if (new_item_index > 0) {
-                    $back_button.css('visibility', 'visible');
-                }
-                $this.trigger('jpit:pagination:changed', nextpage);
-            });
-
-            $list_buttons.append($next_button);
-            // End Next button.
-        }
-        $this.data('pagination', {
-            moveNext: function () {
-                $next_button.find('.button.next').removeAttr('disabled');
-                $next_button.trigger('click');
-            },
-            moveBack: function () { $back_button.trigger('click'); },
-            setButtonEnable: function (button, enabled) {
-                if (enabled) {
-                    $this.find('.button.'+button).removeAttr('disabled');
-                }
-                else {
-                    $this.find('.button.'+button).attr('disabled', true);
-                }
-            },
-            isLastPage: function () {
-                return ($items.data('current') + 1) == total_pages;
-            }
-        });
-        $this.append($list);
-        $this.append($list_buttons);
-        $this.append('<div class="clear"></div>');
-        var animation = $this.attr('data-animation') || 'none';
-        var duration = $this.attr('data-animation-duration') || 400;
-        var ontransitionhidden = ".label_current," + $this.attr('data-pagination-transition-hidden') || '';
-
-        function showPage(page, isnext) {
-            var $page = $(page),
-                $prev = isnext ? $page.prev() : $page.next();
-
-            if (animation == 'none') {
-                $prev.hide();
-                $page.show();
-                return;
-            }
-
-            slide($page, $prev, isnext ? 'right' : 'left');
-        }
-
-        function slide($page, $prev, dir, duration) {
-            $prev.hide();
-            var $hidden = $page.find(ontransitionhidden).hide();
-            $page.show("slide", { direction: dir }, duration, function () {
-                //$prev.hide().css('visibility', 'hidden');
-                $hidden.show();
-            });
-        }
-    });
+    $('.ctrl-pagination').tepuyPagination();
 
     // ==============================================================================================
     // Image Zoom
@@ -1354,6 +711,7 @@ dhbgApp.standard.start = function() {
         dhbgApp.actions.activityView($this);
     });
 
+    $('.tpy-ivideo').tepuyInteractiveVideo();
     // ==============================================================================================
     // Open URL
     // This is processed on the end in order to not be disabled for another dynamic html and include
@@ -1368,72 +726,13 @@ dhbgApp.standard.start = function() {
     // This is processed on the end in order to not be disabled for another dynamic html and include
     // "tooltips" generated by other controls.
     // ==============================================================================================
-    $('.tooltip').each(function() {
-
-        var $this = $(this);
-
-        var position = {};
-
-        if ($this.attr('data-position-my')) {
-            position.my =  $this.attr('data-position-my');
-        }
-
-        if ($this.attr('data-position-at')) {
-            position.at =  $this.attr('data-position-at');
-        }
-
-        if ($this.attr('data-position-flipfit')) {
-            position.collision =  $this.attr('data-position-flipfit');
-        }
-
-        $this.tooltip({
-            content: function() {
-                return '<div class="text_tooltip">' + $( this ).attr( "title" ) + '</div>';
-            },
-            show: null, // Show immediately.
-            position: position,
-            hide: { effect: "" },
-            close: function(event, ui){
-                ui.tooltip.hover(
-                    function () {
-                        $(this).stop(true).fadeTo(400, 1);
-                    },
-                    function () {
-                        $(this).fadeOut("400", function(){
-                            $(this).remove();
-                        });
-                    }
-                );
-            }
-        });
-    });
+    $('.tooltip').tepuyTooltip();
 
     // ==============================================================================================
     // Instructions
     // This is processed on the end in order to include "instructions" generated by other controls.
     // ==============================================================================================
-    $('.instruction').each(function(){
-        var $this = $(this);
-        var cssclass = 'ion-help-circled';
-        if ($this.attr('type')) {
-            switch($this.attr('type')) {
-                case 'info':
-                    cssclass = 'ion-information-circled';
-                    break;
-                case 'danger':
-                    cssclass = 'ion-nuclear';
-                    break;
-                case 'alert':
-                    cssclass = 'ion-alert-circled';
-                    break;
-                case 'none':
-                    // Not add icon.
-                    return;
-            }
-        }
-        $this.prepend('<i class="' + cssclass + '"></i>');
-    });
-
+    $('.instruction').tepuyInstructionBox();
     // ==============================================================================================
     // After - Before content
     // ==============================================================================================
@@ -1611,6 +910,8 @@ dhbgApp.standard.start = function() {
     else {
         dhbgApp.loadPage(0, 0);
     }
+
+    $(dhbgApp).trigger('tpy:app-started', []);
 };
 
 
