@@ -315,10 +315,10 @@
             const data = $el.data();
             const ivideoId = this.ivideo.host.id;
             const elCss = {
-                top: data.posTop,
-                left: data.posLeft,
-                width: data.sizeWidth,
-                height: data.sizeHeight
+                top: isNaN(data.posTop) ? height * 0.1 : data.posTop,
+                left: isNaN(data.posLeft) ? width * 0.1 : data.posLeft,
+                width: isNaN(data.sizeWidth) ? width * 0.5 : data.sizeWidth,
+                height: isNaN(data.sizeHeight) ? height * 0.5 : data.sizeHeight
             };
             css = $.extend(css, elCss);
 
@@ -688,13 +688,13 @@
             };
 
             const stop = function(event, ui) {
-//                me.videoPlayer.seek(ui.value);
-//                me.updateTime(ui.value);
-//                me.seeking = false;
-//                if (me.resumePlay) {
-//                    me.resumePlay = false;
-//                    me.videoPlayer.play();
-//                }
+                me.videoPlayer.seek(ui.value);
+                me.updateTime(ui.value);
+                me.seeking = false;
+                if (me.resumePlay) {
+                    me.resumePlay = false;
+                    me.videoPlayer.play();
+                }
             };
 
             const $slider = $('<div/>', { appendTo: $wrapper }).slider({
