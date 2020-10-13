@@ -109,7 +109,7 @@
             //Show player controls
             player.controls = options.controls && options.controls === true;
 
-            if ($parent.is('[autoplay]')) {
+            if ($parent.is('[data-autoplay]')) {
                 player.autoplay = true;
             }
 
