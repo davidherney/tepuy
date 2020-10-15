@@ -651,10 +651,7 @@ dhbgApp.standard.start = function() {
 
     };
 
-    $('.jpit-activities-quiz').each(function(){
-        var $this = $(this);
-        dhbgApp.actions.loadActivity($this, 'quiz', dhbgApp.actions.activityQuiz);
-    });
+    $('.jpit-activities-quiz').jpitActivityQuiz();
 
     $('.jpit-activities-wordpuzzle').each(function(){
         var $this = $(this);
@@ -1490,10 +1487,12 @@ dhbgApp.standard.load_operations = function() {
         $verify_box.append($verify);
         $box_questions.find('.jpit_activities_quiz_board').after($verify_box);
 
+        var $editToolbars = $this.find('.tpy-edit-toolbar').remove(); //clear the edit toolbars, if they exists
         $this.empty();
         $this.append($box_questions);
         $this.append($box_end);
         verify_display_function();
+        $this.append($editToolbars); //Put the edit toolbars back in
 
         $this.on('jpit:timer:elapsed', function(){
             $.each(questions, function(idx, q) { q.disableQuestion(); });
