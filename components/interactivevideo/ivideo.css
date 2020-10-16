@@ -1,0 +1,208 @@
+/********************************************************************************/
+/* INTERACTIVE VIDEO
+/********************************************************************************/
+.tpy-ivideo {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    --tpy-resizable-handle-clr: #f6ae00;
+    --tpy-resizable-handle-bg: #fff;
+}
+
+.tpy-ivideo video {
+    min-width: 480px;
+}
+
+.tpy-ivideo.tpy-fullscreen {
+    align-items: center;
+    justify-content: center;
+}
+
+.tpy-ivideo.tpy-fullscreen video {
+    width: 100%;    
+}
+
+.tpy-ivideo .tpy-ivideo-wrapper {
+    display:flex;
+    /*margin: auto;*/
+    position: relative;
+}
+
+.tpy-ivideo.tpy-fullscreen .tpy-ivideo-wrapper {
+    margin: 0;
+    width: 100%;
+}
+
+.tpy-ivideo .tpy-ivideo-wrapper [data-cmpt-type] {
+    position: absolute;
+}
+
+.tpy-ivideo.tpy-edit .tpy-ivideo-wrapper .tpy-action-viewer {
+    position: absolute;
+    border: 2px solid var(--tpy-resizable-handle-clr);
+}
+
+.tpy-ivideo.tpy-edit .tpy-ivideo-wrapper .tpy-action-viewer .tpy-action-viewer-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.tpy-action-viewer-content::-webkit-scrollbar {
+    width: .5em;
+    height: .5em;
+    background: #fff;
+}
+
+.tpy-action-viewer-content::-webkit-scrollbar-thumb {
+    background: #ddd;
+}
+
+.tpy-action-viewer-content::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+.tpy-action-viewer.ui-resizable .ui-resizable-n:after,
+.tpy-action-viewer.ui-resizable .ui-resizable-e:after,
+.tpy-action-viewer.ui-resizable .ui-resizable-s:after,
+.tpy-action-viewer.ui-resizable .ui-resizable-w:after {
+    content: ' ';
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border: solid 2px var(--tpy-resizable-handle-clr);
+    left: calc(50% - 5px);
+    top: calc(50% - 5px);
+    box-sizing: border-box;
+    background: var(--tpy-resizable-handle-bg);
+}
+
+.tpy-action-viewer.ui-resizable .ui-resizable-se,
+.tpy-action-viewer.ui-resizable .ui-resizable-sw,
+.tpy-action-viewer.ui-resizable .ui-resizable-ne,
+.tpy-action-viewer.ui-resizable .ui-resizable-nw {
+    border: solid 2px var(--tpy-resizable-handle-clr);
+    box-sizing: border-box;
+    background: var(--tpy-resizable-handle-bg);
+}
+
+.tpy-action-viewer.ui-resizable .ui-resizable-se {
+    width: 9px;
+    height: 9px;
+    bottom: -5px;
+    right: -5px;
+}
+
+.tpy-ivideo .tpy-ivideo-toolbar {
+    height: 36px;
+    background: #2c2c2c;
+    color: #fbfbfb;
+    /*margin: auto;*/
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+}
+
+.tpy-ivideo.tpy-fullscreen .tpy-ivideo-toolbar {
+    margin: 0;
+}
+
+.tpy-ivideo .tpy-ivideo-toolbar .tpy-ivideo-toolbar-left, .tpy-ivideo .tpy-ivideo-toolbar .tpy-ivideo-toolbar-right {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.tpy-ivideo .tpy-ivideo-toolbar .tpy-ivideo-toolbar-slider {
+    display: flex;
+    flex: 1;
+    padding: 0 8px;
+    position: relative;
+}
+
+.tpy-ivideo .tpy-ivideo-toolbar .tpy-ivideo-toolbar-slider .ui-slider {
+    width: 100%;
+    margin: auto;
+    height: 4px;
+    border: 0;
+    border-radius: 0;
+    cursor: pointer;
+    background: #0b0d0c;
+}
+.tpy-ivideo .tpy-ivideo-toolbar .tpy-ivideo-toolbar-slider .tpy-buffer-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 4px;
+    background: #4d4d4d;
+}
+
+.tpy-ivideo .tpy-ivideo-toolbar .tpy-ivideo-toolbar-slider .ui-slider-handle {
+    height: 12px;
+    width: 12px;
+    border: 0;
+    outline: none;
+    border-radius: 0;
+    cursor: pointer;
+    background: #c5c5c5;
+    transform: translateX(25%);
+}
+
+.tpy-ivideo .tpy-ivideo-toolbar .tpy-control {
+    display: flex;
+    width: 36px;
+    height: 36px;
+    flex: 0;
+    font-size: 18px;
+    outline: none;
+}
+
+.tpy-ivideo .tpy-ivideo-toolbar .tpy-control.tpy-timeviewer {
+    width: 120px;
+}
+
+.tpy-ivideo .tpy-ivideo-toolbar .tpy-control i {
+    margin: auto;
+}
+
+.tpy-ivideo .tpy-ivideo-toolbar .tpy-control span {
+    margin: auto;
+    font-size: .875em; /*12px;*/
+    font-family: sans-serif;
+}
+
+.tpy-ivideo .tpy-ivideo-toolbar .tpy-timeviewer .tpy-sep {
+    padding: 0 5px;
+}
+
+.tpy-ivideo .tpy-ivideo-toolbar .tpy-action-bar {
+    position: absolute;
+    left: 8px;
+    bottom: 0;
+    right: 8px;
+    height: 10px;
+}
+
+.tpy-ivideo .tpy-ivideo-toolbar .tpy-action-bar:before {
+    content: ' ';
+    display: block;
+    width: 100%;
+    margin-top: 4px;
+    border-bottom: dashed 1px #fbfbfb;
+    box-sizing: border-box;
+}
+
+
+.tpy-ivideo .tpy-ivideo-toolbar .tpy-action-bar .tpy-action-mark {
+    position: absolute;
+    top: 0;
+    width: 8px;
+    height: 8px;
+    /*border: solid 1px #fbfbfb;*/
+    box-sizing: border-box;
+    transform: translateX(-50%);
+    cursor: pointer;
+    background: #fbfbfb;
+}

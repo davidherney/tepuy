@@ -44,24 +44,10 @@ dhbgApp.start = function() {
     w_options = "width=" + width + ", height=" + height + ", " + w_options;
 
     if (autoload) {
-        if (dhbgApp.WINDOWS_MODE == 'popup') {
-            var window_scorm = window.open('content.html', unique_id, w_options);
-            scormredirect(window_scorm);
-        }
-        else if (dhbgApp.WINDOWS_MODE == 'modal') {
-            var $scorm_frame = $('body', window.parent.document);
-
-            $scorm_frame.prepend($css_to_fullpage);
-
-            $scorm_frame.addClass('scorm_full_page');
-            location.href = 'content.html';
-        }
-        else {
-            location.href = 'content.html';
-        }
+        try_playing_scorm();
     }
     else {
-        add_load_button (unique_id);
+        add_load_button(unique_id);
     }
 };
 
@@ -106,30 +92,32 @@ var scormredirect = function (window_scorm) {
 
 function add_load_button (unique_id) {
     var $button = $('<button class="general">' + dhbgApp.s('click_to_open') + '</button>');
+    $button.on('click', try_playing_scorm);
+    $('#play_scorm').append($button);
+}
 
+function try_playing_scorm() {
+    var ev = $.Event('tpy:scorm.playing');
+    $(document).trigger(ev);
+    if (!ev.isDefaultPrevented()) play_scorm();    
+}
+
+function play_scorm() {
     if (dhbgApp.WINDOWS_MODE == 'popup') {
-        $button.on('click', function() {
-            var new_window_scorm = window.open('content.html', unique_id, w_options);
-            scormredirect(new_window_scorm);
-        });
+        var window_scorm = window.open('content.html', unique_id, w_options);
+        scormredirect(window_scorm);
     }
     else if (dhbgApp.WINDOWS_MODE == 'modal') {
-        $button.on('click', function() {
-            $('#play_scorm').html('<p class="ui-state-highlight"><img src="img/loading.gif" alt="' + dhbgApp.s('loading') + '" /> ' + dhbgApp.s('loading') + '</p>');
-            var $scorm_frame = $('body', window.parent.document);
+        $('#play_scorm').html('<p class="ui-state-highlight"><img src="img/loading.gif" alt="' + dhbgApp.s('loading') + '" /> ' + dhbgApp.s('loading') + '</p>');
+        var $scorm_frame = $('body', window.parent.document);
 
-            $scorm_frame.prepend($css_to_fullpage);
+        $scorm_frame.prepend($css_to_fullpage);
 
-            $scorm_frame.addClass('scorm_full_page');
-            location.href = 'content.html';
-        });
+        $scorm_frame.addClass('scorm_full_page');
+        location.href = 'content.html';
     }
     else {
-        $button.on('click', function() {
-            location.href = 'content.html';
-        });
+        location.href = 'content.html';
     }
-
-    $('#play_scorm').append($button);
-
+    $(document).trigger('tpy:scorm.played', [{mode: dhbgApp.WINDOWS_MODE}]);
 }
