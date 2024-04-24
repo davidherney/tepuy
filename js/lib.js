@@ -908,13 +908,21 @@ dhbgApp.standard.start = function() {
     }
 
     // Learning styles features.
-    var lsAvailables = $('body').attr('data-ls-availables');
-    lsAvailables = lsAvailables ? lsAvailables.split(',') : [];
-    lsAvailables = lsAvailables.map(value => value.trim());
+    var lsAvailables = [];
+    $('[data-ls-cycle]').each(function() {
+        var $this = $(this);
+
+        // To avoid duplicates.
+        lsAvailables.push($this.attr('data-ls-cycle').trim());
+    });
+
+    lsAvailables = [...new Set(lsAvailables)];
+
     $(body).attr('data-grassping', 'grassping');
     $(body).attr('data-transforming', 'transforming');
 
     $.learningstyles.get(function(userStyles) {
+
         dhbgApp.userStyles = userStyles;
 
         if (dhbgApp.userStyles && typeof dhbgApp.userStyles == 'object' && dhbgApp.userStyles.cycles != undefined) {
@@ -931,7 +939,9 @@ dhbgApp.standard.start = function() {
                     currentStyle = cyclename;
                 }
 
-                $(body).attr(attr, currentStyle);
+                console.log(attr, currentStyle);
+
+                $('#body').attr(attr, currentStyle);
             }
 
         }

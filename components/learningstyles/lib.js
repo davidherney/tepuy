@@ -56,52 +56,53 @@
             }
 
             $.get(options.source, function(data) {
+                var response = null;
+
                 if (data) {
 
-                    if (typeof data != 'object'
-                        || !data.input
-                        || !data.perception
-                        || !data.processing
-                        || !data.understanding
+                    if (typeof data == 'object'
+                        && data.input
+                        && data.perception
+                        && data.processing
+                        && data.understanding
                     ) {
-                        return null;
-                    };
 
-                    if (data.input < 0) {
-                        cyclelearning.grassping['input'] = 'visual';
-                    } else {
-                        cyclelearning.grassping['input'] = 'verbal';
-                    }
+                        if (data.input < 0) {
+                            cyclelearning.grassping['input'] = 'visual';
+                        } else {
+                            cyclelearning.grassping['input'] = 'verbal';
+                        }
 
-                    if (data.perception < 0) {
-                        cyclelearning.grassping['perception'] = 'sensing';
-                    } else {
-                        cyclelearning.grassping['perception'] = 'intuitive';
-                    }
+                        if (data.perception < 0) {
+                            cyclelearning.grassping['perception'] = 'sensing';
+                        } else {
+                            cyclelearning.grassping['perception'] = 'intuitive';
+                        }
 
-                    if (data.processing < 0) {
-                        cyclelearning.transforming['processing'] = 'active';
-                    } else {
-                        cyclelearning.transforming['processing'] = 'reflective';
-                    }
+                        if (data.processing < 0) {
+                            cyclelearning.transforming['processing'] = 'active';
+                        } else {
+                            cyclelearning.transforming['processing'] = 'reflective';
+                        }
 
-                    if (data.understanding < 0) {
-                        cyclelearning.transforming['understanding'] = 'sequential';
-                    } else {
-                        cyclelearning.transforming['understanding'] = 'global';
-                    }
+                        if (data.understanding < 0) {
+                            cyclelearning.transforming['understanding'] = 'sequential';
+                        } else {
+                            cyclelearning.transforming['understanding'] = 'global';
+                        }
 
-                    globalstyles[options.source] = {
-                        'styles': data,
-                        'cycles': cyclelearning
-                    };
+                        globalstyles[options.source] = {
+                            'styles': data,
+                            'cycles': cyclelearning
+                        };
 
-                    if (callback && typeof callback == 'function') {
-                        callback(globalstyles[options.source]);
+                        response = globalstyles[options.source];
                     }
                 }
 
-                return null;
+                if (callback && typeof callback == 'function') {
+                    callback(response);
+                }
             });
         },
 
