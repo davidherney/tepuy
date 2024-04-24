@@ -141,7 +141,7 @@
         }
 
         get controls() {
-            return this.player.controls;        
+            return this.player.controls;
         }
 
         set controls(value) {
@@ -241,7 +241,7 @@
             this.host = host;
             $(this.host).hide();
         }
-        
+
         get triggerAt() {
             if (this.host.hasAttribute(TRIGGER_AT_ATTR)) {
                 return durationToNumber(this.host.getAttribute(TRIGGER_AT_ATTR));
@@ -353,7 +353,7 @@
                             $el.trigger('tpy:drag-completed', [ui]);
                         }
                     })
-                    .resizable({ 
+                    .resizable({
                         containment: $container,
                         handles: 'all',
                         classes: {
@@ -458,7 +458,7 @@
 
             const videoPlayer = isYoutube(src) ? createYTPlayer(playerOptions) : new HTML5Player(playerOptions);
             videoPlayer.$el.appendTo(me.$videoWrapper);
-            
+
             me.videoPlayer = videoPlayer;
             $(videoPlayer)
                 .on('loaded', me._onLoaded)
@@ -505,7 +505,7 @@
 
             const currentTime = videoPlayer.currentTime;
             me.updateTime(currentTime);
-            
+
             //Stop running actions that needs to be stopped
             const tostop = me._runningActions.filter(a => a.hideAt < currentTime);
             me._stopActions(tostop);
@@ -554,7 +554,7 @@
         }
 
         _onProgress() {
-            this._updateBufferBar();            
+            this._updateBufferBar();
         }
 
         _onEnded() {
@@ -632,7 +632,7 @@
 
         _createTimeViewer($container) {
             const me = this;
-            const template = 
+            const template =
                 `<div class="tpy-control tpy-timeviewer">
                     <span class="tpy-current"></span>
                     <span class="tpy-sep"> / </span>
@@ -640,7 +640,7 @@
                 </div>`;
             const $time = $(template).appendTo($container);
             me.controls.$curtime = $time.find(".tpy-current");
-            me.controls.$totalTime = $time.find(".tpy-total");            
+            me.controls.$totalTime = $time.find(".tpy-total");
         }
 
         _updateTimeView() {
@@ -745,7 +745,7 @@
         seek(time) {
             console.log(time);
             if (typeof time === 'string') {
-                time = durationToNumber(time);           
+                time = durationToNumber(time);
             }
             //this.videoPlayer.seek(time);
             console.log(time);
@@ -759,9 +759,9 @@
         }
 
         togglePlayPause() {
-            if (this.videoPlayer.paused) 
+            if (this.videoPlayer.paused)
                 this.videoPlayer.play();
-            else 
+            else
                 this.videoPlayer.pause();
         }
 

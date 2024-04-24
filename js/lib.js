@@ -891,7 +891,6 @@ dhbgApp.standard.start = function() {
         }
     });
 
-
     if (dhbgApp.MODEL == 'scorm' && (!dhbgApp.scorm || !dhbgApp.scorm.lms)) {
         $('#not_scorm_msg').html(dhbgApp.s('scorm_not'));
         $('#not_scorm_msg').dialog( { modal: true } );
@@ -907,6 +906,37 @@ dhbgApp.standard.start = function() {
     else {
         dhbgApp.loadPage(0, 0);
     }
+
+    // Learning styles features.
+    var lsAvailables = $('body').attr('data-ls-availables');
+    lsAvailables = lsAvailables ? lsAvailables.split(',') : [];
+    lsAvailables = lsAvailables.map(value => value.trim());
+    $(body).attr('data-grassping', 'grassping');
+    $(body).attr('data-transforming', 'transforming');
+
+    $.learningstyles.get(function(userStyles) {
+        dhbgApp.userStyles = userStyles;
+
+        if (dhbgApp.userStyles && typeof dhbgApp.userStyles == 'object' && dhbgApp.userStyles.cycles != undefined) {
+
+            for (let [cyclename, cycledata] of Object.entries(dhbgApp.userStyles.cycles)) {
+                let styles = [];
+                for (let [stylename, styledata] of Object.entries(cycledata)) {
+                    styles.push(styledata);
+                }
+                var attr = 'data-' + cyclename;
+                var currentStyle = styles.join('-');
+
+                if (!lsAvailables.includes(currentStyle)) {
+                    currentStyle = cyclename;
+                }
+
+                $(body).attr(attr, currentStyle);
+            }
+
+        }
+
+    });
 
     $(dhbgApp).trigger('tpy:app-started', []);
 };

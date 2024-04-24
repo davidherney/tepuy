@@ -1,0 +1,16 @@
+[data-ls-cycle] {
+    display: none;
+}
+
+#body[data-grassping="grassping"] [data-ls-cycle="grassping"],
+#body[data-transforming="transforming"] [data-ls-cycle="transforming"],
+#body[data-grassping="visual-intuitive"] [data-ls-cycle="visual-intuitive"],
+#body[data-grassping=visual-sequential] [data-ls-cycle="visual-sequential"],
+#body[data-grassping="verbal-intuitive"] [data-ls-cycle="verbal-intuitive"],
+#body[data-grassping="verbal-sequential"] [data-ls-cycle="verbal-sequential"],
+#body[data-transforming="active-sequential"] [data-ls-cycle="active-sequential"],
+#body[data-transforming="active-global"] [data-ls-cycle="active-global"],
+#body[data-transforming="reflective-sequential"] [data-ls-cycle="reflective-sequential"],
+#body[data-transforming="reflective-global"] [data-ls-cycle="reflective-global"] {
+    display: initial;
+}
