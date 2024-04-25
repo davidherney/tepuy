@@ -920,16 +920,21 @@ dhbgApp.standard.start = function() {
     $(body).attr('data-grassping', 'grassping');
     $(body).attr('data-transforming', 'transforming');
 
-    $.learningstyles.get(function(userStyles) {
+    $.learningStyles.get(function(userStyles) {
 
         dhbgApp.userStyles = userStyles;
 
         if (dhbgApp.userStyles && typeof dhbgApp.userStyles == 'object' && dhbgApp.userStyles.cycles != undefined) {
 
+            var styleByCicle = {
+                'grassping': [],
+                'transforming': []
+            };
             for (let [cyclename, cycledata] of Object.entries(dhbgApp.userStyles.cycles)) {
                 let styles = [];
                 for (let [stylename, styledata] of Object.entries(cycledata)) {
                     styles.push(styledata);
+                    styleByCicle[cyclename].push(styledata);
                 }
                 var attr = 'data-' + cyclename;
                 var currentStyle = styles.join('-');
@@ -947,6 +952,14 @@ dhbgApp.standard.start = function() {
             // The final user styles.
             var userStyles = [$(body).attr('data-grassping'), $(body).attr('data-transforming')];
 
+            var textStyles = dhbgApp.s('user_learning_styles_by_cycle', {
+                                                        'a': dhbgApp.s('learning_style_' + styleByCicle.grassping[0]),
+                                                        'b': dhbgApp.s('learning_style_' + styleByCicle.grassping[1]),
+                                                        'c': dhbgApp.s('learning_style_' + styleByCicle.transforming[0]),
+                                                        'd': dhbgApp.s('learning_style_' + styleByCicle.transforming[1]),
+                                                    });
+            $('#results_page_styles').html(textStyles);
+
             $('[data-ls-cycle]').each(function() {
                 var $resource = $(this);
                 var cycle = $resource.attr('data-ls-cycle').trim();
@@ -960,6 +973,8 @@ dhbgApp.standard.start = function() {
                 }
             });
 
+        } else {
+            $('#results_page_styles').html(dhbgApp.s('user_learning_styles_not_available'));
         }
 
     });

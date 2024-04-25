@@ -56,6 +56,22 @@ dhbgApp.strings = {
 
     'horizontal': 'Horizontal',
 
+    'learning_style_visual': 'Visual',
+
+    'learning_style_verbal': 'Verbal',
+
+    'learning_style_sensing': 'Sensorial',
+
+    'learning_style_intuitive': 'Intuitivo',
+
+    'learning_style_active': 'Activo',
+
+    'learning_style_reflective': 'Reflexivo',
+
+    'learning_style_sequential': 'Secuencial',
+
+    'learning_style_global': 'Global',
+
     'loading': 'Cargando...',
 
     'mark_required': 'Necesitas marcar por lo menos una zona para continuar.',
@@ -96,6 +112,10 @@ dhbgApp.strings = {
     'selected_required': 'Necesita seleccionar una palabra de la lista para continuar',
 
     'start_activity': 'Iniciar la actividad',
+
+    'user_learning_styles_by_cycle': 'Se ha identificado que su estilo de aprendizaje en el ciclo de "Adquisición" es <em>{a}-{b}</em> y en el ciclo de "Transformación" es <em>{c}-{d}</em>.',
+
+    'user_learning_styles_not_available': 'No se ha podido identificar su estilo de aprendizaje.',
 
     'verify': 'Verificar',
 

@@ -56,6 +56,22 @@ dhbgApp.strings = {
 
     'horizontal': 'Across',
 
+    'learning_style_visual': 'Visual',
+
+    'learning_style_verbal': 'Verbal',
+
+    'learning_style_sensing': 'Sensing',
+
+    'learning_style_intuitive': 'Intuitive',
+
+    'learning_style_active': 'Active',
+
+    'learning_style_reflective': 'Reflective',
+
+    'learning_style_sequential': 'Sequential',
+
+    'learning_style_global': 'Global',
+
     'loading': 'Loading...',
 
     'mark_required': 'You need to mark at least one area to continue.',
@@ -97,6 +113,10 @@ dhbgApp.strings = {
     'selected_required': 'You need to select a word from the list to continue',
 
     'start_activity': 'Start the activity',
+
+    'user_learning_styles_by_cycle': 'It has been identified that your learning style in the "Grassping" cycle is <em>{a}-{b}</em> and in the "Transforming" cycle is <em>{c}-{d}</em>.',
+
+    'user_learning_styles_not_available': 'Your learning styles are not available at the moment.',
 
     'verify': 'Check',
 

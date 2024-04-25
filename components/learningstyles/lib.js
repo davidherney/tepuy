@@ -39,24 +39,29 @@
         }
     }
 
-    $.learningstyles = {
+    $.learningStyles = {
         'options': {
             'source': defaultsource,
         },
 
         'get': function(callback, newoptions) {
             var options = this.options = $.extend(this.options, newoptions);
+            var response = null;
 
             if (options.source == '') {
-                return null;
+                if (callback && typeof callback == 'function') {
+                    callback(response);
+                }
             }
 
             if (globalstyles[options.source]) {
-                return globalstyles[options.source];
+                if (callback && typeof callback == 'function') {
+                    callback(globalstyles[options.source]);
+                    return;
+                }
             }
 
             $.get(options.source, function(data) {
-                var response = null;
 
                 if (data) {
 

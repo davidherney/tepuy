@@ -3919,6 +3919,14 @@
                         <li>Además, se pueden marcar los elementos en el atributo <em>data-ls-cycle</em> con el valor: <em>grassping</em> o <em>transforming</em> según el ciclo al que pertenezcan. Aquellos elementos que contengan esos valores se usarán con los usuarios cuando su estilo de aprendizaje no esté implementado en el paquete.</li>
                         <li>El usuario tendrá dos valores: uno de su ciclo "Grassping" y otro del ciclo "Transforming".</li>
                     </ol>
+
+                    <div class="box-text note" label="Nota">
+                        <p>
+                            Al final de la ventana de "Progreso" se pueden ver los estilos de aprendizaje identificados para el
+                            usuario actual en cada uno de los ciclos.
+                        </p>
+                    </div>
+
                     <h4>Ejemplo del ciclo "Grassping" del usuario actual:</h4>
                     <ul class="data_list">
                         <li data-ls-cycle="grassping">El estilo del usuario no se encuentra en el objeto entonces se usa el recurso por defecto para este ciclo. En el objeto solamente se tienen estilos visuales, no verbales.</li>
@@ -4143,6 +4151,10 @@
         <br class="clear" />
         <h3>Actividades de aprendizaje</h3>
         <div id="results_page_activities"></div>
+        <br class="clear" />
+        <h3>Estilos de aprendizaje</h3>
+        <div id="results_page_styles"></div>
+        <br class="clear" />
     </div>
 
     <div id="printent_content" style="display:none;">
