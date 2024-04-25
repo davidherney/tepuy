@@ -902,8 +902,7 @@ dhbgApp.standard.start = function() {
 
     if (dhbgApp.MODEL == 'scorm' && dhbgApp.scorm && dhbgApp.scorm.change_sco) {
         dhbgApp.changeSco(dhbgApp.scorm.currentSco);
-    }
-    else {
+    } else {
         dhbgApp.loadPage(0, 0);
     }
 
@@ -939,10 +938,27 @@ dhbgApp.standard.start = function() {
                     currentStyle = cyclename;
                 }
 
-                console.log(attr, currentStyle);
+                console.log(attr, ': ', currentStyle);
 
                 $('#body').attr(attr, currentStyle);
+
             }
+
+            // The final user styles.
+            var userStyles = [$(body).attr('data-grassping'), $(body).attr('data-transforming')];
+
+            $('[data-ls-cycle]').each(function() {
+                var $resource = $(this);
+                var cycle = $resource.attr('data-ls-cycle').trim();
+                if (!userStyles.includes(cycle)) {
+
+                    // Remove the activity from the scorm object.
+                    delete dhbgApp.scorm.activities[$resource.attr('data-act-id')];
+
+                    // Remove the element if is for a different learning style.
+                    $resource.remove();
+                }
+            });
 
         }
 

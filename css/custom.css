@@ -651,3 +651,50 @@
     padding: 3%;
     border: 2px dotted #aaaaaa;
 }
+
+/********************************************************************************/
+/* Actividad arrastrar y soltar en estilos de aprendizaje
+/********************************************************************************/
+#arrastrar-ls.jpit-activities-droppable .words_container {
+    height: 50px;
+}
+
+#arrastrar-ls.jpit-activities-droppable table {
+    empty-cells: show;
+    clear: both;
+}
+
+#arrastrar-ls.jpit-activities-droppable th {
+    color: #000;
+    padding: 5px;
+    text-align: right;
+}
+
+#arrastrar-ls.jpit-activities-droppable td.droppable {
+    width: 92px;
+    height: 62px;
+}
+
+#arrastrar-ls.jpit-activities-droppable td.conection {
+    width: 30px;
+    border: none;
+    padding: 5px 10px;
+}
+
+#arrastrar-ls.jpit-activities-droppable .estilos-arrastrar {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#arrastrar-ls.jpit-activities-droppable .draggable {
+    height: 50px;
+    width: 80px;
+    display: flex;
+    align-items: center;
+    line-height: 110%;
+}
+
+.actividad-ls-contenedor {
+    border: 1px dashed red;
+    padding: 10px;
+}

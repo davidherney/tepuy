@@ -12,5 +12,5 @@
 #body[data-transforming="active-global"] [data-ls-cycle="active-global"],
 #body[data-transforming="reflective-sequential"] [data-ls-cycle="reflective-sequential"],
 #body[data-transforming="reflective-global"] [data-ls-cycle="reflective-global"] {
-    display: initial;
+    display: inherit;
 }

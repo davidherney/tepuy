@@ -3905,6 +3905,101 @@
                 </div>
             </section>
 
+            <!--Estilos de aprendizaje-->
+            <section id="pag-ls" ptitle="Estilos de aprendizaje">
+
+                <div data-title="Estilos de aprendizaje" class="subpage">
+                    <h3>Estilos de aprendizaje</h3>
+                    <p>
+                        El contenido se puede personalizar acorde al estilo de aprendizaje del usuario que los consume, así:
+                    </p>
+                    <ol class="ol_counter">
+                        <li>Agregar el atributo <em>data-ls-cycle</em> al elemento que se quiere personalizar.</li>
+                        <li>El valor del atributo debe ser una de las duplas de estilos: <em>visual-sensing</em>, <em>visual-intuitive</em>, <em>verbal-sensing</em>, <em>verbal-intuitive</em>, <em>active-sequential</em>, <em>active-global</em>, <em>reflective-sequential</em>, <em>reflective-global</em>.</li>
+                        <li>Además, se pueden marcar los elementos en el atributo <em>data-ls-cycle</em> con el valor: <em>grassping</em> o <em>transforming</em> según el ciclo al que pertenezcan. Aquellos elementos que contengan esos valores se usarán con los usuarios cuando su estilo de aprendizaje no esté implementado en el paquete.</li>
+                        <li>El usuario tendrá dos valores: uno de su ciclo "Grassping" y otro del ciclo "Transforming".</li>
+                    </ol>
+                    <h4>Ejemplo del ciclo "Grassping" del usuario actual:</h4>
+                    <ul class="data_list">
+                        <li data-ls-cycle="grassping">El estilo del usuario no se encuentra en el objeto entonces se usa el recurso por defecto para este ciclo. En el objeto solamente se tienen estilos visuales, no verbales.</li>
+                        <li data-ls-cycle="visual-sensing">El usuario es Visual + Sensorial</li>
+                        <li data-ls-cycle="visual-intuitive">El usuario es Visual + Intuitivo</li>
+                    </ul>
+                    <h4>Ejemplo del ciclo "Transforming" del usuario actual:</h4>
+                    <ul class="data_list">
+                        <li data-ls-cycle="transforming">El estilo del usuario no se encuentra en el objeto entonces se usa el recurso por defecto para este ciclo. En el objeto solamente se tienen estilos activos, no reflexivos.</li>
+                        <li data-ls-cycle="active-sequential">El usuario es Activo + Secuencial</li>
+                        <li data-ls-cycle="active-global">El usuario es Activo + Global</li>
+                    </ul>
+                    <div class="box-text important" label="Importante">
+                        <p>
+                          Si no se logra conectar con el servicio que retorna los estilos de aprendizaje, se utilizarán los estilos por defecto: <em>grassping</em> y <em>transforming</em> como si fueran los propios del usuario.
+                        </p>
+                    </div>
+                    <h4>Consideraciones para las actividades</h4>
+                    <p>
+                        Las actividades son un caso especial puesto que no pueden ser considerados en el porcentaje completo del paquete. Si el estilo de aprendizaje de un usuario no coincide con el asignado a una actividad, la actividad se retira del listado completo y del cálculo del porcentaje de avance.
+                    </p>
+
+                    <p>
+                        A continuación una actividad que solamente se ve si el estilo del usuario es Activo + Secuencial. Si no coincide, se verá un recuadro de líneas rojas.
+                    </p>
+
+                    <div class="actividad-ls-contenedor">
+                        <div id="arrastrar-ls" class="jpit-activities-droppable" data-verify-type="target" data-act-id="Ciclos de los estilos de aprendizaje" data-ls-cycle="active-sequential">
+                            <p>Complete los espacios en blanco con los estilos de cada ciclo.</p>
+                            <table>
+                                <tr>
+                                    <th>Grassping</th>
+                                    <td class="conection"><span class="icon_horizontal_arrow"></span></td>
+                                    <td data-target-group="1"></td>
+                                    <td data-target-group="1"></td>
+                                    <td data-target-group="1"></td>
+                                    <td data-target-group="1"></td>
+                                </tr>
+                                <tr>
+                                    <th>Transforming</th>
+                                    <td class="conection"><span class="icon_horizontal_arrow"></span></td>
+                                    <td data-target-group="2"></td>
+                                    <td data-target-group="2"></td>
+                                    <td data-target-group="2"></td>
+                                    <td data-target-group="2"></td>
+                                </tr>
+                            </table>
+
+                            <h4>Estilos:</h4>
+                            <div class="estilos-arrastrar">
+                                <div data-group="1">Visual + Sensorial</div>
+                                <div data-group="1" >Visual + Intuitivo</div>
+                                <div data-group="1" >Verbal + Sensorial</div>
+                                <div data-group="1" >Verbal + Intuitivo</div>
+                                <div data-group="2" >Activo + Secuencial</div>
+                                <div data-group="2" >Activo + Global</div>
+                                <div data-group="2" >Reflexivo + Secuencial</div>
+                                <div data-group="2" >Reflexivo + Global</div>
+                            </div>
+                            <br class="clear" />
+
+                            <div class="box_end"></div>
+                        </div>
+                    </div>
+
+                    <p>
+                        A continuación una actividad de reflexión que estaría disponible para los demás usuarios, indicado con el atributo <em>data-ls-cycle="transforming"</em>.
+                        Por lo menos una de las dos actividades se debe ver.
+                    </p>
+
+                    <div class="actividad-ls-contenedor">
+                        <div class="box-text activity" label="Actividad de aprendizaje" data-ls-cycle="transforming">
+                            <p>
+                              Acá se presentaría la actividad genérica, que no es interactiva sino de reflexión por lo que no se le hace seguimiento.
+                              Si ves esta actividad es porque la actividad interactiva no estaba disponible para el estilo actual.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!--Maquetación-->
             <section id="pag-maquetacion" ptitle="Maquetación">
                 <div data-title="Generalidades" class="subpage">
@@ -3938,44 +4033,6 @@
                         <li><strong>Indicador de progreso:</strong> es el elemento que muestra el porcentaje de avance en la revisión del documento, se incluye argegando un contenedor con la clase <em>measuring-progress</em>. Se puede indicar qué tipo de indicador se va a utilizar agregando un atributo <em>data-type</em> con uno de los siguientes valores: <em>default</em>, <em>circle</em>, <em>vertical</em>, <em>horizontal</em>; el tipo es opcional y si no se indica, por defecto se usa el por defecto.
                         </li>
                     </ul>
-                </div>
-            </section>
-
-            <!--Estilos de aprendizaje-->
-            <section id="pag-ls" ptitle="Estilos de aprendizaje">
-
-                <div data-title="Estilos de aprendizaje" class="subpage">
-                    <h3>Estilos de aprendizaje</h3>
-                    <p>
-                        El contenido se puede personalizar acorde al estilo de aprendizaje del usuario que los consume, así:
-                    </p>
-                    <ol class="ol_counter">
-                        <li>Agregar el atributo <em>data-ls-cycle</em> al elemento que se quiere personalizar.</li>
-                        <li>El valor del atributo debe ser una de las duplas de estilos: <em>visual-sensing</em>, <em>visual-intuitive</em>, <em>verbal-sensing</em>, <em>verbal-intuitive</em>, <em>active-sequential</em>, <em>active-global</em>, <em>reflective-sequential</em>, <em>reflective-global</em>.</li>
-                        <li>Además, se pueden marcar los elementos en el atributo <em>data-ls-cycle</em> con el valor: <em>grassping</em> o <em>transforming</em> según el ciclo al que pertenezcan. Aquellos elementos que contengan esos valores se usarán con los usuarios cuando su estilo de aprendizaje no esté implementado en el paquete.</li>
-                        <li>El usuario tendrá dos valores: uno de su ciclo "Grassping" y otro del ciclo "Transforming".</li>
-                    </ol>
-                    <h4>Ejemplo del ciclo "Grassping" del usuario actual:</h4>
-                    <ul class="data_list">
-                        <li data-ls-cycle="grassping">El estilo del usuario no se encuentra en el objeto entonces se usa el recurso por defecto para este ciclo.</li>
-                        <li data-ls-cycle="visual-sensing">El usuario es Visual + Sensorial</li>
-                        <li data-ls-cycle="visual-intuitive">El usuario es Visual + Intuitivo</li>
-                        <li data-ls-cycle="verbal-sensing">El usuario es Verbal + Sensorial</li>
-                        <li data-ls-cycle="verbal-intuitive">El usuario es Verbal + Intuitivo</li>
-                    </ul>
-                    <h4>Ejemplo del ciclo "Transforming" del usuario actual:</h4>
-                    <ul class="data_list">
-                        <li data-ls-cycle="transforming">El estilo del usuario no se encuentra en el objeto entonces se usa el recurso por defecto para este ciclo.</li>
-                        <li data-ls-cycle="active-sequential">El usuario es Activo + Secuencial</li>
-                        <li data-ls-cycle="active-global">El usuario es Activo + Global</li>
-                        <li data-ls-cycle="reflective-sequential">El usuario es Reflexivo + Secuencial</li>
-                        <li data-ls-cycle="reflective-global">El usuario es Reflexivo + Global</li>
-                    </ul>
-                    <div class="box-text important" label="Importante">
-                        <p>
-                          Si no se logra conectar con el servicio que retorna los estilos de aprendizaje, se utilizarán los estilos por defecto: <em>grassping</em> y <em>transforming</em> como si fueran los propios del usuario.
-                        </p>
-                    </div>
                 </div>
             </section>
 
