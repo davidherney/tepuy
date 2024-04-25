@@ -265,7 +265,7 @@ dhbgApp.standard.start = function() {
     // ==============================================================================================
 
     // Return and "close all" control.
-    if (window.parent.dhbgApp && window.parent.document != window.document) { //Executes only if parent window is a tepuy window (it has a dhbgApp defined)
+    if (window.parent.document != window.document) {
         var $scorm_frame = $('body', window.parent.document);
         $('[data-global="return"]').on('click', function () {
             var $this = $(this);
