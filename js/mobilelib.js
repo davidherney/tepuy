@@ -733,7 +733,6 @@ dhbgApp.mobile.start = function() {
 
                 $act.append(title);
 
-
                 if (typeof dhbgApp.scorm.activities[activity_key] == 'string') {
                     $act.append(dhbgApp.scorm.activities[activity_key] + '%');
                 }
@@ -1378,6 +1377,11 @@ dhbgApp.mobile.start = function() {
 
         var $start = $('<button class="button general">' + dhbgApp.s('start_activity') + '</button>');
 
+        var data_ls_cycle = $container.attr('data-ls-cycle');
+        if (data_ls_cycle) {
+            $start.attr('data-ls-cycle', data_ls_cycle);
+        }
+
         $container.before($start);
         var parent_class = $container.parent().attr('id');
         $container.addClass(parent_class);
@@ -1426,6 +1430,12 @@ dhbgApp.mobile.start = function() {
         }
 
         var $start = $('<button class="button general">' + dhbgApp.s('start_activity') + '</button>');
+
+        var data_ls_cycle = $this.attr('data-ls-cycle');
+        if (data_ls_cycle) {
+            $start.attr('data-ls-cycle', data_ls_cycle);
+        }
+
         $this.before($start);
         var parent_class = $this.parent().attr('id');
         $this.addClass(parent_class);
@@ -1451,6 +1461,12 @@ dhbgApp.mobile.start = function() {
         }
 
         var $start = $('<button class="button general">' + dhbgApp.s('start_activity') + '</button>');
+
+        var data_ls_cycle = $this.attr('data-ls-cycle');
+        if (data_ls_cycle) {
+            $start.attr('data-ls-cycle', data_ls_cycle);
+        }
+
         $this.before($start);
         var parent_class = $this.parent().attr('id');
         $this.addClass(parent_class);
@@ -1754,6 +1770,80 @@ dhbgApp.mobile.start = function() {
     else {
         dhbgApp.loadPage(0, 0);
     }
+
+    // Learning styles features.
+    var lsAvailables = [];
+    $('[data-ls-cycle]').each(function() {
+        var $this = $(this);
+
+        // To avoid duplicates.
+        lsAvailables.push($this.attr('data-ls-cycle').trim());
+    });
+
+    lsAvailables = [...new Set(lsAvailables)];
+
+    $('#body').attr('data-grassping', 'grassping');
+    $('#body').attr('data-transforming', 'transforming');
+
+    $.learningStyles.get(function(userStyles) {
+
+        dhbgApp.userStyles = userStyles;
+
+        if (dhbgApp.userStyles && typeof dhbgApp.userStyles == 'object' && dhbgApp.userStyles.cycles != undefined) {
+
+            var styleByCicle = {
+                'grassping': [],
+                'transforming': []
+            };
+            for (let [cyclename, cycledata] of Object.entries(dhbgApp.userStyles.cycles)) {
+                let styles = [];
+                for (let [stylename, styledata] of Object.entries(cycledata)) {
+                    styles.push(styledata);
+                    styleByCicle[cyclename].push(styledata);
+                }
+                var attr = 'data-' + cyclename;
+                var currentStyle = styles.join('-');
+
+                if (!lsAvailables.includes(currentStyle)) {
+                    currentStyle = cyclename;
+                }
+
+                console.log(attr, ': ', currentStyle);
+
+                $('#body').attr(attr, currentStyle);
+
+            }
+
+            // The final user styles.
+            var userStyles = [$('#body').attr('data-grassping'), $('#body').attr('data-transforming')];
+
+            var textStyles = dhbgApp.s('user_learning_styles_by_cycle', {
+                                                        'a': dhbgApp.s('learning_style_' + styleByCicle.grassping[0]),
+                                                        'b': dhbgApp.s('learning_style_' + styleByCicle.grassping[1]),
+                                                        'c': dhbgApp.s('learning_style_' + styleByCicle.transforming[0]),
+                                                        'd': dhbgApp.s('learning_style_' + styleByCicle.transforming[1]),
+                                                    });
+            $('#results_page_styles').html(textStyles);
+
+            $('[data-ls-cycle]').each(function() {
+                var $resource = $(this);
+                var cycle = $resource.attr('data-ls-cycle').trim();
+                if (!userStyles.includes(cycle)) {
+
+                    // Remove the activity from the scorm object.
+                    delete dhbgApp.scorm.activities[$resource.attr('data-act-id')];
+
+                    // Remove the element if is for a different learning style.
+                    $resource.remove();
+                }
+            });
+
+        } else {
+            $('#results_page_styles').html(dhbgApp.s('user_learning_styles_not_available'));
+        }
+
+    });
+
 };
 
 
@@ -3529,7 +3619,6 @@ dhbgApp.mobile.load_operations = function() {
         var $button_again = $('<button class="general btn-again">' + dhbgApp.s('restart_activity') + '</button>');
         $box_end.append($button_again);
         $button_again.hide();
-
 
         $button_check.on('click', function() {
             var full = true;

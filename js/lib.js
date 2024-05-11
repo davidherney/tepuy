@@ -917,8 +917,8 @@ dhbgApp.standard.start = function() {
 
     lsAvailables = [...new Set(lsAvailables)];
 
-    $(body).attr('data-grassping', 'grassping');
-    $(body).attr('data-transforming', 'transforming');
+    $('#body').attr('data-grassping', 'grassping');
+    $('#body').attr('data-transforming', 'transforming');
 
     $.learningStyles.get(function(userStyles) {
 
@@ -950,7 +950,7 @@ dhbgApp.standard.start = function() {
             }
 
             // The final user styles.
-            var userStyles = [$(body).attr('data-grassping'), $(body).attr('data-transforming')];
+            var userStyles = [$('#body').attr('data-grassping'), $('#body').attr('data-transforming')];
 
             var textStyles = dhbgApp.s('user_learning_styles_by_cycle', {
                                                         'a': dhbgApp.s('learning_style_' + styleByCicle.grassping[0]),
